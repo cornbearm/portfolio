@@ -2,647 +2,379 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>毛雨杭 · 作品集</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  :root {
-    --bg: #0a0a0b;
-    --surface: #141416;
-    --border: #232328;
-    --text: #e8e8ec;
-    --text-dim: #888892;
-    --accent: #c8a46e;
-    --accent-dim: rgba(200, 164, 110, 0.15);
-  }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', -apple-system, sans-serif;
-    overflow: hidden;
-    height: 100vh;
-    height: 100dvh;
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* ── Loading Screen ── */
-  #loading-screen {
-    position: fixed; inset: 0; z-index: 9999;
-    background: var(--bg);
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    transition: opacity 0.6s ease, visibility 0.6s ease;
-  }
-  #loading-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-  #loading-screen .loader {
-    width: 48px; height: 48px;
-    border: 2px solid var(--border);
-    border-top-color: var(--accent);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-  }
-  #loading-screen .title-text {
-    margin-top: 24px;
-    font-family: 'Noto Serif SC', serif;
-    font-size: 18px; font-weight: 700;
-    color: var(--accent);
-    letter-spacing: 4px;
-  }
-  #loading-screen .progress-text {
-    margin-top: 10px;
-    font-size: 12px;
-    color: var(--text-dim);
-    letter-spacing: 1px;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  /* ── Top Bar ── */
-  #topbar {
-    height: 48px; flex-shrink: 0;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 12px;
-    z-index: 100;
-  }
-  #topbar .left { display: flex; align-items: center; gap: 10px; }
-  #topbar .brand {
-    font-family: 'Noto Serif SC', serif;
-    font-size: 14px; font-weight: 700;
-    color: var(--accent);
-    letter-spacing: 2px;
-    user-select: none;
-  }
-  #topbar .controls {
-    display: flex; align-items: center; gap: 8px;
-  }
-  #topbar .page-info {
-    font-size: 12px; color: var(--text-dim);
-    min-width: 60px; text-align: center;
-    font-variant-numeric: tabular-nums;
-    user-select: none;
-  }
-  #topbar button {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text-dim);
-    width: 32px; height: 32px;
-    border-radius: 6px; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s;
-    font-size: 14px;
-  }
-  #topbar button:hover, #topbar button:active {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: var(--accent-dim);
-  }
-  #topbar button:disabled {
-    opacity: 0.3; cursor: default;
-    border-color: var(--border); color: var(--text-dim);
-    background: transparent;
-  }
-  #topbar button.active-btn {
-    color: var(--accent);
-    border-color: var(--accent);
-    background: var(--accent-dim);
-  }
-  .zoom-group {
-    display: flex; align-items: center; gap: 2px;
-    background: var(--bg); border-radius: 6px; padding: 2px;
-  }
-  .zoom-group button { border: none; border-radius: 4px; width: 28px; height: 28px; }
-  #zoom-level {
-    font-size: 11px; color: var(--text-dim);
-    min-width: 38px; text-align: center;
-    user-select: none;
-  }
-  .divider {
-    width: 1px; height: 18px;
-    background: var(--border);
-    margin: 0 2px;
-  }
-
-  /* ── Main Content ── */
-  #main {
-    flex: 1; overflow: hidden; position: relative;
-    display: flex;
-  }
-
-  /* ── Sidebar Thumbnails ── */
-  #sidebar {
-    width: 0; overflow: hidden;
-    background: var(--surface);
-    border-right: 1px solid var(--border);
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex; flex-direction: column;
-    flex-shrink: 0;
-  }
-  #sidebar.open { width: 160px; }
-  #sidebar-header {
-    padding: 10px 12px;
-    font-size: 11px; font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--text-dim);
-    border-bottom: 1px solid var(--border);
-    user-select: none;
-  }
-  #thumb-list {
-    flex: 1; overflow-y: auto;
-    padding: 10px 12px;
-    display: flex; flex-direction: column; gap: 6px;
-  }
-  #thumb-list::-webkit-scrollbar { width: 3px; }
-  #thumb-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-  .thumb-item {
-    cursor: pointer; border-radius: 4px;
-    overflow: hidden; border: 2px solid transparent;
-    transition: border-color 0.2s, transform 0.2s;
-    position: relative;
-    flex-shrink: 0;
-  }
-  .thumb-item:hover { border-color: var(--accent); transform: scale(1.03); }
-  .thumb-item.active { border-color: var(--accent); }
-  .thumb-item canvas {
-    width: 100%; display: block;
-    border-radius: 2px;
-  }
-  .thumb-item .page-num {
-    position: absolute; bottom: 3px; right: 5px;
-    font-size: 9px; color: var(--text-dim);
-    background: rgba(0,0,0,0.6);
-    padding: 1px 4px; border-radius: 2px;
-  }
-
-  /* ── Viewer Area ── */
-  #viewer-wrap {
-    flex: 1; overflow: auto;
-    display: flex; justify-content: flex-start;
-    align-items: flex-start;
-    padding: 16px;
-    -webkit-overflow-scrolling: touch;
-  }
-  #viewer-wrap::-webkit-scrollbar { width: 4px; height: 4px; }
-  #viewer-wrap::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-  #viewer-wrap::-webkit-scrollbar-corner { background: transparent; }
-
-  #page-canvas {
-    box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px var(--border);
-    border-radius: 4px;
-    display: block;
-    margin: 0 auto;
-  }
-
-  /* ── Scroll Mode ── */
-  #viewer-wrap.scroll-mode {
-    flex-direction: column; align-items: center;
-    justify-content: flex-start;
-    padding: 16px 16px 80px;
-    gap: 12px;
-  }
-  #viewer-wrap.scroll-mode #page-canvas { display: none; }
-  .scroll-page-canvas {
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4), 0 0 0 1px var(--border);
-    border-radius: 4px;
-    max-width: 100%;
-    display: block;
-  }
-
-  /* ── Progress Bar ── */
-  #progress-bar {
-    position: fixed; top: 48px; left: 0; height: 2px;
-    background: var(--accent); z-index: 200;
-    transition: width 0.3s;
-  }
-
-  /* ── Keyboard Hint (desktop only) ── */
-  .hint {
-    position: fixed; bottom: 16px; left: 50%;
-    transform: translateX(-50%);
-    background: var(--surface); border: 1px solid var(--border);
-    padding: 6px 14px; border-radius: 20px;
-    font-size: 11px; color: var(--text-dim);
-    opacity: 0; pointer-events: none;
-    z-index: 50;
-    transition: opacity 0.3s;
-  }
-  body:hover .hint { opacity: 0.5; }
-  .hint:hover { opacity: 1 !important; pointer-events: auto; }
-  .hint kbd {
-    background: var(--bg); padding: 1px 5px;
-    border-radius: 3px; font-size: 10px;
-    border: 1px solid var(--border);
-    margin: 0 2px;
-  }
-
-  /* ── Mobile ── */
-  @media (max-width: 768px) {
-    #topbar { padding: 0 8px; height: 44px; }
-    #topbar .brand { font-size: 12px; letter-spacing: 1px; }
-    #topbar button { width: 30px; height: 30px; font-size: 13px; }
-    .hint { display: none; }
-    #sidebar.open { width: 120px; }
-    #viewer-wrap { padding: 8px; }
-    #viewer-wrap.scroll-mode { padding: 8px 8px 60px; gap: 8px; }
-    .divider { display: none; }
-    .zoom-group { display: none; }
-    #btn-fit { display: none; }
-  }
+<style id="APP_CSS">
+  :root{--bg:#f5f4f0;--white:#fff;--text:#1a1a1a;--text-sub:#666;--border:#e0ddd8;--accent:#1a1a1a;--edit-ring:#4f7fff;--shadow:0 2px 16px rgba(0,0,0,.07);--radius:12px}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'PingFang SC','Noto Sans SC',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+  nav{position:sticky;top:0;z-index:100;background:rgba(245,244,240,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 40px;height:60px;gap:24px}
+  .nav-logo{font-size:16px;font-weight:600;letter-spacing:.02em;flex-shrink:0;outline:none;cursor:default}
+  .nav-links{display:flex;gap:24px;margin-left:auto;align-items:center}
+  .nav-links a{text-decoration:none;color:var(--text-sub);font-size:14px;cursor:pointer;transition:color .2s}
+  .nav-links a:hover,.nav-links a.active{color:var(--text);font-weight:500}
+  .edit-toggle{margin-left:8px;display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:24px;padding:6px 14px;cursor:pointer;font-size:13px;color:var(--text);transition:all .2s;user-select:none;flex-shrink:0}
+  .edit-toggle:hover{border-color:var(--accent)}
+  .edit-toggle.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .edit-toggle .dot{width:8px;height:8px;border-radius:50%;background:#aaa;transition:background .2s}
+  .edit-toggle.active .dot{background:#6fff9e}
+  .page{display:none}.page.active{display:block}
+  .hero{max-width:900px;margin:0 auto;padding:80px 40px 40px}
+  .hero-label{font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text-sub);margin-bottom:16px}
+  .hero-title{font-size:clamp(36px,6vw,64px);font-weight:700;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px}
+  .hero-sub{font-size:18px;color:var(--text-sub);line-height:1.6;max-width:540px}
+  [contenteditable="true"]{outline:none;border-radius:4px;transition:box-shadow .15s}
+  .editing-mode [contenteditable="true"]{box-shadow:0 0 0 2px var(--edit-ring);cursor:text;min-width:20px;min-height:1em;display:inline-block}
+  .editing-mode [contenteditable="true"]:focus{box-shadow:0 0 0 2px var(--edit-ring),0 0 0 4px rgba(79,127,255,.15)}
+  .works-section{max-width:900px;margin:0 auto;padding:0 40px 80px}
+  .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+  .section-title{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-sub)}
+  .add-btn{display:none;align-items:center;gap:6px;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;cursor:pointer;transition:opacity .2s}
+  .add-btn:hover{opacity:.85}
+  .editing-mode .add-btn{display:flex}
+  .works-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+  .work-card{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;transition:transform .2s,box-shadow .2s;position:relative}
+  .work-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .card-img{aspect-ratio:4/3;overflow:hidden;background:#e8e5e0;position:relative;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .card-img img{width:100%;height:100%;object-fit:cover;transition:transform .3s;position:absolute;inset:0}
+  .work-card:hover .card-img img{transform:scale(1.03)}
+  .img-ov{display:none;position:absolute;inset:0;background:rgba(0,0,0,.42);align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:500;flex-direction:column;gap:4px}
+  .editing-mode .card-img:hover .img-ov{display:flex}
+  .card-body{padding:16px 18px 18px}
+  .card-title{font-size:16px;font-weight:600;margin-bottom:6px;line-height:1.3}
+  .card-desc{font-size:13px;color:var(--text-sub);line-height:1.55;margin-bottom:12px}
+  .card-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+  .card-link{font-size:12px;color:var(--accent);text-decoration:none;font-weight:500}
+  .card-link:hover{opacity:.7}
+  .link-input{display:none;font-size:12px;border:1px solid var(--border);border-radius:4px;padding:3px 8px;width:150px;color:var(--text)}
+  .editing-mode .link-input{display:block}
+  .editing-mode .card-link{display:none}
+  .del-btn{display:none;position:absolute;top:8px;right:8px;background:rgba(0,0,0,.55);color:#fff;border:none;border-radius:50%;width:28px;height:28px;font-size:15px;cursor:pointer;align-items:center;justify-content:center}
+  .editing-mode .del-btn{display:flex}
+  .del-btn:hover{background:#d32f2f}
+  .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#bbb;gap:6px;font-size:13px;width:100%;height:100%;padding:16px;text-align:center}
+  .ph-icon{font-size:30px}
+  .lb{display:none;position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.88);align-items:center;justify-content:center}
+  .lb.show{display:flex}
+  .lb img{max-width:90vw;max-height:90vh;border-radius:8px;cursor:default;object-fit:contain}
+  .lb-x{position:absolute;top:20px;right:24px;color:#fff;font-size:28px;cursor:pointer;background:none;border:none;line-height:1}
+  .about-wrap{max-width:780px;margin:0 auto;padding:80px 40px;display:grid;grid-template-columns:200px 1fr;gap:60px;align-items:start}
+  .ava-wrap{position:relative;width:200px;height:200px}
+  .ava{width:200px;height:200px;border-radius:50%;object-fit:cover;display:block;border:3px solid var(--border);background:#e8e5e0}
+  .ava-btn{display:none;position:absolute;bottom:6px;right:6px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:32px;height:32px;font-size:15px;cursor:pointer;align-items:center;justify-content:center}
+  .editing-mode .ava-btn{display:flex}
+  .about-name{font-size:32px;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
+  .about-role{font-size:16px;color:var(--text-sub);margin-bottom:24px}
+  .about-bio{font-size:15px;line-height:1.75;color:var(--text);margin-bottom:28px;white-space:pre-wrap}
+  .about-contacts h3{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-sub);margin-bottom:12px}
+  .contact-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .contact-list li{display:flex;align-items:center;gap:10px;font-size:14px}
+  .contact-list a{color:var(--text);text-decoration:none}
+  .contact-list a:hover{text-decoration:underline}
+  .save-bar{display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--white);border:1px solid var(--border);border-radius:12px;padding:12px 20px;box-shadow:0 4px 24px rgba(0,0,0,.14);align-items:center;gap:12px;z-index:200;font-size:14px;white-space:nowrap}
+  .editing-mode .save-bar{display:flex}
+  .save-btn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:14px;cursor:pointer;font-weight:500;transition:opacity .15s}
+  .save-btn:hover{opacity:.85}
+  .save-hint{font-size:12px;color:var(--text-sub)}
+  @media(max-width:640px){nav{padding:0 16px;gap:12px}.hero{padding:56px 20px 28px}.works-section{padding:0 20px 56px}.about-wrap{grid-template-columns:1fr;gap:32px}.ava-wrap{margin:0 auto}.works-grid{grid-template-columns:1fr}.save-hint{display:none}}
 </style>
 </head>
 <body>
 
-<!-- Loading -->
-<div id="loading-screen">
-  <div class="loader"></div>
-  <div class="title-text">毛雨杭 · 作品集</div>
-  <div class="progress-text" id="load-progress">准备加载...</div>
-</div>
+<input type="file" id="img-input" accept="image/*" style="display:none">
+<input type="file" id="ava-input" accept="image/*" style="display:none">
 
-<!-- Progress -->
-<div id="progress-bar" style="width:0%"></div>
-
-<!-- Top Bar -->
-<div id="topbar">
-  <div class="left">
-    <button id="btn-sidebar" title="缩略图 (T)">☰</button>
-    <div class="brand">毛雨杭 · 作品集</div>
+<nav>
+  <div class="nav-logo" id="site-name" contenteditable="false" spellcheck="false">毛雨杭</div>
+  <div class="nav-links">
+    <a id="nav-works" class="active" onclick="goPage('works')">作品</a>
+    <a id="nav-about" onclick="goPage('about')">关于</a>
   </div>
-  <div class="controls">
-    <button id="btn-prev" title="上一页" disabled>‹</button>
-    <div class="page-info"><span id="cur-page">1</span> / <span id="total-pages">—</span></div>
-    <button id="btn-next" title="下一页">›</button>
-    <div class="divider"></div>
-    <div class="zoom-group">
-      <button id="btn-zoom-out" title="缩小">−</button>
-      <span id="zoom-level">100%</span>
-      <button id="btn-zoom-in" title="放大">+</button>
+  <div class="edit-toggle" id="edit-toggle" onclick="toggleEdit()">
+    <span class="dot"></span><span id="toggle-label">编辑模式</span>
+  </div>
+</nav>
+
+<!-- WORKS -->
+<div class="page active" id="page-works">
+  <div class="hero">
+    <div class="hero-label" contenteditable="false" id="hero-label">Portfolio · 设计师</div>
+    <h1 class="hero-title" contenteditable="false" id="hero-title">用设计<br>创造连接</h1>
+    <p class="hero-sub" contenteditable="false" id="hero-sub">我专注于视觉传达与品牌设计，相信好的设计能在人与信息之间建立直觉性的共鸣。</p>
+  </div>
+  <div class="works-section">
+    <div class="section-header">
+      <span class="section-title">精选作品</span>
+      <button class="add-btn" onclick="addWork()">＋ 添加作品</button>
     </div>
-    <button id="btn-fit" title="适应窗口">⊡</button>
-    <div class="divider"></div>
-    <button id="btn-scroll-mode" title="滚动模式">⇣</button>
-    <button id="btn-fullscreen" title="全屏">⛶</button>
+    <div class="works-grid" id="works-grid"></div>
   </div>
 </div>
 
-<!-- Main -->
-<div id="main">
-  <div id="sidebar">
-    <div id="sidebar-header">页面</div>
-    <div id="thumb-list"></div>
-  </div>
-  <div id="viewer-wrap">
-    <canvas id="page-canvas"></canvas>
+<!-- ABOUT -->
+<div class="page" id="page-about">
+  <div class="about-wrap">
+    <div class="ava-wrap">
+      <img class="ava" id="about-ava" src="" alt="头像">
+      <button class="ava-btn" onclick="document.getElementById('ava-input').click()">✎</button>
+    </div>
+    <div>
+      <div class="about-name" contenteditable="false" id="about-name">毛雨杭</div>
+      <div class="about-role" contenteditable="false" id="about-role">视觉设计师 · 品牌顾问</div>
+      <div class="about-bio" contenteditable="false" id="about-bio">你好，我是毛雨杭，一名专注于品牌视觉与用户体验设计的设计师。我相信，好的设计不只是好看，而是能在第一眼就和人建立连接，并在使用过程中持续传达品牌温度。
+
+我曾服务于品牌、互联网及文化创意行业，擅长从洞察出发，打造具有识别度和情感张力的视觉系统。</div>
+      <div class="about-contacts">
+        <h3>联系方式</h3>
+        <ul class="contact-list">
+          <li>✉️ <a id="c-email" contenteditable="false" href="mailto:hello@example.com">hello@example.com</a></li>
+          <li>🔗 <a id="c-link" contenteditable="false" href="https://behance.net/example">behance.net/example</a></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="hint">
-  <kbd>←</kbd><kbd>→</kbd> 翻页 · <kbd>滚轮</kbd> 翻页/滚动 · <kbd>Ctrl+滚轮</kbd> 缩放 · <kbd>F</kbd> 全屏 · <kbd>T</kbd> 缩略图
+<!-- Lightbox -->
+<div class="lb" id="lb" onclick="if(event.target===this)hideLb()">
+  <button class="lb-x" onclick="hideLb()">✕</button>
+  <img id="lb-img" src="" alt="">
 </div>
 
-<script>
-(function() {
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+<!-- Save bar -->
+<div class="save-bar">
+  <span>✏️ 编辑中</span>
+  <button class="save-btn" onclick="doExport()">💾 导出 HTML</button>
+  <span class="save-hint">下载后替换 GitHub 文件即可更新</span>
+</div>
 
-  var MIN_SCALE = 0.3;
-  var MAX_SCALE = 4.0;
+<script id="APP_JS">
+// ─── DATA (replaced on export) ─────────────────────────────────────────
+var S = {
+  siteName: '毛雨杭',
+  heroLabel: 'Portfolio · 设计师',
+  heroTitle: '用设计<br>创造连接',
+  heroSub: '我专注于视觉传达与品牌设计，相信好的设计能在人与信息之间建立直觉性的共鸣。',
+  aboutName: '毛雨杭',
+  aboutRole: '视觉设计师 · 品牌顾问',
+  aboutBio: '你好，我是毛雨杭，一名专注于品牌视觉与用户体验设计的设计师。我相信，好的设计不只是好看，而是能在第一眼就和人建立连接，并在使用过程中持续传达品牌温度。\n\n我曾服务于品牌、互联网及文化创意行业，擅长从洞察出发，打造具有识别度和情感张力的视觉系统。',
+  aboutAva: '',
+  emailText: 'hello@example.com',
+  emailHref: 'mailto:hello@example.com',
+  linkText: 'behance.net/example',
+  linkHref: 'https://behance.net/example',
+  works: [
+    {id:1, title:'品牌视觉系统重构', desc:'为某新消费品牌打造完整的视觉识别体系，包含标志、色彩、字体及应用规范。', img:'', link:''},
+    {id:2, title:'电商平台 UI 设计', desc:'主导设计一款面向年轻女性用户的美妆电商 App，从用户研究到高保真原型全程参与。', img:'', link:''},
+    {id:3, title:'城市文化插画系列', desc:'以城市地标为主题，创作 12 幅风格统一的插画，用于城市文旅宣传物料。', img:'', link:''}
+  ],
+  nextId: 10
+};
+// ─── END DATA ──────────────────────────────────────────────────────────
 
-  var pdfDoc = null;
-  var currentPage = 1;
-  var totalPages = 0;
-  var currentScale = 1.0;
-  var fitScale = 1.0;
-  var isScrollMode = false;
-  var rendering = false;
+var editMode = false;
+var pendCard = null;
 
-  var $ = function(id) { return document.getElementById(id); };
-  var canvas = $('page-canvas');
-  var ctx = canvas.getContext('2d');
-  var viewerWrap = $('viewer-wrap');
-  var thumbList = $('thumb-list');
-  var loadingScreen = $('loading-screen');
+// Page nav
+function goPage(n) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + n).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('nav-' + n).classList.add('active');
+}
 
-  // ── Load PDF from URL (no base64!) ──
-  function loadPDF() {
-    $('load-progress').textContent = '加载文件...';
-
-    var loadingTask = pdfjsLib.getDocument('portfolio.pdf');
-    loadingTask.onProgress = function(p) {
-      if (p.total > 0) {
-        var pct = Math.round(p.loaded / p.total * 100);
-        $('load-progress').textContent = '加载中 ' + pct + '%';
-        $('progress-bar').style.width = pct + '%';
-      }
-    };
-
-    loadingTask.promise.then(function(pdf) {
-      pdfDoc = pdf;
-      totalPages = pdf.numPages;
-      $('total-pages').textContent = totalPages;
-      $('progress-bar').style.width = '100%';
-      setTimeout(function() { $('progress-bar').style.opacity = '0'; }, 500);
-
-      return calcFitScale().then(function() {
-        currentScale = fitScale;
-        return renderPage(currentPage);
-      });
-    }).then(function() {
-      loadingScreen.classList.add('hidden');
-      generateThumbnails();
-      // Default to scroll mode
-      enterScrollMode();
-    }).catch(function(e) {
-      loadingScreen.querySelector('.title-text').textContent = '加载失败';
-      loadingScreen.querySelector('.loader').style.display = 'none';
-      $('load-progress').textContent = e.message;
-      console.error(e);
-    });
-  }
-
-  function calcFitScale() {
-    return pdfDoc.getPage(1).then(function(page) {
-      var vp = page.getViewport({ scale: 1.0 });
-      var availW = viewerWrap.clientWidth - 32;
-      var availH = viewerWrap.clientHeight - 32;
-      fitScale = Math.min(availW / vp.width, availH / vp.height, 1.5);
-    });
-  }
-
-  function renderPage(num, scale) {
-    if (rendering) return Promise.resolve();
-    rendering = true;
-    scale = scale || currentScale;
-
-    return pdfDoc.getPage(num).then(function(page) {
-      var vp = page.getViewport({ scale: scale });
-      var dpr = window.devicePixelRatio || 1;
-
-      canvas.width = Math.floor(vp.width * dpr);
-      canvas.height = Math.floor(vp.height * dpr);
-      canvas.style.width = Math.floor(vp.width) + 'px';
-      canvas.style.height = Math.floor(vp.height) + 'px';
-
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-      return page.render({ canvasContext: ctx, viewport: vp }).promise;
-    }).then(function() {
-      $('cur-page').textContent = num;
-      $('btn-prev').disabled = num <= 1;
-      $('btn-next').disabled = num >= totalPages;
-      $('zoom-level').textContent = Math.round(scale * 100) + '%';
-
-      document.querySelectorAll('.thumb-item').forEach(function(t) { t.classList.remove('active'); });
-      var activeThumb = document.querySelector('.thumb-item[data-page="' + num + '"]');
-      if (activeThumb) {
-        activeThumb.classList.add('active');
-        activeThumb.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-      }
-
-      rendering = false;
-    });
-  }
-
-  // ── Thumbnails ──
-  function generateThumbnails() {
-    var i = 1;
-    function nextThumb() {
-      if (i > totalPages) return;
-      pdfDoc.getPage(i).then(function(page) {
-        var vp = page.getViewport({ scale: 0.25 });
-        var thumbCanvas = document.createElement('canvas');
-        thumbCanvas.width = vp.width;
-        thumbCanvas.height = vp.height;
-        var thumbCtx = thumbCanvas.getContext('2d');
-        return page.render({ canvasContext: thumbCtx, viewport: vp }).promise.then(function() {
-          var item = document.createElement('div');
-          item.className = 'thumb-item' + (i === currentPage ? ' active' : '');
-          item.dataset.page = i;
-          var pageNum = document.createElement('span');
-          pageNum.className = 'page-num';
-          pageNum.textContent = i;
-          item.appendChild(thumbCanvas);
-          item.appendChild(pageNum);
-          (function(pg) {
-            item.addEventListener('click', function() { goToPage(pg); });
-          })(i);
-          thumbList.appendChild(item);
-          i++;
-          setTimeout(nextThumb, 10);
-        });
-      });
-    }
-    nextThumb();
-  }
-
-  // ── Scroll Mode ──
-  function enterScrollMode() {
-    isScrollMode = true;
-    canvas.style.display = 'none';
-    viewerWrap.classList.add('scroll-mode');
-    viewerWrap.querySelectorAll('.scroll-page-canvas').forEach(function(c) { c.remove(); });
-    $('btn-scroll-mode').classList.add('active-btn');
-
-    var i = 1;
-    function renderNext() {
-      if (i > totalPages) return;
-      pdfDoc.getPage(i).then(function(page) {
-        var vp = page.getViewport({ scale: fitScale });
-        var dpr = window.devicePixelRatio || 1;
-        var pageCanvas = document.createElement('canvas');
-        pageCanvas.className = 'scroll-page-canvas';
-        pageCanvas.width = Math.floor(vp.width * dpr);
-        pageCanvas.height = Math.floor(vp.height * dpr);
-        pageCanvas.style.width = Math.floor(vp.width) + 'px';
-        pageCanvas.style.height = Math.floor(vp.height) + 'px';
-        pageCanvas.dataset.page = i;
-        var pageCtx = pageCanvas.getContext('2d');
-        pageCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        return page.render({ canvasContext: pageCtx, viewport: vp }).promise.then(function() {
-          viewerWrap.appendChild(pageCanvas);
-          i++;
-          setTimeout(renderNext, 5);
-        });
-      });
-    }
-    renderNext();
-  }
-
-  function exitScrollMode() {
-    isScrollMode = false;
-    canvas.style.display = '';
-    viewerWrap.classList.remove('scroll-mode');
-    viewerWrap.querySelectorAll('.scroll-page-canvas').forEach(function(c) { c.remove(); });
-    $('btn-scroll-mode').classList.remove('active-btn');
-    renderPage(currentPage);
-  }
-
-  // ── Navigation ──
-  function goToPage(num) {
-    if (num < 1 || num > totalPages) return;
-    if (isScrollMode) {
-      var target = viewerWrap.querySelector('.scroll-page-canvas[data-page="' + num + '"]');
-      if (target) target.scrollIntoView({ behavior: 'smooth' });
-      currentPage = num;
-      $('cur-page').textContent = num;
-      $('btn-prev').disabled = num <= 1;
-      $('btn-next').disabled = num >= totalPages;
-    } else {
-      currentPage = num;
-      renderPage(currentPage);
-    }
-  }
-
-  function prevPage() { goToPage(currentPage - 1); }
-  function nextPage() { goToPage(currentPage + 1); }
-
-  function zoomIn() {
-    currentScale = Math.min(currentScale * 1.2, MAX_SCALE);
-    if (isScrollMode) exitScrollMode();
-    renderPage(currentPage, currentScale);
-  }
-  function zoomOut() {
-    currentScale = Math.max(currentScale / 1.2, MIN_SCALE);
-    if (isScrollMode) exitScrollMode();
-    renderPage(currentPage, currentScale);
-  }
-  function fitPage() {
-    calcFitScale().then(function() {
-      currentScale = fitScale;
-      if (isScrollMode) exitScrollMode();
-      renderPage(currentPage);
-    });
-  }
-
-  // ── Events ──
-  $('btn-prev').addEventListener('click', prevPage);
-  $('btn-next').addEventListener('click', nextPage);
-  $('btn-zoom-in').addEventListener('click', zoomIn);
-  $('btn-zoom-out').addEventListener('click', zoomOut);
-  $('btn-fit').addEventListener('click', fitPage);
-  $('btn-fullscreen').addEventListener('click', function() {
-    if (!document.fullscreenElement) document.documentElement.requestFullscreen();
-    else document.exitFullscreen();
+// Edit mode
+var EDIDS = ['site-name','hero-label','hero-title','hero-sub','about-name','about-role','about-bio','c-email','c-link'];
+function toggleEdit() {
+  editMode = !editMode;
+  document.getElementById('edit-toggle').classList.toggle('active', editMode);
+  document.getElementById('toggle-label').textContent = editMode ? '退出编辑' : '编辑模式';
+  document.body.classList.toggle('editing-mode', editMode);
+  EDIDS.forEach(id => {
+    var el = document.getElementById(id);
+    if (el) el.contentEditable = editMode ? 'true' : 'false';
   });
-  $('btn-sidebar').addEventListener('click', function() {
-    $('sidebar').classList.toggle('open');
+  document.querySelectorAll('.card-title,.card-desc').forEach(el => {
+    el.contentEditable = editMode ? 'true' : 'false';
   });
-  $('btn-scroll-mode').addEventListener('click', function() {
-    if (isScrollMode) exitScrollMode();
-    else enterScrollMode();
-  });
+}
 
-  // Mouse wheel
-  var wheelDebounce = false;
-  viewerWrap.addEventListener('wheel', function(e) {
-    if (e.ctrlKey || e.metaKey) {
-      e.preventDefault();
-      if (e.deltaY < 0) zoomIn();
-      else zoomOut();
-      return;
-    }
-    if (!isScrollMode) {
-      e.preventDefault();
-      if (wheelDebounce) return;
-      wheelDebounce = true;
-      if (e.deltaY > 0) nextPage();
-      else if (e.deltaY < 0) prevPage();
-      setTimeout(function() { wheelDebounce = false; }, 200);
-    }
-  }, { passive: false });
+// Grid
+function renderGrid() {
+  var g = document.getElementById('works-grid');
+  g.innerHTML = '';
+  S.works.forEach(w => g.appendChild(mkCard(w)));
+}
 
-  // ── Touch swipe support ──
-  var touchStartX = 0;
-  var touchStartY = 0;
-  var touchStartTime = 0;
+function mkCard(w) {
+  var card = document.createElement('div');
+  card.className = 'work-card'; card.dataset.id = w.id;
 
-  viewerWrap.addEventListener('touchstart', function(e) {
-    if (isScrollMode) return; // let native scroll work in scroll mode
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-    touchStartTime = Date.now();
-  }, { passive: true });
+  // Image
+  var imgDiv = document.createElement('div');
+  imgDiv.className = 'card-img';
+  imgDiv.onclick = () => onImgClick(w.id);
+  refreshImg(imgDiv, w);
 
-  viewerWrap.addEventListener('touchend', function(e) {
-    if (isScrollMode) return;
-    var dx = e.changedTouches[0].clientX - touchStartX;
-    var dy = e.changedTouches[0].clientY - touchStartY;
-    var dt = Date.now() - touchStartTime;
+  var ov = document.createElement('div');
+  ov.className = 'img-ov';
+  ov.innerHTML = '<span style="font-size:22px">📷</span><span>更换图片</span>';
+  imgDiv.appendChild(ov);
 
-    // Swipe detection: horizontal > vertical, fast enough
-    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5 && dt < 500) {
-      if (dx < 0) nextPage();
-      else prevPage();
-    }
-  }, { passive: true });
+  // Del
+  var del = document.createElement('button');
+  del.className = 'del-btn'; del.title = '删除';
+  del.innerHTML = '✕';
+  del.onclick = e => { e.stopPropagation(); delWork(w.id); };
 
-  // Keyboard
-  document.addEventListener('keydown', function(e) {
-    if (e.target.tagName === 'INPUT') return;
-    switch(e.key) {
-      case 'ArrowLeft': prevPage(); break;
-      case 'ArrowRight': nextPage(); break;
-      case '+': case '=': zoomIn(); break;
-      case '-': zoomOut(); break;
-      case 'f': case 'F':
-        if (!document.fullscreenElement) document.documentElement.requestFullscreen();
-        else document.exitFullscreen();
-        break;
-      case 't': case 'T': $('sidebar').classList.toggle('open'); break;
-      case 's': case 'S':
-        if (isScrollMode) exitScrollMode();
-        else enterScrollMode();
-        break;
-      case 'Home': goToPage(1); break;
-      case 'End': goToPage(totalPages); break;
-    }
-  });
+  // Body
+  var body = document.createElement('div'); body.className = 'card-body';
 
-  // Resize
-  var resizeTimer;
-  window.addEventListener('resize', function() {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function() {
-      calcFitScale().then(function() {
-        if (isScrollMode) {
-          exitScrollMode();
-          enterScrollMode();
-        }
-      });
-    }, 200);
-  });
+  var ti = document.createElement('div');
+  ti.className = 'card-title'; ti.contentEditable = editMode ? 'true' : 'false';
+  ti.spellcheck = false; ti.textContent = w.title;
+  ti.oninput = () => w.title = ti.textContent;
 
-  // Scroll mode page tracking
-  viewerWrap.addEventListener('scroll', function() {
-    if (!isScrollMode) return;
-    var canvases = viewerWrap.querySelectorAll('.scroll-page-canvas');
-    var mid = viewerWrap.scrollTop + viewerWrap.clientHeight / 2;
-    for (var j = 0; j < canvases.length; j++) {
-      var c = canvases[j];
-      var top = c.offsetTop;
-      var bottom = top + c.offsetHeight;
-      if (mid >= top && mid <= bottom) {
-        currentPage = parseInt(c.dataset.page);
-        $('cur-page').textContent = currentPage;
-        $('btn-prev').disabled = currentPage <= 1;
-        $('btn-next').disabled = currentPage >= totalPages;
-        document.querySelectorAll('.thumb-item').forEach(function(t) { t.classList.remove('active'); });
-        var activeThumb = document.querySelector('.thumb-item[data-page="' + currentPage + '"]');
-        if (activeThumb) activeThumb.classList.add('active');
-        break;
-      }
-    }
-  });
+  var de = document.createElement('div');
+  de.className = 'card-desc'; de.contentEditable = editMode ? 'true' : 'false';
+  de.spellcheck = false; de.textContent = w.desc;
+  de.oninput = () => w.desc = de.textContent;
 
-  // Start
-  loadPDF();
-})();
+  var foot = document.createElement('div'); foot.className = 'card-footer';
+
+  var lk = document.createElement('a'); lk.className = 'card-link';
+  lk.target = '_blank'; lk.rel = 'noopener'; lk.textContent = '查看项目 →';
+  setLink(lk, w.link);
+
+  var li = document.createElement('input'); li.className = 'link-input';
+  li.type = 'url'; li.placeholder = '项目链接（可选）'; li.value = w.link || '';
+  li.oninput = () => { w.link = li.value.trim(); setLink(lk, w.link); };
+
+  foot.appendChild(lk); foot.appendChild(li);
+  body.appendChild(ti); body.appendChild(de); body.appendChild(foot);
+  card.appendChild(imgDiv); card.appendChild(del); card.appendChild(body);
+  return card;
+}
+
+function refreshImg(div, w) {
+  var ov = div.querySelector('.img-ov');
+  div.innerHTML = ''; if (ov) div.appendChild(ov);
+  if (w.img) {
+    var img = document.createElement('img');
+    img.src = w.img; img.alt = w.title;
+    div.insertBefore(img, ov);
+  } else {
+    var ph = document.createElement('div'); ph.className = 'ph';
+    ph.innerHTML = '<span class="ph-icon">🖼</span><span>点击上传图片</span>';
+    div.insertBefore(ph, ov);
+  }
+}
+
+function setLink(el, url) {
+  if (url) { el.href = url; el.style.display = ''; }
+  else { el.href = '#'; el.style.display = 'none'; }
+}
+
+function addWork() {
+  var w = { id: S.nextId++, title: '新作品', desc: '点击填写作品描述', img: '', link: '' };
+  S.works.push(w);
+  var card = mkCard(w);
+  document.getElementById('works-grid').appendChild(card);
+  var ti = card.querySelector('.card-title');
+  if (ti) { ti.contentEditable = 'true'; ti.focus(); selAll(ti); }
+}
+
+function delWork(id) {
+  if (!confirm('删除这个作品？')) return;
+  S.works = S.works.filter(w => w.id !== id);
+  var c = document.querySelector('.work-card[data-id="' + id + '"]');
+  if (c) c.remove();
+}
+
+function selAll(el) {
+  var r = document.createRange(); r.selectNodeContents(el);
+  var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+}
+
+// Img click
+function onImgClick(id) {
+  var w = S.works.find(x => x.id === id);
+  if (!editMode) { if (w && w.img) showLb(w.img); return; }
+  pendCard = id;
+  document.getElementById('img-input').click();
+}
+
+document.getElementById('img-input').addEventListener('change', function() {
+  var f = this.files[0]; if (!f || pendCard === null) return;
+  var r = new FileReader();
+  r.onload = e => {
+    var url = e.target.result;
+    var w = S.works.find(x => x.id === pendCard);
+    if (w) w.img = url;
+    var card = document.querySelector('.work-card[data-id="' + pendCard + '"]');
+    if (card) refreshImg(card.querySelector('.card-img'), w);
+    pendCard = null;
+  };
+  r.readAsDataURL(f); this.value = '';
+});
+
+document.getElementById('ava-input').addEventListener('change', function() {
+  var f = this.files[0]; if (!f) return;
+  var r = new FileReader();
+  r.onload = e => { S.aboutAva = e.target.result; document.getElementById('about-ava').src = e.target.result; };
+  r.readAsDataURL(f); this.value = '';
+});
+
+// Lightbox
+function showLb(src) { document.getElementById('lb-img').src = src; document.getElementById('lb').classList.add('show'); }
+function hideLb() { document.getElementById('lb').classList.remove('show'); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') hideLb(); });
+
+// ─── EXPORT ──────────────────────────────────────────────────────────
+function collectState() {
+  S.siteName = txt('site-name');
+  S.heroLabel = txt('hero-label');
+  S.heroTitle = document.getElementById('hero-title').innerHTML;
+  S.heroSub = txt('hero-sub');
+  S.aboutName = txt('about-name');
+  S.aboutRole = txt('about-role');
+  S.aboutBio = document.getElementById('about-bio').innerText;
+  S.aboutAva = document.getElementById('about-ava').src || '';
+  S.emailText = txt('c-email');
+  S.emailHref = document.getElementById('c-email').href;
+  S.linkText = txt('c-link');
+  S.linkHref = document.getElementById('c-link').href;
+}
+function txt(id) { var el = document.getElementById(id); return el ? (el.textContent || el.innerText || '') : ''; }
+
+function doExport() {
+  collectState();
+
+  // Get full current HTML
+  var fullHtml = document.documentElement.outerHTML;
+
+  // Replace the data block between "var S = {" and "// ─── END DATA ───"
+  var newData = 'var S = ' + JSON.stringify(S, null, 2) + ';\n// ─── END DATA ──';
+
+  // Use regex to swap the data block
+  fullHtml = fullHtml.replace(
+    /var S = \{[\s\S]*?\/\/ ─── END DATA ──/,
+    newData
+  );
+
+  // Fix avatar: outerHTML may have been captured before avatar load; already in S.aboutAva
+  // The about-ava src in outerHTML should already be correct since we update it live.
+
+  var blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'index.html';
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 15000);
+}
+
+// Init
+renderGrid();
 </script>
 </body>
 </html>
