@@ -39,12 +39,14 @@ a{color:inherit;text-decoration:none}
 .section-title{font-size:clamp(28px,5vw,44px);font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:24px}
 
 /* Hero */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 40px;max-width:1100px;margin:0 auto}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:80px 40px;max-width:1100px;margin:0 auto;text-align:center}
+.hero-cover{width:100%;max-width:780px;margin-bottom:48px;border-radius:8px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.12)}
+.hero-cover img{width:100%;display:block}
 .hero-content{max-width:680px}
-.hero-name{font-size:clamp(42px,8vw,72px);font-weight:700;letter-spacing:-.03em;line-height:1.05;margin-bottom:16px}
-.hero-tagline{font-size:18px;color:var(--c-sub);margin-bottom:12px;font-weight:400}
-.hero-intro{font-size:16px;color:var(--c-light);line-height:1.7;margin-bottom:40px;max-width:520px}
-.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.hero-name{font-size:clamp(32px,5vw,48px);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:12px}
+.hero-tagline{font-size:16px;color:var(--c-sub);margin-bottom:8px;font-weight:400}
+.hero-intro{font-size:15px;color:var(--c-light);line-height:1.7;margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:100px;font-size:14px;font-weight:500;cursor:pointer;transition:all .25s;border:none;outline:none}
 .btn-primary{background:var(--c-text);color:#fff}
 .btn-primary:hover{background:#333}
@@ -183,6 +185,9 @@ a{color:inherit;text-decoration:none}
 
 <!-- HOME -->
 <section id="home" class="hero fade-up">
+  <div class="hero-cover" id="hero-cover">
+    <img src="images/作品集封面.png" alt="Mao Yuhang · Creative Portfolio">
+  </div>
   <div class="hero-content">
     <h1 class="hero-name" data-i18n="hero.name">毛雨杭</h1>
     <p class="hero-tagline" data-i18n="hero.tagline">视觉设计 · IP衍生品 · AIGC创作</p>
