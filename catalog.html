@@ -274,7 +274,8 @@ var I18N = {
     'detail.tools': '工具',
     'detail.overview': '项目概述',
     'detail.process': '创作过程',
-    'detail.outcome': '最终成果'
+    'detail.outcome': '项目成果',
+    'detail.responsibility': '项目职责'
   },
   en: {
     'hero.name': 'Mao Yuhang',
@@ -303,7 +304,8 @@ var I18N = {
     'detail.tools': 'Tools Used',
     'detail.overview': 'Project Overview',
     'detail.process': 'Creative Process',
-    'detail.outcome': 'Final Outcome'
+    'detail.outcome': 'Project Outcome',
+    'detail.responsibility': 'Project Responsibilities'
   }
 };
 
@@ -607,18 +609,20 @@ var DETAIL = {
   'cat-game': {
     cn: {
       title: '原创游戏项目「猫猫直聘」',
-      role: '2D 美术负责人',
+      role: '游戏美术设计 / 主创',
       timeline: '2025',
       tools: 'Photoshop, Illustrator, Procreate, Figma',
       overview: '《猫猫直聘》是一款以职场文化为主题的休闲策略游戏，融合肉鸽牌组构建（Roguelike Deckbuilder）与背包管理（Inventory Management）等核心玩法。玩家将扮演互联网公司的 HR，通过招聘多元员工、优化团队配置、为不同工位形状的员工匹配合适座位、安排技能培训课程等方式，提升团队整体效率，为公司创造更高收益。',
+      responsibility: '主导游戏 2D 美术管线，全面负责角色形象、场景、卡牌插画及 UI 界面等核心视觉内容的创作与风格把控。',
       outcome: '累计获得 Steam 愿望单 500+；小红书话题 #猫猫直聘 相关笔记获赞 2K+；深圳及香港动漫节周边销售额 800+。'
     },
     en: {
       title: 'Original Game "Cat Recruitment"',
-      role: '2D Art Lead',
+      role: 'Game Art Designer / Creator',
       timeline: '2025',
       tools: 'Photoshop, Illustrator, Procreate, Figma',
       overview: '"Cat Recruitment" is a workplace-themed casual strategy game blending roguelike deckbuilding with inventory management as core gameplay mechanics. Players take on the role of an HR manager at an internet company, recruiting diverse employees, optimizing team configurations, matching staff with different desk shapes to suitable workstations, and arranging training programs — all to boost overall team efficiency and maximize company revenue.',
+      responsibility: 'Led the 2D art pipeline, overseeing character design, environment art, card illustrations, and UI — defining the creative vision and style direction for all core visual content.',
       outcome: '500+ Steam wishlists accumulated; 2K+ likes on Xiaohongshu under the  #猫猫直聘 tag; 800+ merchandise units sold at Shenzhen and Hong Kong anime conventions.'
     }
   },
@@ -664,6 +668,7 @@ function openDetail(id) {
     '</div>' +
     '<div class="modal-body">' +
       '<h3>' + t('detail.overview') + '</h3><p>' + dd.overview + '</p>' +
+      (dd.responsibility ? '<h3>' + t('detail.responsibility') + '</h3><p>' + dd.responsibility + '</p>' : '') +
       (L==='cn'?'<div class="modal-gallery"><div class="ph" style="aspect-ratio:4/3;background:linear-gradient(135deg,#f0f0f0,#e8e8e8);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#bbb;font-size:13px">🖼 项目图片占位</div><div class="ph" style="aspect-ratio:4/3;background:linear-gradient(135deg,#e8e8e8,#ddd);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#bbb;font-size:13px">🖼 项目图片占位</div></div>':'<div class="modal-gallery"><div class="ph" style="aspect-ratio:4/3;background:linear-gradient(135deg,#f0f0f0,#e8e8e8);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#bbb;font-size:13px">🖼 Project Image</div><div class="ph" style="aspect-ratio:4/3;background:linear-gradient(135deg,#e8e8e8,#ddd);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#bbb;font-size:13px">🖼 Project Image</div></div>') +
       (dd.process ? '<h3>' + t('detail.process') + '</h3><p>' + dd.process + '</p>' : '') +
       '<h3>' + t('detail.outcome') + '</h3><p>' + dd.outcome + '</p>' +
