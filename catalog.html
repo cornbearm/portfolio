@@ -473,7 +473,7 @@ var SKILLS = [
 // ═══════════════════════════════════════════════════════════════
 
 function t(key) { return (I18N[L] && I18N[L][key]) || key; }
-function p(obj) { return obj && obj[L] ? obj[L] : obj; }
+function p(obj) { return obj && typeof obj[L] !== 'undefined' ? obj[L] : obj; }
 
 // Featured
 function renderFeatured() {
