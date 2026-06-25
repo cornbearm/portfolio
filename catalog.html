@@ -627,7 +627,7 @@ var DETAIL = {
   },
   'cat-game': {
     cn: {
-      title: '原创游戏项目「猫猫直聘」',
+      title: '猫猫直聘',
       role: '游戏美术设计 / 主创',
       timeline: '2025',
       tools: 'Photoshop, Illustrator, Procreate, Figma',
@@ -636,7 +636,7 @@ var DETAIL = {
       outcome: '累计获得 Steam 愿望单 500+；小红书话题 #猫猫直聘 相关笔记获赞 2K+；深圳及香港动漫节周边销售额 800+。'
     },
     en: {
-      title: 'Original Game "Cat Recruitment"',
+      title: 'Cat Recruitment',
       role: 'Game Art Designer / Creator',
       timeline: '2025',
       tools: 'Photoshop, Illustrator, Procreate, Figma',
@@ -645,11 +645,11 @@ var DETAIL = {
       outcome: '500+ Steam wishlists accumulated; 2K+ likes on Xiaohongshu under the  #猫猫直聘 tag; 800+ merchandise units sold at Shenzhen and Hong Kong anime conventions.'
     },
     gallery: [
-      { type:'image', src:'images/猫猫直聘/32.png', layout:'full', cn:'', en:'' },
-      { type:'image', src:'images/猫猫直聘/33.png', layout:'full', cn:'', en:'' },
-      { type:'image', src:'images/猫猫直聘/34.png', layout:'full', cn:'', en:'' },
-      { type:'image', src:'images/猫猫直聘/35.png', layout:'full', cn:'', en:'' },
-      { type:'image', src:'images/猫猫直聘/36.png', layout:'full', cn:'', en:'' }
+      { type:'image', src:'images/猫猫直聘/32.jpg', layout:'full', cn:'', en:'' },
+      { type:'image', src:'images/猫猫直聘/33.jpg', layout:'full', cn:'', en:'' },
+      { type:'image', src:'images/猫猫直聘/34.jpg', layout:'full', cn:'', en:'' },
+      { type:'image', src:'images/猫猫直聘/35.jpg', layout:'full', cn:'', en:'' },
+      { type:'image', src:'images/猫猫直聘/36.jpg', layout:'full', cn:'', en:'' }
     ]
   },
   'jiyouqu': {
@@ -736,7 +736,6 @@ function openDetail(id) {
 
   ct.innerHTML =
     '<div class="modal-hero">' +
-      '<div class="section-label">' + (L==='cn' ? '项目详情':'Project Detail') + '</div>' +
       '<h1>' + dd.title + '</h1>' +
       '<div class="modal-meta">' +
         '<span><strong>' + t('detail.role') + '</strong>' + dd.role + '</span>' +
@@ -746,10 +745,10 @@ function openDetail(id) {
     '</div>' +
     '<div class="modal-body">' +
       '<div class="modal-section"><h3>' + t('detail.overview') + '</h3><p>' + dd.overview + '</p></div>' +
-      galHtml +
       (dd.responsibility ? '<div class="modal-section"><h3>' + t('detail.responsibility') + '</h3><p>' + dd.responsibility.replace(/\n/g, '<br>') + '</p></div>' : '') +
       (dd.process ? '<div class="modal-section"><h3>' + t('detail.process') + '</h3><p>' + dd.process + '</p></div>' : '') +
       (dd.outcome ? '<div class="modal-section"><h3>' + t('detail.outcome') + '</h3><p>' + dd.outcome + '</p></div>' : '') +
+      galHtml +
     '</div>';
   ov.classList.add('show');
   document.body.style.overflow = 'hidden';
