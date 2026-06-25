@@ -136,6 +136,8 @@ a{color:inherit;text-decoration:none}
 .eg-wide{grid-column:span 4}
 .eg-half{grid-column:span 3}
 .eg-third{grid-column:span 2}
+.eg-full{grid-column:1/-1}
+.eg-full img{width:100%;height:auto;display:block;border-radius:var(--radius)}
 
 /* Lightbox */
 .lb{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center}
@@ -643,11 +645,11 @@ var DETAIL = {
       outcome: '500+ Steam wishlists accumulated; 2K+ likes on Xiaohongshu under the  #猫猫直聘 tag; 800+ merchandise units sold at Shenzhen and Hong Kong anime conventions.'
     },
     gallery: [
-      { type:'image', src:'images/猫猫直聘/32.png', layout:'half', cn:'角色设计 01', en:'Character Design 01' },
-      { type:'image', src:'images/猫猫直聘/33.png', layout:'half', cn:'角色设计 02', en:'Character Design 02' },
-      { type:'image', src:'images/猫猫直聘/34.png', layout:'half', cn:'角色设计 03', en:'Character Design 03' },
-      { type:'image', src:'images/猫猫直聘/35.png', layout:'half', cn:'角色设计 04', en:'Character Design 04' },
-      { type:'image', src:'images/猫猫直聘/36.png', layout:'half', cn:'角色设计 05', en:'Character Design 05' }
+      { type:'image', src:'images/猫猫直聘/32.png', layout:'full', cn:'', en:'' },
+      { type:'image', src:'images/猫猫直聘/33.png', layout:'full', cn:'', en:'' },
+      { type:'image', src:'images/猫猫直聘/34.png', layout:'full', cn:'', en:'' },
+      { type:'image', src:'images/猫猫直聘/35.png', layout:'full', cn:'', en:'' },
+      { type:'image', src:'images/猫猫直聘/36.png', layout:'full', cn:'', en:'' }
     ]
   },
   'jiyouqu': {
@@ -714,7 +716,7 @@ function openDetail(id) {
           galHtml += '<div class="eg-section"><span class="eg-section-line-l"></span><span class="eg-section-title">' + p(item) + '</span><span class="eg-section-line-r"></span></div>';
         } else if (item.type === 'image') {
           var idx = galImgs.indexOf(item.src);
-          galHtml += '<figure class="eg-item eg-' + item.layout + '" onclick="openLb(' + idx + ')"><img src="' + item.src + '" alt="' + p(item) + '" loading="lazy"><figcaption>' + p(item) + '</figcaption></figure>';
+          galHtml += '<figure class="eg-item eg-' + item.layout + '" onclick="openLb(' + idx + ')"><img src="' + item.src + '" alt="' + p(item) + '" loading="lazy">' + (p(item) ? '<figcaption>' + p(item) + '</figcaption>' : '') + '</figure>';
         }
       });
       galHtml += '</div>';
