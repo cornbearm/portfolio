@@ -24,14 +24,13 @@ body::before{
 }
 .cover-wrap{
   position:relative;z-index:1;
-  width:92vw;max-width:960px;
-  padding:20px;
-  transition:transform .4s cubic-bezier(.25,.1,.25,1),opacity .4s;
+  width:100vw;height:100vh;
+  transition:opacity .4s;
 }
-.cover-wrap:hover{transform:scale(1.02)}
-.cover-wrap:active{transform:scale(.99)}
 .cover-wrap img{
-  width:100%;display:block;
+  width:100%;height:100%;
+  object-fit:contain;
+  display:block;
   transition:filter .4s;
 }
 .cover-wrap:hover img{filter:brightness(1.04)}
