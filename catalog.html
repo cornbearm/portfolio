@@ -99,24 +99,43 @@ a{color:inherit;text-decoration:none}
 .contact-value a:hover{text-decoration:underline}
 
 /* Detail Modal */
-.modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);overflow-y:auto;display:none;opacity:0;transition:opacity .3s}
+.modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);overflow-y:auto;display:none;opacity:0;transition:opacity .35s}
 .modal-overlay.show{display:block;opacity:1}
-.modal-close{position:fixed;top:20px;right:24px;z-index:201;width:40px;height:40px;border-radius:50%;background:var(--c-tag-bg);border:none;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
-.modal-close:hover{background:#ddd}
-.modal-content{max-width:860px;margin:0 auto;padding:80px 40px}
-.modal-hero{margin-bottom:48px}
-.modal-hero .section-label{margin-bottom:20px}
-.modal-hero h1{font-size:clamp(32px,5vw,48px);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:20px}
-.modal-meta{display:flex;gap:32px;flex-wrap:wrap;font-size:14px;color:var(--c-sub)}
-.modal-meta span{display:flex;flex-direction:column;gap:2px}
-.modal-meta strong{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--c-light)}
+.modal-close{position:fixed;top:24px;right:28px;z-index:201;width:42px;height:42px;border-radius:50%;background:rgba(0,0,0,.05);border:none;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s}
+.modal-close:hover{background:rgba(0,0,0,.1);transform:rotate(90deg)}
+.modal-content{max-width:920px;margin:0 auto;padding:100px 40px 80px}
+.modal-hero{margin-bottom:56px}
+.modal-hero .section-label{margin-bottom:24px}
+.modal-hero h1{font-size:clamp(30px,5vw,46px);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:32px}
+.modal-meta{display:grid;grid-template-columns:repeat(3,1fr);padding:20px 0;border-top:1px solid var(--c-border);border-bottom:1px solid var(--c-border)}
+.modal-meta span{display:flex;flex-direction:column;gap:4px;padding:0 24px}
+.modal-meta span:first-child{padding-left:0}
+.modal-meta span:not(:last-child){border-right:1px solid var(--c-border)}
+.modal-meta span:last-child{padding-right:0}
+.modal-meta strong{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--c-light)}
+.modal-meta span{font-size:14px;color:var(--c-text)}
 .modal-body{font-size:15px;line-height:1.8;color:var(--c-text)}
-.modal-body p{margin-bottom:20px}
-.modal-body h3{font-size:18px;font-weight:700;margin:40px 0 12px}
-.modal-body h3:first-of-type{margin-top:0}
-.modal-gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:28px 0}
-.modal-gallery img,.modal-gallery .ph{width:100%;aspect-ratio:auto;object-fit:cover;border-radius:var(--radius);background:#f0f0f0;cursor:pointer;transition:transform .25s}
-.modal-gallery img:hover{transform:scale(1.02)}
+.modal-section{margin-top:48px}
+.modal-section:first-child{margin-top:0}
+.modal-section h3{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--c-light);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--c-border)}
+.modal-section p{font-size:15px;line-height:1.85;color:var(--c-text)}
+
+/* Editorial Gallery */
+.editorial-gallery{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin:48px 0;align-items:start}
+.eg-section{grid-column:1/-1;display:flex;align-items:center;gap:14px;margin:20px 0 0}
+.eg-section:first-child{margin-top:0}
+.eg-section-line-l{width:28px;height:1px;background:var(--c-text);flex-shrink:0}
+.eg-section-title{font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--c-text);white-space:nowrap}
+.eg-section-line-r{flex:1;height:1px;background:var(--c-border)}
+.eg-item{position:relative;overflow:hidden;border-radius:var(--radius);cursor:pointer;transition:transform .35s cubic-bezier(.25,.1,.25,1),box-shadow .35s}
+.eg-item:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.06)}
+.eg-item img{width:100%;display:block;transition:transform .5s cubic-bezier(.25,.1,.25,1)}
+.eg-item:hover img{transform:scale(1.03)}
+.eg-item figcaption{font-size:12px;color:var(--c-light);margin-top:8px;font-weight:400;line-height:1.4}
+.eg-hero{grid-column:1/-1}
+.eg-wide{grid-column:span 4}
+.eg-half{grid-column:span 3}
+.eg-third{grid-column:span 2}
 
 /* Lightbox */
 .lb{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;cursor:pointer}
@@ -146,8 +165,12 @@ a{color:inherit;text-decoration:none}
   .about-grid{grid-template-columns:1fr;gap:40px}
   .skills-grid{grid-template-columns:1fr}
   .contact-wrap{grid-template-columns:1fr}
-  .modal-content{padding:60px 20px}
-  .modal-gallery{grid-template-columns:1fr}
+  .modal-content{padding:80px 20px 60px}
+  .modal-meta{grid-template-columns:1fr;padding:0}
+  .modal-meta span{padding:14px 0!important;border-right:none!important;border-bottom:1px solid var(--c-border)}
+  .modal-meta span:last-child{border-bottom:none}
+  .editorial-gallery{grid-template-columns:1fr;gap:12px}
+  .eg-hero,.eg-wide,.eg-half,.eg-third{grid-column:1/-1}
 }
 @media(max-width:480px){
   .works-grid{grid-template-columns:1fr}
@@ -626,22 +649,26 @@ var DETAIL = {
       outcome: '500+ Steam wishlists accumulated; 2K+ likes on Xiaohongshu under the  #猫猫直聘 tag; 800+ merchandise units sold at Shenzhen and Hong Kong anime conventions.'
     },
     gallery: [
-      'images/猫猫直聘/海报.jpg',
-      'images/猫猫直聘/开始界面.png',
-      'images/猫猫直聘/游玩界面.png',
-      'images/猫猫直聘/卡牌选择界面.png',
-      'images/猫猫直聘/商店界面.png',
-      'images/猫猫直聘/设置界面.png',
-      'images/猫猫直聘/提示界面.png',
-      'images/猫猫直聘/游戏UI.png',
-      'images/猫猫直聘/场景设计.png',
-      'images/猫猫直聘/吧唧设计.png',
-      'images/猫猫直聘/吧唧盲盒包装设计.png',
-      'images/猫猫直聘/吧唧实物图.png',
-      'images/猫猫直聘/明信片实物图.png',
-      'images/猫猫直聘/展陈场景图.JPG',
-      'images/猫猫直聘/展陈周边图.JPG',
-      'images/猫猫直聘/Steam商店界面.png'
+      { type:'image', src:'images/猫猫直聘/海报.jpg', layout:'hero', cn:'游戏主海报', en:'Game Key Poster' },
+      { type:'section', cn:'游戏界面设计', en:'Game Interface Design' },
+      { type:'image', src:'images/猫猫直聘/开始界面.png', layout:'half', cn:'开始界面', en:'Start Screen' },
+      { type:'image', src:'images/猫猫直聘/游玩界面.png', layout:'half', cn:'游玩界面', en:'Gameplay Screen' },
+      { type:'image', src:'images/猫猫直聘/卡牌选择界面.png', layout:'half', cn:'卡牌选择界面', en:'Card Selection' },
+      { type:'image', src:'images/猫猫直聘/商店界面.png', layout:'half', cn:'商店界面', en:'Shop Interface' },
+      { type:'image', src:'images/猫猫直聘/设置界面.png', layout:'third', cn:'设置界面', en:'Settings' },
+      { type:'image', src:'images/猫猫直聘/提示界面.png', layout:'third', cn:'提示界面', en:'Tutorial Tips' },
+      { type:'image', src:'images/猫猫直聘/游戏UI.png', layout:'third', cn:'UI 组件系统', en:'UI Component System' },
+      { type:'section', cn:'场景设计', en:'Scene Design' },
+      { type:'image', src:'images/猫猫直聘/场景设计.png', layout:'wide', cn:'游戏场景设计', en:'Game Scene Design' },
+      { type:'section', cn:'周边衍生品设计', en:'Merchandise Design' },
+      { type:'image', src:'images/猫猫直聘/吧唧设计.png', layout:'half', cn:'吧唧（徽章）设计', en:'Badge Design' },
+      { type:'image', src:'images/猫猫直聘/吧唧盲盒包装设计.png', layout:'half', cn:'吧唧盲盒包装设计', en:'Blind Box Packaging' },
+      { type:'image', src:'images/猫猫直聘/吧唧实物图.png', layout:'half', cn:'吧唧实物图', en:'Badge Product Photo' },
+      { type:'image', src:'images/猫猫直聘/明信片实物图.png', layout:'half', cn:'明信片实物图', en:'Postcard Product Photo' },
+      { type:'section', cn:'线下展陈', en:'Offline Exhibition' },
+      { type:'image', src:'images/猫猫直聘/展陈场景图.JPG', layout:'wide', cn:'展陈场景', en:'Exhibition Scene' },
+      { type:'image', src:'images/猫猫直聘/展陈周边图.JPG', layout:'wide', cn:'展陈周边陈列', en:'Merchandise Display' },
+      { type:'image', src:'images/猫猫直聘/Steam商店界面.png', layout:'hero', cn:'Steam 商店页面', en:'Steam Store Page' }
     ]
   },
   'ip-brand': {
@@ -674,6 +701,33 @@ function openDetail(id) {
   var dd = p(d);
   var ov = document.getElementById('modal-overlay');
   var ct = document.getElementById('modal-content');
+
+  // Build editorial gallery
+  var galHtml = '';
+  if (d.gallery && d.gallery.length > 0) {
+    if (typeof d.gallery[0] === 'object') {
+      // Structured editorial gallery
+      galHtml = '<div class="editorial-gallery">';
+      d.gallery.forEach(function(item) {
+        if (item.type === 'section') {
+          galHtml += '<div class="eg-section"><span class="eg-section-line-l"></span><span class="eg-section-title">' + p(item) + '</span><span class="eg-section-line-r"></span></div>';
+        } else if (item.type === 'image') {
+          galHtml += '<figure class="eg-item eg-' + item.layout + '" onclick="openLb(\'' + item.src + '\')"><img src="' + item.src + '" alt="' + p(item) + '" loading="lazy"><figcaption>' + p(item) + '</figcaption></figure>';
+        }
+      });
+      galHtml += '</div>';
+    } else {
+      // Simple array gallery (legacy)
+      galHtml = '<div class="editorial-gallery">' +
+        d.gallery.map(function(src) {
+          return '<figure class="eg-item eg-half" onclick="openLb(\'' + src + '\')"><img src="' + src + '" loading="lazy"></figure>';
+        }).join('') + '</div>';
+    }
+  } else {
+    var phTxt = L === 'cn' ? '项目图片即将上线' : 'Project images coming soon';
+    galHtml = '<div class="editorial-gallery"><figure class="eg-item eg-hero" style="aspect-ratio:16/9;background:linear-gradient(135deg,#f5f5f5,#eee);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;color:#ccc;font-size:14px">' + phTxt + '</figure></div>';
+  }
+
   ct.innerHTML =
     '<div class="modal-hero">' +
       '<div class="section-label">' + (L==='cn' ? '项目详情':'Project Detail') + '</div>' +
@@ -685,11 +739,11 @@ function openDetail(id) {
       '</div>' +
     '</div>' +
     '<div class="modal-body">' +
-      '<h3>' + t('detail.overview') + '</h3><p>' + dd.overview + '</p>' +
-      (dd.responsibility ? '<h3>' + t('detail.responsibility') + '</h3><p>' + dd.responsibility + '</p>' : '') +
-      (d.gallery ? '<div class="modal-gallery">' + d.gallery.map(function(src){return'<img src="'+src+'" alt="'+dd.title+'" loading="lazy" onclick="openLb(\''+src+'\')">'}).join('') + '</div>' : (L==='cn'?'<div class="modal-gallery"><div class="ph" style="aspect-ratio:4/3;background:linear-gradient(135deg,#f0f0f0,#e8e8e8);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#bbb;font-size:13px">🖼 项目图片占位</div><div class="ph" style="aspect-ratio:4/3;background:linear-gradient(135deg,#e8e8e8,#ddd);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#bbb;font-size:13px">🖼 项目图片占位</div></div>':'<div class="modal-gallery"><div class="ph" style="aspect-ratio:4/3;background:linear-gradient(135deg,#f0f0f0,#e8e8e8);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#bbb;font-size:13px">🖼 Project Image</div><div class="ph" style="aspect-ratio:4/3;background:linear-gradient(135deg,#e8e8e8,#ddd);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#bbb;font-size:13px">🖼 Project Image</div></div>')) +
-      (dd.process ? '<h3>' + t('detail.process') + '</h3><p>' + dd.process + '</p>' : '') +
-      '<h3>' + t('detail.outcome') + '</h3><p>' + dd.outcome + '</p>' +
+      '<div class="modal-section"><h3>' + t('detail.overview') + '</h3><p>' + dd.overview + '</p></div>' +
+      galHtml +
+      (dd.responsibility ? '<div class="modal-section"><h3>' + t('detail.responsibility') + '</h3><p>' + dd.responsibility + '</p></div>' : '') +
+      (dd.process ? '<div class="modal-section"><h3>' + t('detail.process') + '</h3><p>' + dd.process + '</p></div>' : '') +
+      '<div class="modal-section"><h3>' + t('detail.outcome') + '</h3><p>' + dd.outcome + '</p></div>' +
     '</div>';
   ov.classList.add('show');
   document.body.style.overflow = 'hidden';
