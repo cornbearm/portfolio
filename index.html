@@ -58,25 +58,77 @@
   .lb.show{display:flex}
   .lb img{max-width:90vw;max-height:90vh;border-radius:8px;cursor:default;object-fit:contain}
   .lb-x{position:absolute;top:20px;right:24px;color:#fff;font-size:28px;cursor:pointer;background:none;border:none;line-height:1}
-  .about-wrap{max-width:780px;margin:0 auto;padding:80px 40px;display:grid;grid-template-columns:200px 1fr;gap:60px;align-items:start}
-  .ava-wrap{position:relative;width:200px;height:200px}
-  .ava{width:200px;height:200px;border-radius:50%;object-fit:cover;display:block;border:3px solid var(--border);background:#e8e5e0}
-  .ava-btn{display:none;position:absolute;bottom:6px;right:6px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:32px;height:32px;font-size:15px;cursor:pointer;align-items:center;justify-content:center}
+  /* ── About page ── */
+  #page-about{background:#fafaf8;min-height:calc(100vh - 60px);position:relative;overflow:hidden}
+  /* paper texture grain */
+  #page-about::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity:.6}
+  /* hand-drawn doodle title */
+  .about-doodle-title{font-family:'Georgia',serif;font-style:italic;font-size:clamp(40px,7vw,80px);font-weight:700;color:#1a3fff;letter-spacing:-.02em;line-height:1;margin-bottom:40px;position:relative;z-index:1;
+    text-shadow:3px 3px 0 rgba(26,63,255,.08)}
+  /* squiggly underline via SVG bg */
+  .about-doodle-title span{display:inline-block;position:relative}
+  .about-doodle-title span::after{content:'';position:absolute;bottom:-8px;left:0;right:0;height:8px;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8' preserveAspectRatio='none'%3E%3Cpath d='M0 4 Q15 0 30 4 Q45 8 60 4 Q75 0 90 4 Q105 8 120 4' stroke='%231a3fff' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x center / auto 100%}
+  /* main layout */
+  .about-layout{max-width:900px;margin:0 auto;padding:60px 40px 80px;position:relative;z-index:1;display:grid;grid-template-columns:240px 1fr;gap:56px;align-items:start}
+  .about-left{display:flex;flex-direction:column;gap:20px}
+  .ava-wrap{position:relative;width:220px;height:270px}
+  .ava{width:220px;height:270px;border-radius:16px;object-fit:cover;display:block;border:3px solid #fff;box-shadow:6px 8px 0 rgba(26,63,255,.18),0 2px 20px rgba(0,0,0,.12);background:#e8e5e0}
+  .ava-btn{display:none;position:absolute;bottom:8px;right:8px;background:#1a3fff;color:#fff;border:none;border-radius:50%;width:32px;height:32px;font-size:15px;cursor:pointer;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(26,63,255,.4)}
   .editing-mode .ava-btn{display:flex}
-  .about-name{font-size:32px;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
-  .about-role{font-size:16px;color:var(--text-sub);margin-bottom:24px}
-  .about-bio{font-size:15px;line-height:1.75;color:var(--text);margin-bottom:28px;white-space:pre-wrap}
-  .about-contacts h3{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-sub);margin-bottom:12px}
-  .contact-list{list-style:none;display:flex;flex-direction:column;gap:8px}
-  .contact-list li{display:flex;align-items:center;gap:10px;font-size:14px}
-  .contact-list a{color:var(--text);text-decoration:none}
-  .contact-list a:hover{text-decoration:underline}
+  .about-name-block{text-align:left}
+  .about-name{font-size:22px;font-weight:700;letter-spacing:-.01em;margin-bottom:4px}
+  .about-role{font-size:14px;color:#1a3fff;font-weight:600;letter-spacing:.02em}
+  /* right side */
+  .about-right{display:flex;flex-direction:column;gap:28px}
+  /* section blocks */
+  .ab-section{display:flex;flex-direction:column;gap:12px}
+  .ab-section-title{font-size:17px;font-weight:800;color:#1a3fff;letter-spacing:.01em;padding-bottom:6px;border-bottom:3px solid #1a3fff;display:inline-flex;align-items:center;gap:6px;width:fit-content;min-width:90px}
+  /* edu rows */
+  .edu-row{display:grid;grid-template-columns:100px 1fr auto;gap:8px 16px;align-items:baseline;font-size:14px;line-height:1.5}
+  .edu-school{font-weight:600;color:var(--text)}
+  .edu-degree{color:var(--text)}
+  .edu-date{color:#888;font-size:12px;white-space:nowrap}
+  /* exp rows */
+  .exp-row{display:flex;flex-direction:column;gap:2px;font-size:14px;line-height:1.5}
+  .exp-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .exp-company{font-weight:700;color:var(--text);min-width:48px}
+  .exp-role{font-weight:600;color:#1a3fff}
+  .exp-date{color:#888;font-size:12px;margin-left:auto}
+  .exp-desc{color:var(--text-sub);font-size:13px;line-height:1.6}
+  /* contact */
+  .about-contact-row{display:flex;gap:24px;flex-wrap:wrap;font-size:14px}
+  .contact-item{display:flex;align-items:center;gap:8px;color:var(--text)}
+  .contact-item a{color:var(--text);text-decoration:none;font-weight:500}
+  .contact-item a:hover{text-decoration:underline;color:#1a3fff}
+  .contact-label{color:#888;font-size:12px}
+  /* bio */
+  .about-bio{font-size:14px;line-height:1.75;color:var(--text-sub);white-space:pre-wrap}
+  @media(max-width:680px){
+    .about-layout{grid-template-columns:1fr;gap:32px;padding:40px 20px 60px}
+    .ava-wrap,.ava{width:160px;height:200px}
+    .about-left{align-items:center}
+    .about-name-block{text-align:center}
+    .edu-row{grid-template-columns:1fr;gap:2px}
+    .edu-date{text-align:left}
+    .exp-date{margin-left:0}
+    .about-contact-row{flex-direction:column;gap:12px}
+  }
   .save-bar{display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--white);border:1px solid var(--border);border-radius:12px;padding:12px 20px;box-shadow:0 4px 24px rgba(0,0,0,.14);align-items:center;gap:12px;z-index:200;font-size:14px;white-space:nowrap}
   .editing-mode .save-bar{display:flex}
   .save-btn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:14px;cursor:pointer;font-weight:500;transition:opacity .15s}
   .save-btn:hover{opacity:.85}
   .save-hint{font-size:12px;color:var(--text-sub)}
-  @media(max-width:640px){nav{padding:0 16px;gap:12px}.hero{padding:56px 20px 28px}.works-section{padding:0 20px 56px}.about-wrap{grid-template-columns:1fr;gap:32px}.ava-wrap{margin:0 auto}.works-grid{grid-template-columns:1fr}.save-hint{display:none}}
+  /* editing mode ring for about structured fields */
+  .editing-mode .edu-school,.editing-mode .edu-degree,.editing-mode .edu-date,
+  .editing-mode .exp-company,.editing-mode .exp-role,.editing-mode .exp-date,.editing-mode .exp-desc{
+    cursor:text;border-radius:3px;transition:box-shadow .15s;min-width:20px;display:inline-block}
+  .editing-mode .edu-school:focus,.editing-mode .edu-degree:focus,.editing-mode .edu-date:focus,
+  .editing-mode .exp-company:focus,.editing-mode .exp-role:focus,.editing-mode .exp-date:focus,.editing-mode .exp-desc:focus{
+    box-shadow:0 0 0 2px var(--edit-ring),0 0 0 4px rgba(79,127,255,.15);outline:none}
+  @media(max-width:640px){nav{padding:0 16px;gap:12px}.hero{padding:56px 20px 28px}.works-section{padding:0 20px 56px}.works-grid{grid-template-columns:1fr}.save-hint{display:none}}
 </style>
 </head>
 <body>
@@ -113,23 +165,95 @@
 
 <!-- ABOUT -->
 <div class="page" id="page-about">
-  <div class="about-wrap">
-    <div class="ava-wrap">
-      <img class="ava" id="about-ava" src="" alt="头像">
-      <button class="ava-btn" onclick="document.getElementById('ava-input').click()">✎</button>
-    </div>
-    <div>
-      <div class="about-name" contenteditable="false" id="about-name">毛雨杭</div>
-      <div class="about-role" contenteditable="false" id="about-role">视觉设计师 · 品牌顾问</div>
-      <div class="about-bio" contenteditable="false" id="about-bio">你好，我是毛雨杭，一名专注于品牌视觉与用户体验设计的设计师。我相信，好的设计不只是好看，而是能在第一眼就和人建立连接，并在使用过程中持续传达品牌温度。
+  <!-- doodle squiggles decorations -->
+  <svg style="position:absolute;top:12px;left:24px;opacity:.55;pointer-events:none;z-index:1" width="64" height="28" viewBox="0 0 64 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 14 Q16 2 30 14 Q44 26 58 14" stroke="#1a3fff" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+    <path d="M8 22 Q20 14 32 22" stroke="#1a3fff" stroke-width="2" stroke-linecap="round" fill="none" opacity=".5"/>
+  </svg>
+  <svg style="position:absolute;top:16px;right:40px;opacity:.4;pointer-events:none;z-index:1;transform:rotate(-15deg)" width="40" height="40" viewBox="0 0 40 40" fill="none">
+    <path d="M8 20 L20 8 L32 20 L20 32 Z" stroke="#1a3fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <circle cx="20" cy="20" r="4" fill="#1a3fff" opacity=".3"/>
+  </svg>
 
-我曾服务于品牌、互联网及文化创意行业，擅长从洞察出发，打造具有识别度和情感张力的视觉系统。</div>
-      <div class="about-contacts">
-        <h3>联系方式</h3>
-        <ul class="contact-list">
-          <li>✉️ <a id="c-email" contenteditable="false" href="mailto:hello@example.com">hello@example.com</a></li>
-          <li>🔗 <a id="c-link" contenteditable="false" href="https://behance.net/example">behance.net/example</a></li>
-        </ul>
+  <div class="about-layout">
+    <!-- LEFT: photo + name -->
+    <div class="about-left">
+      <div class="ava-wrap">
+        <img class="ava" id="about-ava" src="" alt="头像">
+        <button class="ava-btn" onclick="document.getElementById('ava-input').click()">✎</button>
+      </div>
+      <div class="about-name-block">
+        <div class="about-name" contenteditable="false" id="about-name">毛雨杭</div>
+        <div class="about-role" contenteditable="false" id="about-role">设计师 / Designer</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: content -->
+    <div class="about-right">
+      <!-- hand-drawn title -->
+      <div class="about-doodle-title"><span>introduction</span></div>
+
+      <!-- 教育背景 -->
+      <div class="ab-section" id="ab-edu">
+        <div class="ab-section-title">教育背景</div>
+        <div class="edu-row">
+          <div class="edu-school" contenteditable="false">香港理工大学</div>
+          <div class="edu-degree" contenteditable="false">硕士 · 创新多媒体娱乐</div>
+          <div class="edu-date" contenteditable="false">2024.09 – 2026.10</div>
+        </div>
+        <div class="edu-row">
+          <div class="edu-school" contenteditable="false">广州美术学院</div>
+          <div class="edu-degree" contenteditable="false">学士 · 动画创作</div>
+          <div class="edu-date" contenteditable="false">2019.09 – 2023.06</div>
+        </div>
+      </div>
+
+      <!-- 实习经历 -->
+      <div class="ab-section" id="ab-exp">
+        <div class="ab-section-title">实习经历</div>
+        <div class="exp-row">
+          <div class="exp-head">
+            <span class="exp-company" contenteditable="false">腾讯</span>
+            <span class="exp-role" contenteditable="false">品牌传播设计</span>
+            <span class="exp-date" contenteditable="false">2026.01 – 至今</span>
+          </div>
+          <div class="exp-desc" contenteditable="false">参与腾讯企鹅IP形象周边衍生品全链路与品牌活动"企鹅岛开放日"视觉策划方案</div>
+        </div>
+        <div class="exp-row">
+          <div class="exp-head">
+            <span class="exp-company" contenteditable="false">库洛</span>
+            <span class="exp-role" contenteditable="false">衍生品设计</span>
+            <span class="exp-date" contenteditable="false">2025.05 – 2025.07</span>
+          </div>
+          <div class="exp-desc" contenteditable="false">负责制作所需的周边产品物料延展设计，包装、背卡、详情页等</div>
+        </div>
+        <div class="exp-row">
+          <div class="exp-head">
+            <span class="exp-company" contenteditable="false">百度</span>
+            <span class="exp-role" contenteditable="false">AIGC 内容运营</span>
+            <span class="exp-date" contenteditable="false">2025.09 – 2025.11</span>
+          </div>
+          <div class="exp-desc" contenteditable="false">负责全网热点与内容趋势监测，挖掘并分析爆款AIGC内容的创意逻辑与视觉风格，运用可灵、BANANA、即梦、MJ等AIGC工具高效生成和优化短视频内容</div>
+        </div>
+      </div>
+
+      <!-- 联系方式 -->
+      <div class="ab-section">
+        <div class="ab-section-title">联系方式</div>
+        <div class="about-contact-row">
+          <div class="contact-item">
+            <span class="contact-label">Call</span>
+            <a id="c-phone" contenteditable="false" href="tel:19124300097">19124300097</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Email</span>
+            <a id="c-email" contenteditable="false" href="mailto:qinyu349@gmail.com">qinyu349@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Link</span>
+            <a id="c-link" contenteditable="false" href="https://behance.net/example">behance.net/example</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -156,11 +280,12 @@ var S = {
   heroTitle: '用设计<br>创造连接',
   heroSub: '我专注于视觉传达与品牌设计，相信好的设计能在人与信息之间建立直觉性的共鸣。',
   aboutName: '毛雨杭',
-  aboutRole: '视觉设计师 · 品牌顾问',
-  aboutBio: '你好，我是毛雨杭，一名专注于品牌视觉与用户体验设计的设计师。我相信，好的设计不只是好看，而是能在第一眼就和人建立连接，并在使用过程中持续传达品牌温度。\n\n我曾服务于品牌、互联网及文化创意行业，擅长从洞察出发，打造具有识别度和情感张力的视觉系统。',
+  aboutRole: '设计师 / Designer',
   aboutAva: '',
-  emailText: 'hello@example.com',
-  emailHref: 'mailto:hello@example.com',
+  phoneText: '19124300097',
+  phoneHref: 'tel:19124300097',
+  emailText: 'qinyu349@gmail.com',
+  emailHref: 'mailto:qinyu349@gmail.com',
   linkText: 'behance.net/example',
   linkHref: 'https://behance.net/example',
   works: [
@@ -184,7 +309,7 @@ function goPage(n) {
 }
 
 // Edit mode
-var EDIDS = ['site-name','hero-label','hero-title','hero-sub','about-name','about-role','about-bio','c-email','c-link'];
+var EDIDS = ['site-name','hero-label','hero-title','hero-sub','about-name','about-role','c-email','c-phone','c-link'];
 function toggleEdit() {
   editMode = !editMode;
   document.getElementById('edit-toggle').classList.toggle('active', editMode);
@@ -194,7 +319,7 @@ function toggleEdit() {
     var el = document.getElementById(id);
     if (el) el.contentEditable = editMode ? 'true' : 'false';
   });
-  document.querySelectorAll('.card-title,.card-desc').forEach(el => {
+  document.querySelectorAll('.card-title,.card-desc,.edu-school,.edu-degree,.edu-date,.exp-company,.exp-role,.exp-date,.exp-desc').forEach(el => {
     el.contentEditable = editMode ? 'true' : 'false';
   });
 }
@@ -338,8 +463,9 @@ function collectState() {
   S.heroSub = txt('hero-sub');
   S.aboutName = txt('about-name');
   S.aboutRole = txt('about-role');
-  S.aboutBio = document.getElementById('about-bio').innerText;
   S.aboutAva = document.getElementById('about-ava').src || '';
+  S.phoneText = txt('c-phone');
+  S.phoneHref = document.getElementById('c-phone').href;
   S.emailText = txt('c-email');
   S.emailHref = document.getElementById('c-email').href;
   S.linkText = txt('c-link');
