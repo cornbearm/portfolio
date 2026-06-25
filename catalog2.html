@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>作品集目录 · Mao Yuhang Portfolio</title>
+<meta name="description" content="毛雨杭 Mao Yuhang - 视觉设计 · IP衍生品 · AIGC创作。作品集展示品牌设计、衍生品设计、AIGC内容创作、游戏与插画等领域创意作品。">
+<meta name="keywords" content="毛雨杭, Mao Yuhang, 视觉设计, 品牌设计, IP衍生品, AIGC, 作品集, Portfolio, Designer">
+<meta property="og:title" content="毛雨杭 Mao Yuhang · Portfolio">
+<meta property="og:description" content="视觉设计 · IP衍生品 · AIGC创作">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--c-bg:#fff;--c-text:#1a1a1a;--c-sub:#6e6e6e;--c-light:#999;--c-border:#e8e8e8;--c-card:rgba(255,255,255,.75);--c-accent:#000;--c-tag-bg:rgba(0,0,0,.04);--c-tag-text:#555;--radius:12px;--shadow-card:0 1px 3px rgba(0,0,0,.04),0 1px 2px rgba(0,0,0,.06)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter','Noto Sans SC',-apple-system,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;color:var(--c-text);background:var(--c-bg) url('images/bg-paper.jpg') fixed;background-size:cover;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:-1;background:rgba(255,255,255,.30)}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+/* Nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 40px;height:64px;display:flex;align-items:center;justify-content:space-between;transition:background .3s,box-shadow .3s}
+.nav.scrolled{background:rgba(255,255,255,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 1px 0 var(--c-border)}
+.nav-logo{font-size:15px;font-weight:600;letter-spacing:-.01em;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-size:13px;font-weight:500;color:var(--c-sub);transition:color .2s;position:relative}
+.nav-links a:hover,.nav-links a.active{color:var(--c-text)}
+.nav-links a.active::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1.5px;background:var(--c-text);border-radius:1px}
+.lang-switch{margin-left:12px;display:flex;align-items:center;gap:6px;font-size:13px;font-weight:500;color:var(--c-sub);cursor:pointer;user-select:none;background:none;border:1px solid var(--c-border);border-radius:20px;padding:5px 14px;transition:all .2s}
+.lang-switch:hover{border-color:var(--c-text);color:var(--c-text)}
+.lang-switch .sep{color:var(--c-border)}.lang-switch .active-lang{color:var(--c-text);font-weight:600}
+
+/* Section */
+.section{padding:120px 40px;max-width:1100px;margin:0 auto}
+.section-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--c-light);margin-bottom:16px}
+.section-title{font-size:clamp(28px,5vw,44px);font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:24px}
+
+/* Hero Banner */
+.hero-banner{min-height:45vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:120px 40px 80px;max-width:1100px;margin:0 auto;text-align:center}
+.hero-banner h1{font-size:clamp(28px,5vw,48px);font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:14px}
+.hero-banner .tagline{font-size:16px;color:var(--c-sub);margin-bottom:10px;font-weight:400}
+
+/* Featured */
+.featured-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.feat-card{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:4/5;cursor:pointer;background:var(--c-card);transition:transform .3s,box-shadow .3s}
+.feat-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
+.feat-img{width:100%;height:65%;background:linear-gradient(135deg,#e8e8e8,#f5f5f5);overflow:hidden}
+.feat-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.feat-card:hover .feat-img img{transform:scale(1.03)}
+.feat-info{position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(transparent,rgba(255,255,255,.75) 30%,rgba(255,255,255,.9));backdrop-filter:blur(1px);-webkit-backdrop-filter:blur(1px)}
+.feat-title{font-size:16px;font-weight:600;line-height:1.3;margin-bottom:4px}
+.feat-meta{font-size:12px;color:var(--c-light);display:flex;gap:12px}
+
+/* Works */
+.works-category{margin-bottom:80px}
+.works-category:last-child{margin-bottom:0}
+.cat-header{margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--c-border);display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.cat-name{font-size:20px;font-weight:700;letter-spacing:-.01em}
+.cat-sub{font-size:13px;color:var(--c-light);font-weight:400}
+.works-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.work-card{background:var(--c-card);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:transform .25s,box-shadow .25s}
+.work-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-card)}
+.work-thumb{aspect-ratio:4/3;background:linear-gradient(135deg,#eee,#f8f8f8);overflow:hidden}
+.work-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.work-card:hover .work-thumb img{transform:scale(1.04)}
+.work-info{padding:14px 16px 16px}
+.work-name{font-size:14px;font-weight:600;margin-bottom:4px}
+.work-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.work-tag{font-size:11px;color:var(--c-tag-text);background:var(--c-tag-bg);padding:3px 10px;border-radius:100px}
+
+/* About */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px 60px;margin-top:40px}
+.about-block h3{font-size:14px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:16px}
+.edu-item,.exp-item{margin-bottom:20px}
+.edu-item:last-child,.exp-item:last-child{margin-bottom:0}
+.edu-school{font-weight:600;font-size:15px;margin-bottom:2px}
+.edu-degree{font-size:14px;color:var(--c-sub);margin-bottom:2px}
+.edu-date{font-size:12px;color:var(--c-light)}
+.exp-company{font-weight:600;font-size:15px}
+.exp-role{font-size:14px;color:var(--c-sub);margin-bottom:2px}
+.exp-date{font-size:12px;color:var(--c-light)}
+/* Skills */
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px 40px}
+.skill-group{margin-bottom:20px}
+.skill-group h4{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--c-light);margin-bottom:10px}
+.skill-tags{display:flex;gap:8px;flex-wrap:wrap}
+.skill-tag{font-size:13px;background:var(--c-tag-bg);color:var(--c-tag-text);padding:6px 14px;border-radius:100px;font-weight:400}
+
+/* Contact */
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:32px}
+.contact-item{display:flex;align-items:center;gap:14px;padding:16px 0;border-bottom:1px solid var(--c-border);font-size:15px}
+.contact-item:first-child{border-top:1px solid var(--c-border)}
+.contact-icon{width:40px;height:40px;border-radius:50%;background:var(--c-tag-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px}
+.contact-label{font-size:11px;color:var(--c-light);text-transform:uppercase;letter-spacing:.04em}
+.contact-value{font-weight:500}
+.contact-value a:hover{text-decoration:underline}
+
+/* Detail Modal */
+.modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);overflow-y:auto;display:none;opacity:0;transition:opacity .35s}
+.modal-overlay.show{display:block;opacity:1}
+.modal-close{position:fixed;top:24px;right:28px;z-index:201;width:42px;height:42px;border-radius:50%;background:rgba(0,0,0,.05);border:none;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s}
+.modal-close:hover{background:rgba(0,0,0,.1);transform:rotate(90deg)}
+.modal-content{max-width:920px;margin:0 auto;padding:100px 40px 80px}
+.modal-hero{margin-bottom:56px}
+.modal-hero .section-label{margin-bottom:24px}
+.modal-hero h1{font-size:clamp(30px,5vw,46px);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:32px}
+.modal-meta{display:grid;grid-template-columns:repeat(3,1fr);padding:20px 0;border-top:1px solid var(--c-border);border-bottom:1px solid var(--c-border)}
+.modal-meta span{display:flex;flex-direction:column;gap:4px;padding:0 24px}
+.modal-meta span:first-child{padding-left:0}
+.modal-meta span:not(:last-child){border-right:1px solid var(--c-border)}
+.modal-meta span:last-child{padding-right:0}
+.modal-meta strong{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--c-light)}
+.modal-meta span{font-size:14px;color:var(--c-text)}
+.modal-body{font-size:15px;line-height:1.8;color:var(--c-text)}
+.modal-section{margin-top:48px}
+.modal-section:first-child{margin-top:0}
+.modal-section h3{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--c-light);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--c-border)}
+.modal-section p{font-size:15px;line-height:1.85;color:var(--c-text)}
+
+/* Editorial Gallery */
+.editorial-gallery{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin:48px 0;align-items:start}
+.eg-section{grid-column:1/-1;display:flex;align-items:center;gap:14px;margin:20px 0 0}
+.eg-section:first-child{margin-top:0}
+.eg-section-line-l{width:28px;height:1px;background:var(--c-text);flex-shrink:0}
+.eg-section-title{font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--c-text);white-space:nowrap}
+.eg-section-line-r{flex:1;height:1px;background:var(--c-border)}
+.eg-item{position:relative;overflow:hidden;border-radius:var(--radius);cursor:pointer;transition:transform .35s cubic-bezier(.25,.1,.25,1),box-shadow .35s}
+.eg-item:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.06)}
+.eg-item img{width:100%;display:block;transition:transform .5s cubic-bezier(.25,.1,.25,1)}
+.eg-item:hover img{transform:scale(1.03)}
+.eg-item figcaption{font-size:12px;color:var(--c-light);margin-top:8px;font-weight:400;line-height:1.4}
+.eg-hero{grid-column:1/-1}
+.eg-wide{grid-column:span 4}
+.eg-half{grid-column:span 3}
+.eg-third{grid-column:span 2}
+.eg-full{grid-column:1/-1}
+.eg-full img{width:100%;height:auto;display:block;border-radius:var(--radius)}
+.eg-video-wrap{cursor:default;margin:0}
+.eg-video-wrap video{width:100%;max-height:none;border-radius:var(--radius)}
+
+/* Lightbox */
+.lb{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center}
+.lb.show{display:flex}
+.lb img{max-width:80vw;max-height:88vh;object-fit:contain;border-radius:4px;cursor:pointer;transition:opacity .2s}
+.lb-close{position:absolute;top:20px;right:24px;color:#fff;font-size:28px;background:none;border:none;cursor:pointer;z-index:2}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.12);border:none;color:#fff;font-size:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:2}
+.lb-nav:hover{background:rgba(255,255,255,.25)}
+.lb-prev{left:24px}
+.lb-next{right:24px}
+.lb-counter{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);font-size:14px;font-family:var(--f-sans)}
+
+/* Footer */
+.footer{text-align:center;padding:40px;font-size:12px;color:var(--c-light);border-top:1px solid var(--c-border)}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp .6s ease-out both}
+.fade-up:nth-child(1){animation-delay:0s}
+.fade-up:nth-child(2){animation-delay:.1s}
+.fade-up:nth-child(3){animation-delay:.2s}
+.fade-up:nth-child(4){animation-delay:.3s}
+
+/* Responsive */
+@media(max-width:768px){
+  .nav{padding:0 20px;height:56px}
+  .nav-links{display:none}
+  .section{padding:80px 20px}
+  .hero-banner{padding:100px 20px 60px}
+  .featured-grid{grid-template-columns:1fr;gap:12px}
+  .works-grid{grid-template-columns:repeat(2,1fr)}
+  .about-grid{grid-template-columns:1fr;gap:40px}
+  .skills-grid{grid-template-columns:1fr}
+  .contact-wrap{grid-template-columns:1fr}
+  .modal-content{padding:80px 20px 60px}
+  .modal-meta{grid-template-columns:1fr;padding:0}
+  .modal-meta span{padding:14px 0!important;border-right:none!important;border-bottom:1px solid var(--c-border)}
+  .modal-meta span:last-child{border-bottom:none}
+  .editorial-gallery{grid-template-columns:1fr;gap:12px}
+  .eg-hero,.eg-wide,.eg-half,.eg-third{grid-column:1/-1}
+  .lb-nav{width:44px;height:44px;font-size:28px}
+  .lb-prev{left:12px}
+  .lb-next{right:12px}
+  .lb img{max-width:88vw;max-height:80vh}
+}
+@media(max-width:480px){
+  .works-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav" id="nav">
+  <div class="nav-logo">Mao Yuhang</div>
+  <div class="nav-links" id="nav-links">
+    <a href="index.html" class="active">Home</a>
+    <a href="#works" data-nav="works">Works</a>
+    <a href="#about" data-nav="about">About</a>
+    <a href="#contact" data-nav="contact">Contact</a>
+  </div>
+  <button class="lang-switch" id="lang-switch" onclick="toggleLang()" title="Switch Language">
+    <span class="active-lang" id="lang-cn">中</span>
+    <span class="sep">/</span>
+    <span id="lang-en">EN</span>
+  </button>
+</nav>
+
+<!-- Hero Banner -->
+<section class="hero-banner fade-up">
+  <h1 data-i18n="hero.name">毛雨杭</h1>
+  <p class="tagline" data-i18n="hero.tagline">视觉设计 · IP衍生品 · AIGC创作</p>
+  <p style="font-size:15px;color:var(--c-light);line-height:1.7;max-width:480px" data-i18n="hero.intro">探索品牌、内容与技术交汇处的创意表达。</p>
+</section>
+
+<!-- Featured Projects -->
+<section class="section fade-up" style="padding-top:0">
+  <div class="section-label" data-i18n="featured.label">Featured Projects</div>
+  <div class="section-title" data-i18n="featured.title">精选项目</div>
+  <div class="featured-grid" id="featured-grid"></div>
+</section>
+
+<!-- WORKS -->
+<section id="works" class="section" style="padding-top:100px">
+  <div class="section-label" data-i18n="works.label">All Works</div>
+  <div class="section-title" data-i18n="works.title">作品</div>
+  <div id="works-container"></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section fade-up" style="padding-top:100px">
+  <div class="section-label" data-i18n="about.label">About</div>
+  <div class="section-title" data-i18n="about.title">关于我</div>
+  <p style="font-size:16px;color:var(--c-sub);line-height:1.7;max-width:680px;margin-bottom:0" data-i18n="about.intro">
+    拥有动画、视觉设计、品牌传播、IP衍生品设计与AIGC内容创作背景，关注品牌表达、用户体验与创意技术的融合。
+  </p>
+  <div class="about-grid">
+    <div class="about-block" id="about-edu-block"></div>
+    <div class="about-block" id="about-exp-block"></div>
+  </div>
+  <div style="margin-top:48px">
+    <h3 data-i18n="skills.title" style="font-size:14px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:24px">Skills</h3>
+    <div class="skills-grid" id="skills-grid"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section fade-up" style="padding-top:100px">
+  <div class="section-label" data-i18n="contact.label">Contact</div>
+  <div class="section-title" data-i18n="contact.title">联系方式</div>
+  <div class="contact-wrap" id="contact-wrap"></div>
+  <div style="margin-top:40px">
+    <button class="btn btn-outline" onclick="downloadResume()" style="font-size:15px;display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:100px;background:transparent;color:var(--c-text);border:1.5px solid var(--c-border);cursor:pointer;transition:all .25s" onmouseover="this.style.borderColor='var(--c-text)'" onmouseout="this.style.borderColor='var(--c-border)'">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v8M5 7l3 3 3-3M2 12v1a1 1 0 001 1h10a1 1 0 001-1v-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span data-i18n="contact.btnResume">下载简历 PDF</span>
+    </button>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <span>&copy; <span id="footer-year">2026</span> Mao Yuhang</span>
+</footer>
+
+<!-- Project Detail Modal -->
+<div class="modal-overlay" id="modal-overlay">
+  <button class="modal-close" onclick="closeModal()">✕</button>
+  <div class="modal-content" id="modal-content"></div>
+</div>
+
+<!-- Lightbox -->
+<div class="lb" id="lb" onclick="closeLb(event)">
+  <button class="lb-close" onclick="closeLb(event)">✕</button>
+  <button class="lb-nav lb-prev" onclick="navLb(-1,event)">‹</button>
+  <img id="lb-img" src="" alt="" onclick="closeLb(event)">
+  <button class="lb-nav lb-next" onclick="navLb(1,event)">›</button>
+  <div class="lb-counter" id="lb-counter"></div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// I18N DATA
+// ═══════════════════════════════════════════════════════════════
+var L = 'cn'; // cn | en
+
+var I18N = {
+  cn: {
+    'hero.name': '毛雨杭',
+    'hero.tagline': '视觉设计 · IP衍生品 · AIGC创作',
+    'hero.intro': '探索品牌、内容与技术交汇处的创意表达。',
+    'hero.btnWorks': '查看作品',
+    'hero.btnResume': '下载简历',
+    'featured.label': 'Featured Projects',
+    'featured.title': '精选项目',
+    'works.label': 'All Works',
+    'works.title': '作品',
+    'about.label': 'About',
+    'about.title': '关于我',
+    'about.intro': '拥有动画、视觉设计、品牌传播、IP衍生品设计与AIGC内容创作背景，关注品牌表达、用户体验与创意技术的融合。',
+    'about.edu': '教育背景',
+    'about.exp': '经历',
+    'skills.title': '专业技能',
+    'contact.label': 'Contact',
+    'contact.title': '联系方式',
+    'contact.btnResume': '下载简历 PDF',
+    'contact.email': '电子邮箱',
+    'contact.phone': '电话',
+    'contact.behance': 'Behance',
+    'detail.role': '我的角色',
+    'detail.timeline': '时间',
+    'detail.tools': '工具',
+    'detail.overview': '项目概述',
+    'detail.process': '创作过程',
+    'detail.outcome': '项目成果',
+    'detail.responsibility': '项目职责'
+  },
+  en: {
+    'hero.name': 'Mao Yuhang',
+    'hero.tagline': 'Visual Design · Merchandise Design · AIGC Creation',
+    'hero.intro': 'Exploring creative expressions at the intersection of branding, content and technology.',
+    'hero.btnWorks': 'View Works',
+    'hero.btnResume': 'Download Resume',
+    'featured.label': 'Featured Projects',
+    'featured.title': 'Featured Projects',
+    'works.label': 'All Works',
+    'works.title': 'Works',
+    'about.label': 'About',
+    'about.title': 'About Me',
+    'about.intro': 'Background in animation, visual design, branding, merchandise development and AI-assisted content creation, with a focus on combining creativity, storytelling and emerging technologies.',
+    'about.edu': 'Education',
+    'about.exp': 'Experience',
+    'skills.title': 'Skills',
+    'contact.label': 'Contact',
+    'contact.title': 'Contact',
+    'contact.btnResume': 'Download Resume PDF',
+    'contact.email': 'Email',
+    'contact.phone': 'Phone',
+    'contact.behance': 'Behance',
+    'detail.role': 'My Role',
+    'detail.timeline': 'Timeline',
+    'detail.tools': 'Tools Used',
+    'detail.overview': 'Project Overview',
+    'detail.process': 'Creative Process',
+    'detail.outcome': 'Project Outcome',
+    'detail.responsibility': 'Project Responsibilities'
+  }
+};
+
+// Projects with bilingual data
+var FEATURED = [
+  {
+    id: 'elaiyunzhuan',
+    img: '',
+    cn: { title: '《鹅来运转》', cat: 'IP衍生品设计', year: '2026' },
+    en: { title: '"E Lai Yun Zhuan"', cat: 'IP Merchandise Design', year: '2026' }
+  },
+  {
+    id: 'cat-game',
+    img: 'images/cat-game/32.jpg',
+    cn: { title: '《猫猫直聘》', cat: '原创独立游戏', year: '2025' },
+    en: { title: '"Cat Recruitment"', cat: 'Original Indie Game', year: '2025' }
+  },
+  {
+    id: 'jiyouqu',
+    img: 'images/jiyouqu/5.png',
+    cn: { title: '《集友趣》', cat: 'IP品牌设计', year: '2024' },
+    en: { title: '"Ji You Qu"', cat: 'IP Brand Design', year: '2024' }
+  }
+];
+
+var WORKS = [
+  {
+    cat: 'brand',
+    cn: { name: '品牌与视觉设计', sub: 'Brand & Visual Design' },
+    en: { name: 'Brand & Visual Design', sub: 'Posters · Campaigns · Branding' },
+    items: [
+      { id: 'b1', img: '', cn: { title: '腾讯企鹅岛开放日主视觉', tags: ['主视觉','品牌活动'] }, en: { title: 'Tencent Penguin Island Open Day KV', tags: ['Key Visual','Brand Campaign'] } },
+      { id: 'b2', img: '', cn: { title: '品牌传播视觉设计', tags: ['品牌','传播'] }, en: { title: 'Brand Communication Visual Design', tags: ['Brand','Communication'] } },
+      { id: 'b3', img: '', cn: { title: '社交媒体视觉设计', tags: ['社交媒体','视觉'] }, en: { title: 'Social Media Visual Design', tags: ['Social Media','Visual'] } },
+      { id: 'b4', img: '', cn: { title: '市场营销视觉方案', tags: ['营销','视觉方案'] }, en: { title: 'Marketing Campaign Visuals', tags: ['Marketing','Campaign'] } },
+      { id: 'b5', img: '', cn: { title: '品牌海报设计系列', tags: ['海报','品牌'] }, en: { title: 'Brand Poster Design Series', tags: ['Poster','Brand'] } }
+    ]
+  },
+  {
+    cat: 'merch',
+    cn: { name: '衍生品与IP设计', sub: 'Merchandise & IP Design' },
+    en: { name: 'Merchandise & IP Design', sub: 'Packaging · Badges · Licensed Products' },
+    items: [
+      { id: 'm1', img: '', cn: { title: 'IP包装设计系列', tags: ['包装','IP'] }, en: { title: 'IP Packaging Design Series', tags: ['Packaging','IP'] } },
+      { id: 'm2', img: '', cn: { title: '亚克力产品设计', tags: ['亚克力','周边'] }, en: { title: 'Acrylic Products Design', tags: ['Acrylic','Merchandise'] } },
+      { id: 'm3', img: '', cn: { title: '徽章与贴纸设计', tags: ['徽章','贴纸'] }, en: { title: 'Badges & Stickers Design', tags: ['Badges','Stickers'] } },
+      { id: 'm4', img: '', cn: { title: '活动周边礼盒设计', tags: ['礼盒','活动'] }, en: { title: 'Event Gift Box Design', tags: ['Gift Box','Event'] } },
+      { id: 'm5', img: '', cn: { title: '授权IP产品设计', tags: ['授权','IP'] }, en: { title: 'Licensed IP Product Design', tags: ['Licensed','IP'] } }
+    ]
+  },
+  {
+    cat: 'aigc',
+    cn: { name: 'AIGC与创意内容', sub: 'AIGC & Creative Content' },
+    en: { name: 'AIGC & Creative Content', sub: 'AI Posters · Concept Art · Short Films' },
+    items: [
+      { id: 'a1', img: '', cn: { title: 'AI海报创作系列', tags: ['AI','海报'] }, en: { title: 'AI Poster Creation Series', tags: ['AI','Poster'] } },
+      { id: 'a2', img: '', cn: { title: 'AI概念艺术设计', tags: ['概念艺术','AI'] }, en: { title: 'AI Concept Art Design', tags: ['Concept Art','AI'] } },
+      { id: 'a3', img: '', cn: { title: 'AI角色设计', tags: ['角色','AI'] }, en: { title: 'AI Character Design', tags: ['Character','AI'] } },
+      { id: 'a4', img: '', cn: { title: 'AI场景环境设计', tags: ['场景','环境'] }, en: { title: 'AI Environment Design', tags: ['Environment','AI'] } },
+      { id: 'a5', img: '', cn: { title: 'AI短视频与实验动画', tags: ['短视频','动画'] }, en: { title: 'AI Short Films & Experimental Animation', tags: ['Short Film','Animation'] } },
+      { id: 'a6', img: '', cn: { title: '创意实验项目', tags: ['创意','实验'] }, en: { title: 'Creative Experimental Projects', tags: ['Creative','Experimental'] } }
+    ]
+  },
+  {
+    cat: 'game',
+    cn: { name: '游戏与插画', sub: 'Games & Illustration' },
+    en: { name: 'Games & Illustration', sub: 'UI · Characters · Card Art' },
+    items: [
+      { id: 'g1', img: '', cn: { title: '游戏UI设计', tags: ['UI','游戏'] }, en: { title: 'Game UI Design', tags: ['UI','Game'] } },
+      { id: 'g2', img: '', cn: { title: '角色设计系列', tags: ['角色','设计'] }, en: { title: 'Character Design Series', tags: ['Character','Design'] } },
+      { id: 'g3', img: '', cn: { title: '场景环境概念设计', tags: ['场景','概念'] }, en: { title: 'Environment Concept Design', tags: ['Environment','Concept'] } },
+      { id: 'g4', img: '', cn: { title: '卡牌插画创作', tags: ['卡牌','插画'] }, en: { title: 'Card Illustration', tags: ['Card','Illustration'] } },
+      { id: 'g5', img: '', cn: { title: '故事板与分镜设计', tags: ['故事板','分镜'] }, en: { title: 'Storyboarding & Layout Design', tags: ['Storyboard','Layout'] } }
+    ]
+  }
+];
+
+// Education & Experience
+var EDU = [
+  {
+    cn: { school: '香港理工大学', degree: '创新多媒体娱乐硕士', date: '2024.09 – 2026.10' },
+    en: { school: 'The Hong Kong Polytechnic University', degree: 'MSc in Innovative Multimedia Entertainment', date: '2024.09 – 2026.10' }
+  },
+  {
+    cn: { school: '广州美术学院', degree: '动画创作学士', date: '2019.09 – 2023.06' },
+    en: { school: 'Guangzhou Academy of Fine Arts', degree: 'Bachelor of Animation', date: '2019.09 – 2023.06' }
+  }
+];
+
+var EXP = [
+  {
+    cn: { company: '腾讯', role: '品牌传播与视觉设计', date: '2026.01 – 至今' },
+    en: { company: 'Tencent', role: 'Brand Communication & Visual Design', date: '2026.01 – Present' }
+  },
+  {
+    cn: { company: '百度', role: 'AIGC 内容创作', date: '2025.09 – 2025.11' },
+    en: { company: 'Baidu', role: 'AIGC Content Creation', date: '2025.09 – 2025.11' }
+  },
+  {
+    cn: { company: '库洛游戏', role: '衍生品设计', date: '2025.05 – 2025.07' },
+    en: { company: 'Kuro Games', role: 'Merchandise Design', date: '2025.05 – 2025.07' }
+  }
+];
+
+var SKILLS = [
+  {
+    cn: '设计', en: 'Design',
+    tags: ['Photoshop','Illustrator','Figma','Procreate']
+  },
+  {
+    cn: '动效', en: 'Motion',
+    tags: ['After Effects','Premiere Pro']
+  },
+  {
+    cn: '3D', en: '3D',
+    tags: ['Blender','Maya','ZBrush','Substance Painter','KeyShot']
+  },
+  {
+    cn: 'AIGC', en: 'AIGC',
+    tags: ['Midjourney','ComfyUI','Stable Diffusion','Flux','Runway','Kling','ChatGPT']
+  }
+];
+
+// ═══════════════════════════════════════════════════════════════
+// RENDER
+// ═══════════════════════════════════════════════════════════════
+
+function t(key) { return (I18N[L] && I18N[L][key]) || key; }
+function p(obj) { return obj && typeof obj[L] !== 'undefined' ? obj[L] : obj; }
+
+// Featured
+function renderFeatured() {
+  var g = document.getElementById('featured-grid');
+  g.innerHTML = FEATURED.map(function(f, i) {
+    var d = p(f);
+    return '<div class="feat-card fade-up" style="animation-delay:'+(i*.08)+'s" onclick="openDetail(\''+f.id+'\')">' +
+      (f.img ? '<div class="feat-img"><img src="'+f.img+'" alt="'+d.title+'" loading="lazy"></div>' : '<div class="feat-img" style="background:linear-gradient(135deg,'+gradColors(i)+')"></div>') +
+      '<div class="feat-info"><div class="feat-title">'+d.title+'</div><div class="feat-meta"><span>'+d.cat+'</span><span>'+d.year+'</span></div></div></div>';
+  }).join('');
+}
+
+function gradColors(i) {
+  var cs = ['#f0f0f0,#e8e8e8','#e8ecf4,#dfe4f0','#f4efe8,#ede4d8','#eaf0f0,#dde8e8','#f0eef4,#e4e0f0','#eef4f0,#e0f0e8'];
+  return cs[i % cs.length];
+}
+
+// Works
+function renderWorks() {
+  var c = document.getElementById('works-container');
+  c.innerHTML = WORKS.map(function(cat, ci) {
+    var d = p(cat);
+    return '<div class="works-category fade-up" style="animation-delay:'+(ci*.1)+'s">' +
+      '<div class="cat-header"><span class="cat-name">'+d.name+'</span><span class="cat-sub">'+d.sub+'</span></div>' +
+      '<div class="works-grid">' + cat.items.map(function(w) {
+        var wd = p(w);
+        return '<div class="work-card" onclick="openDetail(\''+w.id+'\')">' +
+          (w.img ? '<div class="work-thumb"><img src="'+w.img+'" alt="'+wd.title+'" loading="lazy"></div>' : '<div class="work-thumb" style="background:linear-gradient(135deg,'+gradColors(ci+cat.items.indexOf(w))+')"></div>') +
+          '<div class="work-info"><div class="work-name">'+wd.title+'</div>' +
+          '<div class="work-tags">'+wd.tags.map(function(t){return'<span class="work-tag">'+t+'</span>'}).join('')+'</div></div></div>';
+      }).join('') + '</div></div>';
+  }).join('');
+}
+
+// About Edu
+function renderEdu() {
+  var b = document.getElementById('about-edu-block');
+  b.innerHTML = '<h3>'+t('about.edu')+'</h3>' +
+    EDU.map(function(e){var d=p(e);return'<div class="edu-item"><div class="edu-school">'+d.school+'</div><div class="edu-degree">'+d.degree+'</div><div class="edu-date">'+d.date+'</div></div>'}).join('');
+}
+
+// About Exp
+function renderExp() {
+  var b = document.getElementById('about-exp-block');
+  b.innerHTML = '<h3>'+t('about.exp')+'</h3>' +
+    EXP.map(function(e){var d=p(e);return'<div class="exp-item"><div class="exp-company">'+d.company+'</div><div class="exp-role">'+d.role+'</div><div class="exp-date">'+d.date+'</div></div>'}).join('');
+}
+
+// Skills
+function renderSkills() {
+  var g = document.getElementById('skills-grid');
+  g.innerHTML = SKILLS.map(function(s){
+    var d = p(s);
+    return '<div class="skill-group"><h4>'+d+'</h4><div class="skill-tags">'+s.tags.map(function(t){return'<span class="skill-tag">'+t+'</span>'}).join('')+'</div></div>';
+  }).join('');
+}
+
+// Contact
+function renderContact() {
+  var w = document.getElementById('contact-wrap');
+  var email = L==='cn' ? '电子邮箱' : 'Email';
+  var phone = L==='cn' ? '电话' : 'Phone';
+  var bhc = L==='cn' ? 'Behance' : 'Behance';
+  w.innerHTML =
+    '<div class="contact-item"><div class="contact-icon">✉</div><div><div class="contact-label">'+email+'</div><div class="contact-value"><a href="mailto:qinyu349@gmail.com">qinyu349@gmail.com</a></div></div></div>' +
+    '<div class="contact-item"><div class="contact-icon">📞</div><div><div class="contact-label">'+phone+'</div><div class="contact-value"><a href="tel:+8619124300097">+86 19124300097</a></div></div></div>' +
+    '<div class="contact-item"><div class="contact-icon">🔗</div><div><div class="contact-label">'+bhc+'</div><div class="contact-value"><a href="https://www.behance.net" target="_blank" rel="noopener">behance.net</a></div></div></div>';
+}
+
+// ═══════════════════════════════════════════════════════════════
+// PROJECT DETAILS (bilingual)
+// ═══════════════════════════════════════════════════════════════
+var DETAIL = {
+  'tencent-brand': {
+    cn: {
+      title: '腾讯品牌传播与视觉设计',
+      role: '品牌传播设计师',
+      timeline: '2026.01 – 至今',
+      tools: 'Photoshop, Illustrator, Figma, After Effects',
+      overview: '参与腾讯品牌传播视觉设计，负责多个品牌活动的主视觉、社交媒体素材、品牌视觉系统延展等工作。',
+      process: '从品牌策略出发，深入理解品牌核心价值与目标受众，通过视觉语言传达品牌精神。在设计过程中，注重创意概念与执行细节的平衡，确保每一件视觉作品都能精准传递品牌信息。',
+      outcome: '产出多个高质量的视觉设计方案，涵盖主视觉、社交媒体、品牌物料等，获得团队和合作方的高度认可。'
+    },
+    en: {
+      title: 'Tencent Brand Communication & Visual Design',
+      role: 'Brand Communication Designer',
+      timeline: '2026.01 – Present',
+      tools: 'Photoshop, Illustrator, Figma, After Effects',
+      overview: 'Contributed to Tencent brand communication visual design, responsible for key visuals, social media assets, and brand visual system extensions for multiple brand campaigns.',
+      process: 'Starting from brand strategy, deeply understand core brand values and target audience, conveying brand spirit through visual language. Focused on balancing creative concepts with execution details to ensure every visual piece accurately communicates the brand message.',
+      outcome: 'Delivered multiple high-quality visual design solutions spanning key visuals, social media, and brand materials, receiving high recognition from the team and partners.'
+    }
+  },
+  'tencent-ip': {
+    cn: {
+      title: '腾讯IP衍生品设计',
+      role: 'IP衍生品设计师',
+      timeline: '2026.01 – 至今',
+      tools: 'Photoshop, Illustrator, Procreate, KeyShot',
+      overview: '参与腾讯企鹅IP形象周边衍生品全链路设计，包括包装、亚克力产品、徽章、贴纸等各类周边物料的设计与开发。',
+      process: '从IP形象特征出发，挖掘角色核心元素，将其延展到不同载体和产品形态中。通过反复打样和迭代优化，确保衍生品高度还原IP形象的同时兼具产品质感。',
+      outcome: '完成多款周边衍生品的设计与落地，产品上线后获得良好的市场反馈和用户喜爱。'
+    },
+    en: {
+      title: 'Tencent IP Merchandise Design',
+      role: 'IP Merchandise Designer',
+      timeline: '2026.01 – Present',
+      tools: 'Photoshop, Illustrator, Procreate, KeyShot',
+      overview: 'Participated in the full-chain design of Tencent penguin IP merchandise, including packaging, acrylic products, badges, stickers, and various peripheral materials.',
+      process: 'Starting from IP character features, extracted core elements and extended them to different carriers and product forms. Through repeated sampling and iterative optimization, ensured merchandise faithfully reproduces the IP while maintaining product quality.',
+      outcome: 'Completed the design and implementation of multiple merchandise items, receiving positive market feedback and user appreciation upon launch.'
+    }
+  },
+  'baidu-aigc': {
+    cn: {
+      title: '百度AIGC内容创作',
+      role: 'AIGC内容创作者',
+      timeline: '2025.09 – 2025.11',
+      tools: 'Midjourney, ComfyUI, Runway, Kling, Photoshop, After Effects',
+      overview: '负责全网热点与内容趋势监测，挖掘并分析爆款AIGC内容的创意逻辑与视觉风格，运用多种AI工具高效生成和优化短视频内容。',
+      process: '持续追踪热点趋势，分析爆款内容的核心要素和视觉语言。结合Midjourney、ComfyUI、Flux等工具进行图像生成，使用Runway、Kling进行视频创作，最后通过Photoshop和After Effects进行后期优化和剪辑。',
+      outcome: '成功创作多组AIGC爆款内容，在多个平台获得高曝光和高互动，验证了AIGC在创意内容生产中的高效性和可能性。'
+    },
+    en: {
+      title: 'Baidu AIGC Content Creation',
+      role: 'AIGC Content Creator',
+      timeline: '2025.09 – 2025.11',
+      tools: 'Midjourney, ComfyUI, Runway, Kling, Photoshop, After Effects',
+      overview: 'Monitored trending topics and content across platforms, analyzed and identified the creative logic and visual styles behind viral AIGC content, efficiently generated and optimized short video content using various AI tools.',
+      process: 'Continuously tracked trends, analyzed core elements and visual language of viral content. Combined Midjourney, ComfyUI, and Flux for image generation, used Runway and Kling for video creation, and finalized with Photoshop and After Effects for post-production and editing.',
+      outcome: 'Successfully created multiple AIGC viral content pieces that achieved high exposure and engagement across platforms, validating the efficiency and potential of AIGC in creative content production.'
+    }
+  },
+  'kuro-ip': {
+    cn: {
+      title: '库洛游戏衍生品设计',
+      role: '衍生品设计师',
+      timeline: '2025.05 – 2025.07',
+      tools: 'Photoshop, Illustrator, Procreate',
+      overview: '负责库洛游戏旗下IP的周边产品物料延展设计，包括包装、背卡、详情页等视觉物料的设计与制作。',
+      process: '深入理解游戏IP的世界观和角色设定，将游戏元素转化为具有收藏价值和实用性的周边产品设计。从概念草图到最终物料输出，全程把控设计质量。',
+      outcome: '完成多个系列的周边物料设计，有效提升了IP的线下触达和粉丝互动体验。'
+    },
+    en: {
+      title: 'Kuro Games Merchandise Design',
+      role: 'Merchandise Designer',
+      timeline: '2025.05 – 2025.07',
+      tools: 'Photoshop, Illustrator, Procreate',
+      overview: 'Responsible for the extended design of peripheral product materials for Kuro Games IPs, including packaging, backing cards, and product detail pages.',
+      process: 'Deeply understood the game IP world-building and character settings, translating game elements into collectible and practical merchandise designs. Controlled design quality throughout from concept sketches to final material output.',
+      outcome: 'Completed multiple series of peripheral material designs, effectively enhancing offline IP reach and fan engagement experience.'
+    }
+  },
+  'cat-game': {
+    cn: {
+      title: '猫猫直聘',
+      role: '游戏美术设计 / 主创',
+      timeline: '2025',
+      tools: 'Photoshop, Illustrator, Procreate, Figma',
+      overview: '《猫猫直聘》是一款以职场文化为主题的休闲策略游戏，融合肉鸽牌组构建（Roguelike Deckbuilder）与背包管理（Inventory Management）等核心玩法。玩家将扮演互联网公司的 HR，通过招聘多元员工、优化团队配置、为不同工位形状的员工匹配合适座位、安排技能培训课程等方式，提升团队整体效率，为公司创造更高收益。',
+      responsibility: '主导游戏 2D 美术管线，全面负责角色形象、场景、卡牌插画及 UI 界面等核心视觉内容的创作与风格把控。',
+      outcome: '累计获得 Steam 愿望单 500+；小红书话题 #猫猫直聘 相关笔记获赞 2K+；深圳及香港动漫节周边销售额 800+。'
+    },
+    en: {
+      title: 'Cat Recruitment',
+      role: 'Game Art Designer / Creator',
+      timeline: '2025',
+      tools: 'Photoshop, Illustrator, Procreate, Figma',
+      overview: '"Cat Recruitment" is a workplace-themed casual strategy game blending roguelike deckbuilding with inventory management as core gameplay mechanics. Players take on the role of an HR manager at an internet company, recruiting diverse employees, optimizing team configurations, matching staff with different desk shapes to suitable workstations, and arranging training programs — all to boost overall team efficiency and maximize company revenue.',
+      responsibility: 'Led the 2D art pipeline, overseeing character design, environment art, card illustrations, and UI — defining the creative vision and style direction for all core visual content.',
+      outcome: '500+ Steam wishlists accumulated; 2K+ likes on Xiaohongshu under the  #猫猫直聘 tag; 800+ merchandise units sold at Shenzhen and Hong Kong anime conventions.'
+    },
+    gallery: [
+      { type:'image', src:'images/cat-game/32.jpg', layout:'full', cn:'', en:'' },
+      { type:'image', src:'images/cat-game/33.jpg', layout:'full', cn:'', en:'' },
+      { type:'image', src:'images/cat-game/34.jpg', layout:'full', cn:'', en:'' },
+      { type:'image', src:'images/cat-game/35.jpg', layout:'full', cn:'', en:'' },
+      { type:'image', src:'images/cat-game/36.jpg', layout:'full', cn:'', en:'' }
+    ]
+  },
+  'jiyouqu': {
+    cn: {
+      title: '《集友趣》',
+      role: 'IP品牌设计师 / 主创',
+      timeline: '2024',
+      tools: 'Photoshop, Illustrator, Procreate',
+      overview: '《集友趣》IP打造的是一款集市交易与娱乐交友功能合一、OAO（Online And Offline）线上线下玩法与应用相结合的原创动漫品牌。角色与相对应文化圈子契合，贴合集市群体刻画，用独特的萌文化风格与方式去孵化IP形象。情感内核是：温馨治愈的角色们在包容多元文化的集市大街中展现真善美的追求。',
+      responsibility: '1. 担任视觉总设计师，统筹品牌规划与视觉体系搭建，涵盖视觉设计与场景设计、UI设计及线下展陈等模块，具备从0-1打造原创动漫IP品牌的完整经验；\n2. 主导线下展陈活动实现7天周边销售2W+，验证IP商业化与视觉转化能力。',
+      outcome: ''
+    },
+    en: {
+      title: '"Ji You Qu"',
+      role: 'IP Brand Designer / Creator',
+      timeline: '2024',
+      tools: 'Photoshop, Illustrator, Procreate',
+      overview: '"Ji You Qu" is an original anime IP brand that integrates market trading with social entertainment, combining OAO (Online And Offline) gameplay and applications. Characters are tailored to match corresponding cultural communities and market demographics, nurturing IP personas through a unique moe-culture aesthetic. The emotional core: warm, healing characters expressing truth, goodness, and beauty within an inclusive, multicultural marketplace.',
+      responsibility: '1. Served as Chief Visual Designer, overseeing brand planning and visual system development — including visual design, environment design, UI design, and offline exhibition — with complete 0-to-1 experience in building original anime IP brands;\n2. Led offline exhibition events achieving 20,000+ RMB in merchandise sales over 7 days, validating IP commercialization and visual conversion capability.',
+      outcome: ''
+    },
+    gallery: [
+      { type:'image', src:'images/jiyouqu/5.png', layout:'full', cn:'', en:'' },
+      { type:'image', src:'images/jiyouqu/6.jpg', layout:'full', cn:'', en:'' },
+      { type:'image', src:'images/jiyouqu/7.png', layout:'full', cn:'', en:'' },
+      { type:'image', src:'images/jiyouqu/8.png', layout:'full', cn:'', en:'' },
+      { type:'image', src:'images/jiyouqu/10.jpg', layout:'full', cn:'', en:'' },
+      { type:'image', src:'images/jiyouqu/11.jpg', layout:'full', cn:'', en:'' },
+      { type:'image', src:'images/jiyouqu/12.jpg', layout:'full', cn:'', en:'' },
+      { type:'image', src:'images/jiyouqu/12.png', layout:'full', cn:'', en:'' },
+      { type:'image', src:'images/jiyouqu/13.jpg', layout:'full', cn:'', en:'' },
+      { type:'video', src:'images/jiyouqu/jiyouqu.mp4', layout:'full', cn:'', en:'' }
+    ]
+  },
+  'elaiyunzhuan': {
+    cn: {
+      title: '《鹅来运转》',
+      role: 'IP衍生品设计师',
+      timeline: '2026',
+      tools: 'Photoshop, Illustrator, Procreate, KeyShot',
+      overview: '《鹅来运转》是腾讯企鹅IP主题衍生品设计项目，以"好运转运"为创意核心，将企鹅IP形象与新春祈福文化相结合，打造系列周边产品。',
+      responsibility: '负责衍生品全链路设计，包括产品概念开发、包装设计、背卡插画及实物打样跟进，确保IP形象在多载体上的一致性表达。',
+      outcome: '完成多款新春主题周边产品的设计与落地，产品上线后获得良好的市场反馈。'
+    },
+    en: {
+      title: '"E Lai Yun Zhuan"',
+      role: 'IP Merchandise Designer',
+      timeline: '2026',
+      tools: 'Photoshop, Illustrator, Procreate, KeyShot',
+      overview: '"E Lai Yun Zhuan" is a Tencent penguin IP-themed merchandise design project, combining the penguin IP with New Year fortune culture to create a series of lifestyle products centered on the concept of "good fortune".',
+      responsibility: 'Responsible for the full-chain merchandise design, including product concept development, packaging design, backing card illustration, and physical sampling follow-up, ensuring consistent IP expression across multiple carriers.',
+      outcome: 'Completed multiple New Year-themed merchandise designs that received positive market feedback upon launch.'
+    }
+  }
+};
+
+// ═══════════════════════════════════════════════════════════════
+// MODAL
+// ═══════════════════════════════════════════════════════════════
+function openDetail(id) {
+  var d = DETAIL[id]; if (!d) return;
+  var dd = p(d);
+  var ov = document.getElementById('modal-overlay');
+  var ct = document.getElementById('modal-content');
+
+  // Build editorial gallery
+  var galHtml = '';
+  var galImgs = [];
+  if (d.gallery && d.gallery.length > 0) {
+    if (typeof d.gallery[0] === 'object') {
+      // Structured editorial gallery
+      galImgs = d.gallery.filter(function(it){return it.type==='image'}).map(function(it){return it.src});
+      galHtml = '<div class="editorial-gallery">';
+      d.gallery.forEach(function(item) {
+        if (item.type === 'section') {
+          galHtml += '<div class="eg-section"><span class="eg-section-line-l"></span><span class="eg-section-title">' + p(item) + '</span><span class="eg-section-line-r"></span></div>';
+        } else if (item.type === 'image') {
+          var idx = galImgs.indexOf(item.src);
+          galHtml += '<figure class="eg-item eg-' + item.layout + '" onclick="openLb(' + idx + ')"><img src="' + item.src + '" alt="' + p(item) + '" loading="lazy">' + (p(item) ? '<figcaption>' + p(item) + '</figcaption>' : '') + '</figure>';
+        } else if (item.type === 'video') {
+          galHtml += '<figure class="eg-item eg-' + item.layout + ' eg-video-wrap"><video src="' + item.src + '" controls playsinline preload="metadata" style="width:100%;display:block;border-radius:var(--radius)"></video></figure>';
+        }
+      });
+      galHtml += '</div>';
+    } else {
+      // Simple array gallery (legacy)
+      galImgs = d.gallery.slice();
+      galHtml = '<div class="editorial-gallery">' +
+        d.gallery.map(function(src, i) {
+          return '<figure class="eg-item eg-half" onclick="openLb(' + i + ')"><img src="' + src + '" loading="lazy"></figure>';
+        }).join('') + '</div>';
+    }
+  } else {
+    var phTxt = L === 'cn' ? '项目图片即将上线' : 'Project images coming soon';
+    galHtml = '<div class="editorial-gallery"><figure class="eg-item eg-hero" style="aspect-ratio:16/9;background:linear-gradient(135deg,#f5f5f5,#eee);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;color:#ccc;font-size:14px">' + phTxt + '</figure></div>';
+  }
+  window.currentGalImgs = galImgs;
+
+  ct.innerHTML =
+    '<div class="modal-hero">' +
+      '<h1>' + dd.title + '</h1>' +
+      '<div class="modal-meta">' +
+        '<span><strong>' + t('detail.role') + '</strong>' + dd.role + '</span>' +
+        '<span><strong>' + t('detail.timeline') + '</strong>' + dd.timeline + '</span>' +
+        '<span><strong>' + t('detail.tools') + '</strong>' + dd.tools + '</span>' +
+      '</div>' +
+    '</div>' +
+    '<div class="modal-body">' +
+      '<div class="modal-section"><h3>' + t('detail.overview') + '</h3><p>' + dd.overview + '</p></div>' +
+      (dd.responsibility ? '<div class="modal-section"><h3>' + t('detail.responsibility') + '</h3><p>' + dd.responsibility.replace(/\n/g, '<br>') + '</p></div>' : '') +
+      (dd.process ? '<div class="modal-section"><h3>' + t('detail.process') + '</h3><p>' + dd.process + '</p></div>' : '') +
+      (dd.outcome ? '<div class="modal-section"><h3>' + t('detail.outcome') + '</h3><p>' + dd.outcome + '</p></div>' : '') +
+      galHtml +
+    '</div>';
+  ov.classList.add('show');
+  document.body.style.overflow = 'hidden';
+  ov.scrollTop = 0;
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+// ═══════════════════════════════════════════════════════════════
+// LIGHTBOX
+// ═══════════════════════════════════════════════════════════════
+function openLb(idx) {
+  var imgs = window.currentGalImgs || [];
+  if (imgs.length === 0) return;
+  window.lbIndex = Math.max(0, Math.min(idx, imgs.length - 1));
+  var img = document.getElementById('lb-img');
+  img.style.opacity = '0';
+  img.src = imgs[window.lbIndex];
+  img.onload = function() { img.style.opacity = '1'; };
+  var counter = document.getElementById('lb-counter');
+  counter.textContent = (window.lbIndex + 1) + ' / ' + imgs.length;
+  document.getElementById('lb').classList.add('show');
+}
+function navLb(dir, e) {
+  if (e) e.stopPropagation();
+  var imgs = window.currentGalImgs || [];
+  if (imgs.length === 0) return;
+  window.lbIndex = (window.lbIndex + dir + imgs.length) % imgs.length;
+  var img = document.getElementById('lb-img');
+  img.style.opacity = '0';
+  img.src = imgs[window.lbIndex];
+  img.onload = function() { img.style.opacity = '1'; };
+  var counter = document.getElementById('lb-counter');
+  counter.textContent = (window.lbIndex + 1) + ' / ' + imgs.length;
+}
+function closeLb(e) {
+  if (e) e.stopPropagation();
+  document.getElementById('lb').classList.remove('show');
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') { closeModal(); closeLb(); }
+  if (document.getElementById('lb').classList.contains('show')) {
+    if (e.key === 'ArrowLeft') navLb(-1);
+    if (e.key === 'ArrowRight') navLb(1);
+  }
+});
+
+// ═══════════════════════════════════════════════════════════════
+// LANGUAGE SWITCH
+// ═══════════════════════════════════════════════════════════════
+function toggleLang() {
+  L = L === 'cn' ? 'en' : 'cn';
+  document.documentElement.lang = L === 'cn' ? 'zh-CN' : 'en';
+  document.getElementById('lang-cn').className = L === 'cn' ? 'active-lang' : '';
+  document.getElementById('lang-en').className = L === 'en' ? 'active-lang' : '';
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var k = el.getAttribute('data-i18n');
+    el.textContent = I18N[L] && I18N[L][k] || k;
+  });
+  refreshAll();
+  var wasOpen = document.getElementById('modal-overlay').classList.contains('show');
+  if (wasOpen) closeModal();
+}
+
+function refreshAll() {
+  renderFeatured();
+  renderWorks();
+  renderEdu();
+  renderExp();
+  renderSkills();
+  renderContact();
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+}
+
+// ═══════════════════════════════════════════════════════════════
+// UTILS
+// ═══════════════════════════════════════════════════════════════
+function scrollToSection(id) {
+  var el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
+
+function downloadResume() {
+  alert(L === 'cn' ? '简历下载功能即将上线' : 'Resume download coming soon');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// NAV scroll spy & init
+// ═══════════════════════════════════════════════════════════════
+var sections = ['works', 'about', 'contact'];
+window.addEventListener('scroll', function() {
+  var nav = document.getElementById('nav');
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+
+  var current = 'home';
+  sections.forEach(function(s) {
+    var el = document.getElementById(s);
+    if (el && window.scrollY >= el.offsetTop - 100) current = s;
+  });
+  document.querySelectorAll('#nav-links a').forEach(function(a) {
+    a.classList.toggle('active', a.getAttribute('data-nav') === current);
+  });
+});
+
+// Init
+refreshAll();
+document.getElementById('footer-year').textContent = new Date().getFullYear();
+document.getElementById('lang-cn').className = 'active-lang';
+</script>
+
+</body>
+</html>
