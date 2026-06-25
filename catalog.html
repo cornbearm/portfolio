@@ -656,21 +656,21 @@ var DETAIL = {
   'jiyouqu': {
     cn: {
       title: '《集友趣》',
-      role: 'IP品牌设计师 / 主创',
+      role: '视觉总设计师',
       timeline: '2024',
-      tools: 'Photoshop, Illustrator, Procreate',
-      overview: '《集友趣》是一个以社交聚合为核心的原创IP品牌项目，围绕"集友"与"趣味"两大概念，打造兼具情感连接与娱乐体验的品牌视觉体系。',
-      responsibility: '主导IP形象设计与品牌视觉系统搭建，负责角色设计、品牌标志、色彩体系及衍生品视觉延展的全链路创作。',
-      outcome: '完成完整的IP品牌视觉方案，品牌形象在多渠道投放中获得良好用户反馈。'
+      tools: 'Photoshop, Illustrator, Procreate, Figma',
+      overview: '《集友趣》IP打造的是一款集市交易与娱乐交友功能合一、OAO（Online And Offline）线上线下玩法与应用相结合的原创动漫品牌。角色与相对应文化圈子契合，贴合集市群体刻画，用独特的萌文化风格与方式去孵化IP形象。情感内核是：温馨治愈的角色们在包容多元文化的集市大街中展现真善美的追求。',
+      responsibility: '1. 担任视觉总设计师，统筹品牌规划与视觉体系搭建，涵盖视觉设计与场景设计、UI设计及线下展陈等模块，具备从0-1打造原创动漫IP品牌的完整经验；\n2. 主导线下展陈活动实现7天周边销售2W+，验证IP商业化与视觉转化能力。',
+      outcome: ''
     },
     en: {
       title: '"Ji You Qu"',
-      role: 'IP Brand Designer / Creator',
+      role: 'Chief Visual Designer',
       timeline: '2024',
-      tools: 'Photoshop, Illustrator, Procreate',
-      overview: '"Ji You Qu" is an original IP brand project centered on social gathering, blending the concepts of "gathering friends" and "fun" to create a brand visual system with emotional connection and entertainment.',
-      responsibility: 'Led IP character design and brand visual system development, responsible for character design, logo, color system, and merchandise visual extensions across the full creative pipeline.',
-      outcome: 'Delivered a complete IP brand visual solution, with the brand image receiving positive user feedback across multiple channels.'
+      tools: 'Photoshop, Illustrator, Procreate, Figma',
+      overview: '"Ji You Qu" is an original anime IP brand that integrates market trading with social entertainment, combining OAO (Online And Offline) gameplay and applications. Characters are tailored to match corresponding cultural communities and market demographics, nurturing IP personas through a unique moe-culture aesthetic. The emotional core: warm, healing characters expressing truth, goodness, and beauty within an inclusive, multicultural marketplace.',
+      responsibility: '1. Served as Chief Visual Designer, overseeing brand planning and visual system development — including visual design, environment design, UI design, and offline exhibition — with complete 0-to-1 experience in building original anime IP brands;\n2. Led offline exhibition events achieving 20,000+ RMB in merchandise sales over 7 days, validating IP commercialization and visual conversion capability.',
+      outcome: ''
     }
   },
   'elaiyunzhuan': {
@@ -743,9 +743,9 @@ function openDetail(id) {
     '<div class="modal-body">' +
       '<div class="modal-section"><h3>' + t('detail.overview') + '</h3><p>' + dd.overview + '</p></div>' +
       galHtml +
-      (dd.responsibility ? '<div class="modal-section"><h3>' + t('detail.responsibility') + '</h3><p>' + dd.responsibility + '</p></div>' : '') +
+      (dd.responsibility ? '<div class="modal-section"><h3>' + t('detail.responsibility') + '</h3><p>' + dd.responsibility.replace(/\n/g, '<br>') + '</p></div>' : '') +
       (dd.process ? '<div class="modal-section"><h3>' + t('detail.process') + '</h3><p>' + dd.process + '</p></div>' : '') +
-      '<div class="modal-section"><h3>' + t('detail.outcome') + '</h3><p>' + dd.outcome + '</p></div>' +
+      (dd.outcome ? '<div class="modal-section"><h3>' + t('detail.outcome') + '</h3><p>' + dd.outcome + '</p></div>' : '') +
     '</div>';
   ov.classList.add('show');
   document.body.style.overflow = 'hidden';
