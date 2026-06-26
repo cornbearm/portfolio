@@ -105,6 +105,7 @@ a{color:inherit;text-decoration:none}
 .modal-close:hover{background:rgba(0,0,0,.1);transform:rotate(90deg)}
 .modal-content{max-width:920px;margin:0 auto;padding:100px 40px 80px}
 .modal-hero{margin-bottom:56px}
+.modal-link-btn{display:inline-block;padding:12px 28px;background:#1a1a1a;color:#fff;border-radius:50px;font-size:14px;font-weight:500;letter-spacing:.04em;text-decoration:none;transition:background .2s,transform .2s}.modal-link-btn:hover{background:#333;transform:translateY(-2px)}
 .modal-hero .section-label{margin-bottom:24px}
 .modal-hero h1{font-size:clamp(30px,5vw,46px);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:32px}
 .modal-meta{display:grid;grid-template-columns:repeat(3,1fr);padding:20px 0;border-top:1px solid var(--c-border);border-bottom:1px solid var(--c-border)}
@@ -628,6 +629,7 @@ var DETAIL = {
     }
   },
   'cat-game': {
+    link: { url: 'https://chill-game.itch.io/meow-recruit', cn: '▶ 试玩游戏', en: '▶ Play Game' },
     cn: {
       title: '猫猫直聘',
       role: '游戏美术设计 / 主创',
@@ -764,6 +766,7 @@ function openDetail(id) {
       (dd.responsibility ? '<div class="modal-section"><h3>' + t('detail.responsibility') + '</h3><p>' + dd.responsibility.replace(/\n/g, '<br>') + '</p></div>' : '') +
       (dd.process ? '<div class="modal-section"><h3>' + t('detail.process') + '</h3><p>' + dd.process + '</p></div>' : '') +
       (dd.outcome ? '<div class="modal-section"><h3>' + t('detail.outcome') + '</h3><p>' + dd.outcome + '</p></div>' : '') +
+      (d.link ? '<div class="modal-section"><a href="' + d.link.url + '" target="_blank" rel="noopener" class="modal-link-btn">' + (d.link[L] || d.link.cn) + '</a></div>' : '') +
       galHtml +
     '</div>';
   ov.classList.add('show');
