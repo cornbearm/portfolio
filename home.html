@@ -483,7 +483,7 @@ var WORKS = [
     items: [
       { id: 'an1', img: '', cn: { title: 'AI动画短片', tags: ['AI','短片'] }, en: { title: 'AI Animation Short Film', tags: ['AI','Short Film'] } },
       { id: 'an2', img: 'images/mei/storyboard.jpg', cn: { title: '定格动画 ·《霉》', tags: ['定格','逐帧','原创短片'] }, en: { title: 'Stop Motion · "Mei" (Mold)', tags: ['Stop Motion','Frame-by-Frame','Original Short'] } },
-      { id: 'an3', img: '', cn: { title: '逐帧动画', tags: ['逐帧','二维'] }, en: { title: 'Frame-by-Frame Animation', tags: ['Frame-by-Frame','2D'] } },
+      { id: 'an3', img: 'images/mei/group-cover.jpg', cn: { title: '逐帧动画 ·《没了！霉了！》', tags: ['逐帧','小组合作','广东方言'] }, en: { title: 'Frame-by-Frame · "Gone! Molded!"', tags: ['Frame-by-Frame','Group Project','Cantonese'] } },
       { id: 'an4', img: '', cn: { title: '特效作品', tags: ['特效','合成'] }, en: { title: 'VFX Works', tags: ['VFX','Compositing'] } }
     ]
   },
@@ -1126,6 +1126,30 @@ var DETAIL = {
       { type:'image', src:'images/mei/concept.jpg', layout:'full', cn:'故事梗概与三大亮点：微观与宏观的对比、贴近生活的题材、色彩的对比（霉菌眼中所看到它走过的痕迹都是彩色的）', en:'Synopsis & three creative hooks — macro/micro contrast, relatable everyday subject, and colour contrast (the traces the mold leaves behind are colourful in its own eyes)' },
       { type:'image', src:'images/mei/storyboard.jpg', layout:'full', cn:'定格动画 30 格逐帧分镜', en:'30-frame key-frame storyboard for the stop-motion short' }
     ]
+  },
+  'an3': {
+    subtitle: { cn: '逐帧动画小组作业·《没了！霉了！》——粤语 / 潮汕话 / 潮南话 三版方言配音', en: 'Frame-by-frame group project — "Gone! Molded!" with three Cantonese/Chaoshan/Chaonan dialect voice versions' },
+    cn: {
+      title: '逐帧动画 ·《没了！霉了！》',
+      role: '动画组成员 / 角色与场景设计 / 逐帧绘制 / 后期合成',
+      timeline: '2022.07',
+      tools: 'Photoshop, Procreate, Premiere, After Effects',
+      overview: '《没了！霉了！》是广州美术学院动画专业大三的小组结课作业。故事围绕"回南天"这一南方特有的潮湿天气展开：回南天来了，广东人会说"啊，霉了"；回南天结束，广东人会说"啊，霉，没了"——用一句最日常的方言作为情绪切口，把潮湿衣物里的小霉菌拟人化，呈现"来时无奈、消失时连痕迹都不留"的生活感短片。作品在 1920×1080 画幅下以 24fps 逐帧手绘完成，并提供粤语、潮汕话、潮南话三种方言配音版本，让同一份动画呈现出不同的在地情绪与喜剧节奏。',
+      responsibility: '1. 作为动画组核心成员参与角色与场景设计，统一全片的水墨/留白/红黑风格语言；\n2. 承担关键镜头逐帧绘制与中后期合成；\n3. 配合导演完成多方言版本的口型与节奏适配。',
+      outcome: '完成一部约 8 分钟（486 秒，含三种方言版本各约 2:40）的逐帧动画短片《没了！霉了！》并发布于 B 站；累计 10 万 + 播放、1.4 万 + 点赞、5600 + 收藏，以粤/潮汕/潮南三种方言演绎同一份动画，被收录为广州美术学院 2022 届动画专业结课代表作品之一。'
+    },
+    en: {
+      title: 'Frame-by-Frame · "Gone! Molded!"',
+      role: 'Animation Team / Character & Scene Design / Frame-by-Frame Drawing / Post Compositing',
+      timeline: '2022.07',
+      tools: 'Photoshop, Procreate, Premiere, After Effects',
+      overview: '"Gone! Molded!" is a frame-by-frame group project from Year 3 of the Animation programme at Guangzhou Academy of Fine Arts. Built around "Hui Nan Tian" (回南天) — the sticky, wall-damp spring spell unique to southern China — the story uses the most everyday Cantonese phrase as its emotional entry point: when the humidity arrives, locals say "啊，霉了" (ah, got moldy); when it leaves, they say "啊，霉，没了" (ah, the mold, gone). A tiny mold in damp laundry is anthropomorphised to portray that quintessentially southern mood of "no choice when it comes, and not even a trace when it goes". Drawn by hand frame by frame at 1920×1080 / 24fps, the short ships with three voice versions — Cantonese, Chaoshan, and Chaonan — so the same animation takes on a different comic rhythm and local emotional register.',
+      responsibility: '1. As a core member of the animation team, contributed to character and scene design, unifying the ink / negative space / red-and-black visual language across the short;\n2. Drew key frames shot-by-shot and handled mid-to-late compositing;\n3. Worked with the director to adapt lip sync and pacing for the multiple dialect versions.',
+      outcome: 'Delivered an ~8-minute (486 s, three dialect versions of ~2:40 each) frame-by-frame animated short "Gone! Molded!", published on Bilibili and recognised as a representative group work of the GAFA Animation 2022 cohort. The piece has accumulated 100k+ views, 14k+ likes and 5.6k+ favourites, demonstrating how a single frame-by-frame animation can carry distinctly different emotional registers through its three dialect tracks.'
+    },
+    gallery: [
+      { type:'iframe', src:'//player.bilibili.com/player.html?bvid=BV1734y1H7x2&autoplay=0&page=1&high_quality=1', layout:'full', cn:'在 B 站观看《没了！霉了！》粤语版（约 2:40）/ Bilibili 嵌入播放器', en:'Watch "Gone! Molded!" Cantonese version on Bilibili (~2:40) / Bilibili embed player' }
+    ]
   }
 };
 
@@ -1189,6 +1213,8 @@ function openDetail(id) {
           galHtml += '<figure class="eg-item eg-' + item.layout + ' eg-video-wrap"><video src="' + item.src + '" controls playsinline preload="metadata" style="width:100%;display:block;border-radius:var(--radius)"></video>' + (extLink ? '<a class="eg-vimeo-link" href="' + extLink.url + '" target="_blank" rel="noopener noreferrer">' + (extLink.label || '查看原帖') + ' →</a>' : '') + '</figure>';
         } else if (item.type === 'vimeo') {
           galHtml += '<figure class="eg-item eg-' + item.layout + ' eg-video-wrap"><div class="eg-vimeo-wrap" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--radius)"><iframe src="https://player.vimeo.com/video/' + item.id + '" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div>' + (p(item) ? '<figcaption>' + p(item) + '</figcaption>' : '') + '</figure>';
+        } else if (item.type === 'iframe') {
+          galHtml += '<figure class="eg-item eg-' + item.layout + ' eg-video-wrap"><div class="eg-vimeo-wrap" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--radius)"><iframe src="' + item.src + '" frameborder="0" allowfullscreen="true" allow="autoplay; fullscreen; picture-in-picture" scrolling="no" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div>' + (p(item) ? '<figcaption>' + p(item) + '</figcaption>' : '') + '</figure>';
         }
       });
       galHtml += '</div>';
