@@ -59,10 +59,13 @@ a{color:inherit;text-decoration:none}
 .feat-award{display:inline-block;font-size:11px;color:var(--c-sub);background:#f5f5f5;border:1px solid #ececec;padding:3px 9px;border-radius:6px;margin-bottom:10px;font-weight:400;letter-spacing:.01em;align-self:flex-start}
 .feat-subtitle{font-size:12px;color:var(--c-sub);line-height:1.5;margin:0 0 4px;display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .feat-tagline{font-size:11px;color:var(--c-light);line-height:1.5;margin-bottom:8px}
-.feat-links{display:flex;flex-wrap:wrap;gap:6px;padding-top:8px}
-.feat-links a{font-size:11px;color:var(--c-text);text-decoration:none;padding:3px 8px;border:1px solid var(--c-border);border-radius:99px;transition:all .2s;background:rgba(255,255,255,.5);display:inline-flex;align-items:center;gap:4px}
-.feat-link-icon{font-size:11px;line-height:1;opacity:.85}
-.feat-links a:hover{background:var(--c-text);color:#fff;border-color:var(--c-text)}
+.feat-links{display:flex;flex-wrap:wrap;gap:18px;padding-top:12px}
+.feat-links a{font-size:14px;color:#888;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:color .2s;font-weight:500}
+.feat-links a:hover{color:#222}
+.feat-link-icon{font-size:16px;line-height:1;opacity:.6;transition:opacity .2s}
+.feat-links a:hover .feat-link-icon{opacity:1}
+.feat-link-arrow{font-size:11px;line-height:1;opacity:.5;transition:transform .2s,opacity .2s}
+.feat-links a:hover .feat-link-arrow{opacity:1;transform:translate(1px,-1px)}
 
 /* Works */
 .works-category{margin-bottom:80px}
@@ -528,7 +531,7 @@ function renderFeatured() {
       linksHtml = '<div class="feat-links">' + f.links.map(function(lk) {
         var nm = L === 'cn' ? lk.cn : lk.en;
         var icon = lk.icon ? '<span class="feat-link-icon">' + lk.icon + '</span>' : '';
-        return '<a href="' + lk.url + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">' + icon + nm + '</a>';
+        return '<a href="' + lk.url + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">' + icon + nm + '<span class="feat-link-arrow">↗</span></a>';
       }).join('') + '</div>';
     }
     var metaHtml = (d.cat || d.year) ? '<div class="feat-meta"><span>'+d.cat+'</span><span>'+d.year+'</span></div>' : '';
