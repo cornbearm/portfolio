@@ -56,6 +56,12 @@ a{color:inherit;text-decoration:none}
 .feat-info{position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(transparent,rgba(255,255,255,.75) 30%,rgba(255,255,255,.9));backdrop-filter:blur(1px);-webkit-backdrop-filter:blur(1px)}
 .feat-title{font-size:16px;font-weight:600;line-height:1.3;margin-bottom:4px}
 .feat-meta{font-size:12px;color:var(--c-light);display:flex;gap:12px}
+.feat-award{display:inline-block;font-size:11px;color:#a07000;background:linear-gradient(135deg,#fff4d4,#ffe5a0);border:1px solid #e8c97a;padding:3px 9px;border-radius:99px;margin-bottom:8px;font-weight:500;letter-spacing:.02em}
+.feat-subtitle{font-size:12px;color:var(--c-sub);line-height:1.45;margin:6px 0 4px}
+.feat-tagline{font-size:11px;color:var(--c-light);line-height:1.5;margin-bottom:8px}
+.feat-links{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.feat-links a{font-size:11px;color:var(--c-text);text-decoration:none;padding:3px 8px;border:1px solid var(--c-border);border-radius:99px;transition:all .2s;background:rgba(255,255,255,.5)}
+.feat-links a:hover{background:var(--c-text);color:#fff;border-color:var(--c-text)}
 
 /* Works */
 .works-category{margin-bottom:80px}
@@ -364,7 +370,15 @@ var FEATURED = [
     id: 'cat-game',
     img: 'images/cat-game/poster.jpg',
     cn: { title: '《猫猫直聘》', cat: '原创独立游戏', year: '2025' },
-    en: { title: '"Cat Recruitment"', cat: 'Original Indie Game', year: '2025' }
+    en: { title: '"Cat Recruitment"', cat: 'Original Indie Game', year: '2025' },
+    award: { cn: '🥉 2025腾讯游戏创作大赛高校赛道三等奖', en: '🥉 3rd Prize · Tencent Game Dev Contest 2025' },
+    subtitle: { cn: 'Roguelike DBG + 背包管理玩法的休闲策略游戏', en: 'A casual strategy game blending Roguelike DBG with inventory management' },
+    tagline: { cn: '选卡牌，摆工位——谁才是真正的 HR 大师？', en: 'Pick cards, arrange desks — who is the ultimate HR master?' },
+    links: [
+      { name: 'Steam', cn: 'Steam', en: 'Steam', url: 'https://store.steampowered.com/app/3811320/_/' },
+      { name: '官网', cn: '官网', en: 'Website', url: 'https://jiaqi404.github.io/chillgame/' },
+      { name: 'itch.io', cn: 'itch.io', en: 'itch.io', url: 'https://chill-game.itch.io/meow-recruit' }
+    ]
   },
   {
     id: 'jiyouqu',
@@ -484,9 +498,31 @@ function renderFeatured() {
   var g = document.getElementById('featured-grid');
   g.innerHTML = FEATURED.map(function(f, i) {
     var d = p(f);
+    var awardHtml = '';
+    if (f.award) {
+      var a = L === 'cn' ? f.award.cn : f.award.en;
+      awardHtml = '<div class="feat-award">' + a + '</div>';
+    }
+    var subtitleHtml = '';
+    if (f.subtitle) {
+      var s = L === 'cn' ? f.subtitle.cn : f.subtitle.en;
+      subtitleHtml = '<div class="feat-subtitle">' + s + '</div>';
+    }
+    var taglineHtml = '';
+    if (f.tagline) {
+      var tg = L === 'cn' ? f.tagline.cn : f.tagline.en;
+      taglineHtml = '<div class="feat-tagline">' + tg + '</div>';
+    }
+    var linksHtml = '';
+    if (f.links && f.links.length) {
+      linksHtml = '<div class="feat-links">' + f.links.map(function(lk) {
+        var nm = L === 'cn' ? lk.cn : lk.en;
+        return '<a href="' + lk.url + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">' + nm + ' ↗</a>';
+      }).join('') + '</div>';
+    }
     return '<div class="feat-card fade-up" style="animation-delay:'+(i*.08)+'s" onclick="openDetail(\''+f.id+'\')">' +
       (f.img ? '<div class="feat-img"><img src="'+f.img+'" alt="'+d.title+'" loading="eager" decoding="async"></div>' : '<div class="feat-img" style="background:linear-gradient(135deg,'+gradColors(i)+')"></div>') +
-      '<div class="feat-info"><div class="feat-title">'+d.title+'</div><div class="feat-meta"><span>'+d.cat+'</span><span>'+d.year+'</span></div></div></div>';
+      '<div class="feat-info">' + awardHtml + '<div class="feat-title">'+d.title+'</div><div class="feat-meta"><span>'+d.cat+'</span><span>'+d.year+'</span></div>' + subtitleHtml + taglineHtml + linksHtml + '</div></div>';
   }).join('');
 }
 
@@ -633,6 +669,14 @@ var DETAIL = {
   },
   'cat-game': {
     link: { url: 'https://chill-game.itch.io/meow-recruit', cn: '▶ 试玩游戏', en: '▶ Play Game' },
+    award: { cn: '🥉 2025腾讯游戏创作大赛高校赛道三等奖', en: '🥉 3rd Prize · Tencent Game Dev Contest 2025' },
+    subtitle: { cn: 'Roguelike DBG + 背包管理玩法的休闲策略游戏', en: 'A casual strategy game blending Roguelike DBG with inventory management' },
+    tagline: { cn: '选卡牌，摆工位——谁才是真正的 HR 大师？', en: 'Pick cards, arrange desks — who is the ultimate HR master?' },
+    links: [
+      { cn: 'Steam', en: 'Steam', url: 'https://store.steampowered.com/app/3811320/_/' },
+      { cn: '官网', en: 'Website', url: 'https://jiaqi404.github.io/chillgame/' },
+      { cn: 'itch.io', en: 'itch.io', url: 'https://chill-game.itch.io/meow-recruit' }
+    ],
     cn: {
       title: '猫猫直聘',
       role: '游戏美术设计 / 主创',
@@ -773,7 +817,9 @@ function openDetail(id) {
 
   ct.innerHTML =
     '<div class="modal-hero">' +
+      (d.award ? '<div class="feat-award" style="margin-bottom:20px">' + (L === 'cn' ? d.award.cn : d.award.en) + '</div>' : '') +
       '<h1>' + dd.title + '</h1>' +
+      (d.subtitle ? '<div class="modal-subtitle" style="font-size:18px;color:var(--c-sub);margin-top:-20px;margin-bottom:32px;font-weight:400">' + (L === 'cn' ? d.subtitle.cn : d.subtitle.en) + '</div>' : '') +
       '<div class="modal-meta">' +
         '<span><strong>' + t('detail.role') + '</strong>' + dd.role + '</span>' +
         '<span><strong>' + t('detail.timeline') + '</strong>' + dd.timeline + '</span>' +
@@ -781,11 +827,13 @@ function openDetail(id) {
       '</div>' +
     '</div>' +
     '<div class="modal-body">' +
+      (d.tagline ? '<div class="modal-tagline" style="font-size:16px;color:var(--c-text);line-height:1.7;margin-bottom:32px;padding:20px 24px;background:var(--c-card);border-radius:var(--radius);border-left:3px solid var(--c-text)">' + (L === 'cn' ? d.tagline.cn : d.tagline.en) + '</div>' : '') +
       '<div class="modal-section"><h3>' + t('detail.overview') + '</h3><p>' + dd.overview + '</p></div>' +
       (dd.responsibility ? '<div class="modal-section"><h3>' + t('detail.responsibility') + '</h3><p>' + dd.responsibility.replace(/\n/g, '<br>') + '</p></div>' : '') +
       (dd.process ? '<div class="modal-section"><h3>' + t('detail.process') + '</h3><p>' + dd.process + '</p></div>' : '') +
       (dd.outcome ? '<div class="modal-section"><h3>' + t('detail.outcome') + '</h3><p>' + dd.outcome + '</p></div>' : '') +
       (d.link ? '<div class="modal-section"><a href="' + d.link.url + '" target="_blank" rel="noopener" class="modal-link-btn">' + (d.link[L] || d.link.cn) + '</a></div>' : '') +
+      (d.links && d.links.length ? '<div class="modal-links" style="display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 48px"><strong style="font-size:13px;color:var(--c-light);font-weight:500;width:100%;margin-bottom:4px">🔗 External Links</strong>' + d.links.map(function(lk) { return '<a href="' + lk.url + '" target="_blank" rel="noopener" class="modal-link-btn" style="margin:0">' + (L === 'cn' ? lk.cn : lk.en) + ' ↗</a>'; }).join('') + '</div>' : '') +
       galHtml +
     '</div>';
   ov.classList.add('show');
