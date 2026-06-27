@@ -405,7 +405,7 @@ var FEATURED = [
     award: { cn: '2026企鹅小卖部最受欢迎系列', en: 'Most Popular Series · Penguin Snack Shop 2026' },
     subtitle: { cn: '腾讯企鹅红围巾礼盒与幸运鹅毛绒挂件周边产品', en: 'Tencent Penguin Red Scarf Gift Box & Lucky Goose Plush Keychain merchandise products' },
     links: [
-      { name: '微信小店', icon: '🛍', cn: '微信小店', en: 'WeChat Shop', url: '微信小店://企鹅小卖部/tdgRd5b9WgAxqDI', scheme: true }
+      { name: '微信小店', cn: '微信小店', en: 'WeChat Shop', url: '微信小店://企鹅小卖部/tdgRd5b9WgAxqDI', scheme: true, qrImg: 'images/qr-penguin-shop.png' }
     ]
   },
   {
@@ -567,7 +567,8 @@ function renderFeatured() {
         if (lk.scheme) {
           // 微信小店等自定义协议链接：点击弹二维码（PC端可用，移动端也能用）
           var encUrl = encodeURIComponent(lk.url);
-          return '<a href="javascript:void(0)" onclick="event.stopPropagation();openShopQR(\''+encUrl+'\',\''+nm+'\')">' + nm + arrow + '</a>';
+          var encImg = lk.qrImg ? encodeURIComponent(lk.qrImg) : '';
+          return '<a href="javascript:void(0)" onclick="event.stopPropagation();openShopQR(\''+encUrl+'\',\''+nm+'\',\''+encImg+'\')">' + nm + arrow + '</a>';
         }
         return '<a href="' + lk.url + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">' + nm + arrow + '</a>';
       }).join('') + '</div>';
@@ -900,16 +901,18 @@ function closeModal() {
 // WECHAT SHOP QR MODAL
 // ═══════════════════════════════════════════════════════════════
 var _qrSchemeUrl = '';
-function openShopQR(encodedUrl, label) {
+var _qrImgPath = '';
+function openShopQR(encodedUrl, label, encodedImg) {
   event && event.stopPropagation && event.stopPropagation();
   _qrSchemeUrl = decodeURIComponent(encodedUrl);
+  _qrImgPath = encodedImg ? decodeURIComponent(encodedImg) : '';
   var isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
   var isWeixin = /MicroMessenger/i.test(navigator.userAgent);
   var L = localStorage.getItem('lang') || 'cn';
   document.getElementById('qr-title').textContent = label;
-  document.getElementById('qr-sub').textContent = L === 'cn' ? '用微信扫一扫 · 或在微信内打开' : 'Scan with WeChat · or open in WeChat';
+  document.getElementById('qr-sub').textContent = L === 'cn' ? '微信扫一扫查看商品' : 'Scan with WeChat to view product';
   document.getElementById('qr-tip').textContent = L === 'cn'
-    ? '若已在微信中浏览，可直接点击下方链接唤起'
+    ? '若已在微信中浏览，可点击下方链接唤起'
     : 'If viewing in WeChat, tap the link below to open';
   // scheme link
   var schemeA = document.getElementById('qr-scheme-link');
@@ -938,9 +941,14 @@ function showQrModal() {
   var box = document.getElementById('qr-overlay');
   box.classList.add('show');
   document.body.style.overflow = 'hidden';
-  // 生成二维码
   var target = document.getElementById('qr-canvas');
   target.innerHTML = '';
+  // 优先使用数据里指定的二维码图片（来自微信小程序等）
+  if (_qrImgPath) {
+    target.innerHTML = '<img src="' + _qrImgPath + '" alt="QR Code" style="width:240px;height:240px;display:block;object-fit:contain">';
+    return;
+  }
+  // 兜底：用 qrcode 库生成（不再作为主路径，但保留兼容性）
   try {
     var qr = qrcode(0, 'M');
     qr.addData(_qrSchemeUrl);
@@ -950,7 +958,7 @@ function showQrModal() {
     var im = target.querySelector('img');
     if (im) { im.style.width = '200px'; im.style.height = '200px'; im.style.display = 'block'; }
   } catch (e) {
-    target.innerHTML = '<div style="padding:20px;font-size:12px;color:#999">二维码生成失败</div>';
+    target.innerHTML = '<div style="padding:20px;font-size:12px;color:#999">二维码加载失败</div>';
   }
 }
 function closeShopQR(ev) {
