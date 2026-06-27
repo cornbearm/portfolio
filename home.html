@@ -369,8 +369,8 @@ var FEATURED = [
   {
     id: 'cat-game',
     img: 'images/cat-game/poster.jpg',
-    cn: { title: '《猫猫直聘》', cat: '原创独立游戏', year: '2025' },
-    en: { title: '"Cat Recruitment"', cat: 'Original Indie Game', year: '2025' },
+    cn: { title: '《猫猫直聘》', cat: '', year: '' },
+    en: { title: '"Cat Recruitment"', cat: '', year: '' },
     award: { cn: '🥉 2025腾讯游戏创作大赛高校赛道三等奖', en: '🥉 3rd Prize · Tencent Game Dev Contest 2025' },
     subtitle: { cn: 'Roguelike DBG + 背包管理玩法的休闲策略游戏', en: 'A casual strategy game blending Roguelike DBG with inventory management' },
     tagline: { cn: '选卡牌，摆工位——谁才是真正的 HR 大师？', en: 'Pick cards, arrange desks — who is the ultimate HR master?' },
@@ -520,9 +520,10 @@ function renderFeatured() {
         return '<a href="' + lk.url + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">' + nm + ' ↗</a>';
       }).join('') + '</div>';
     }
+    var metaHtml = (d.cat || d.year) ? '<div class="feat-meta"><span>'+d.cat+'</span><span>'+d.year+'</span></div>' : '';
     return '<div class="feat-card fade-up" style="animation-delay:'+(i*.08)+'s" onclick="openDetail(\''+f.id+'\')">' +
       (f.img ? '<div class="feat-img"><img src="'+f.img+'" alt="'+d.title+'" loading="eager" decoding="async"></div>' : '<div class="feat-img" style="background:linear-gradient(135deg,'+gradColors(i)+')"></div>') +
-      '<div class="feat-info">' + awardHtml + '<div class="feat-title">'+d.title+'</div><div class="feat-meta"><span>'+d.cat+'</span><span>'+d.year+'</span></div>' + subtitleHtml + taglineHtml + linksHtml + '</div></div>';
+      '<div class="feat-info">' + awardHtml + '<div class="feat-title">'+d.title+'</div>' + metaHtml + subtitleHtml + taglineHtml + linksHtml + '</div></div>';
   }).join('');
 }
 
