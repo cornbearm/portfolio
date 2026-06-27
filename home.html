@@ -482,8 +482,9 @@ var WORKS = [
     cn: { name: '动画与特效', sub: 'Animation & VFX' },
     en: { name: 'Animation & VFX', sub: 'Stop Motion · Frame-by-Frame · Short Films' },
     items: [
-      { id: 'an1', img: 'images/jihuo/cover.jpg', cn: { title: '定格动画习作 ·《唤醒》《年少有违》', tags: ['定格动画','羊毛毡','剪纸','早期习作'] }, en: { title: 'Stop Motion Studies · "Awakening" & "Youth in Defiance"', tags: ['Stop Motion','Felt','Paper-cut','Studies'] } },
+      { id: 'an1', img: 'images/jihuo-xing/cover.jpg', cn: { title: '唤醒', tags: ['定格动画','羊毛毡','黏土'] }, en: { title: 'Awakening', tags: ['Stop Motion','Felt','Clay'] } },
       { id: 'an2', img: 'images/mei/group-cover.jpg', cn: { title: '霉了', tags: ['逐帧','回南天','广美'] }, en: { title: 'Mei le', tags: ['Frame-by-Frame','Hui Nan Tian','GAFA'] } },
+      { id: 'an3', img: 'images/nianyou-xing/cover.jpg', cn: { title: '年少有违', tags: ['定格动画','剪纸','水墨'] }, en: { title: 'Youth in Defiance', tags: ['Stop Motion','Paper-cut','Ink-wash'] } },
       { id: 'an4', img: 'images/vfx/cover.jpg', cn: { title: '特效作品 · 火焰/闪电/烟雾/魔法阵', tags: ['特效','合成','AE','实拍合成'] }, en: { title: 'VFX Works · Fire / Lightning / Smoke / Magic Circles', tags: ['VFX','Compositing','After Effects','Live-action'] } }
     ]
   },
@@ -1103,28 +1104,55 @@ var DETAIL = {
     ]
   },
   'an1': {
-    subtitle: { cn: '定格动画早期习作集——羊毛毡与剪纸两种材料的偶动画探索', en: 'Stop motion early studies — puppet animation exploration in felt and paper-cut materials' },
+    subtitle: { cn: '羊毛毡 + 黏土 偶动画——一只被气球带飞的小羊, 在彩色纸片世界里寻找归家之路', en: 'Felt + clay puppet animation — a small alpaca lifted skyward by balloons, finding its way home through a paper-cut world' },
     cn: {
-      title: '定格动画习作 ·《唤醒》《年少有违》',
+      title: '唤醒',
       role: '定格动画导演 / 角色与场景设计 / 拍摄与后期',
       timeline: '广美本科阶段',
-      tools: '羊毛毡 / 黏土 / 剪纸 / 实物偶, Dragonframe, Photoshop, Premiere',
-      overview: '广美动画专业期间的定格动画早期习作集，包含两部材料与风格截然不同的偶动画短片：\n\n《唤醒》(65 秒 / 1080×608 / 30fps)：用羊毛毡 + 黏土制作的羊驼角色，气球带它从屋顶飞向远方的家——彩色布料与纸片构成层叠山丘、海浪与椰子树，是一段关于"出发"与"归家"的轻盈小品。\n\n《年少有违》(3 分 11 秒 / 1080×608 / 30fps)：用剪纸 + 实物摆拍呈现一个戴眼镜穿衬衫的少年，与一只小狗之间的小故事——水墨写意风格的背景、纸片剪影的角色与定格摆拍相配合，探索纸片材料在偶动画中表达细腻情感的可能性。\n\n两部习作以不同材料语言反复练习定格动画的"逐帧微调 + 节奏控制 + 镜头调度"核心能力，为后续《霉》《没了！霉了！》的复杂叙事场景打下方法论基础。',
-      responsibility: '1. 全程独立完成两部短片的角色 / 场景 / 偶的制作与拍摄；\n2. 在《唤醒》中尝试羊毛毡 + 黏土的角色造型与彩色布片场景搭建；\n3. 在《年少有违》中尝试纸片剪影 + 水墨背景的写意表达；\n4. 通过 Dragonframe 逐帧拍摄 + Premiere 剪辑完成最终成片。',
-      outcome: '完成两部定格动画早期习作《唤醒》(65s) 与《年少有违》(3:11)，分别探索了羊毛毡材料和剪纸材料在偶动画中的不同表达路径；为后续完整原创定格动画《霉》积累了逐帧拍摄、节奏控制与材料语言的方法论经验。'
+      tools: '羊毛毡 / 黏土 / 彩色纸片, Dragonframe, Photoshop, Premiere',
+      overview: '《唤醒》(65 秒 / 1080×608 / 30fps) 是一部用羊毛毡 + 黏土制作的羊驼偶 + 彩色纸片场景的定格动画短片：小羊驼在屋顶被一束气球带飞, 穿越层叠山丘、海浪与椰子树, 飞向远方"家"的方向。这是一段关于"出发"与"归家"的轻盈小品, 也是我本科阶段在"逐帧微调 + 节奏控制 + 镜头调度"三个定格动画核心能力上的第一次完整练习。\n\n角色用羊毛毡戳出蓬松触感、黏土塑出立体面部表情, 场景则用彩色布片 + 纸片层层搭建, 配合自然光与室内台灯混合打光, 在定格摆拍里完成"飞行"这种连续运动的视觉欺骗。',
+      responsibility: '1. 独立完成羊驼偶的角色造型设计 (羊毛毡 + 黏土) 与 12 格关键分镜;\n2. 搭建彩色布片 + 纸片场景, 通过纸片叠加模拟山丘、海浪、椰子树的层次;\n3. 通过 Dragonframe 完成逐帧拍摄, 在 Premiere 中完成剪辑与配乐对齐。',
+      outcome: '完成一部 65 秒的羊毛毡 + 黏土定格动画短片, 验证了"羊毛毡 / 黏土角色 + 彩色纸片场景"这套低成本偶动画在表达"轻盈飞行 + 童话色彩"主题上的可行性, 也为后续更复杂的定格动画短片《霉》积累了逐帧拍摄、节奏控制与材料语言的方法论经验。'
     },
     en: {
-      title: 'Stop Motion Studies · "Awakening" & "Youth in Defiance"',
+      title: 'Awakening',
       role: 'Stop Motion Director / Character & Set Designer / Shoot & Post',
       timeline: 'GAFA Undergraduate Period',
-      tools: 'Felt / Clay / Paper-cut / Puppet, Dragonframe, Photoshop, Premiere',
-      overview: 'A set of two stop motion early studies made during the Animation programme at GAFA, each exploring a different material and style of puppet animation:\n\n"Awakening" (65s / 1080×608 / 30fps) — An alpaca puppet built from felt and clay is carried skyward by balloons, flying from a rooftop toward a distant home. Layered felt hills, painted-paper waves and palm trees compose the world around it; the short is a light piece about "departing" and "coming home".\n\n"Youth in Defiance" (3 min 11 s / 1080×608 / 30fps) — A paper-cut stop motion about a bespectacled boy in a shirt and a small dog, set against ink-wash-style backdrops. Paper silhouettes frame the characters while frame-by-frame puppet posing carries the emotional beats, exploring the potential of paper-cut material for nuanced emotional storytelling.\n\nTogether, the two studies rehearse the core skills of stop motion — frame-level micro-adjustment, rhythm control, and camera staging — in two different material languages, providing the methodology foundation for the later narrative shorts "Mei" and "Gone! Molded!".',
-      responsibility: '1. Independently handled character / scene / puppet fabrication and shoot for both shorts;\n2. In "Awakening", explored felt-and-clay character design and colourful cloth-set construction;\n3. In "Youth in Defiance", explored paper-cut silhouettes paired with ink-wash backgrounds;\n4. Shot frame-by-frame in Dragonframe and edited in Premiere to deliver the final cuts.',
-      outcome: 'Delivered two stop motion early studies — "Awakening" (65s) and "Youth in Defiance" (3:11) — each exploring a different material language (felt vs. paper-cut) for puppet animation. The two studies built up the methodology of frame-level adjustment, rhythm control and material expression that fed directly into the later original stop motion "Mei" and the group frame-by-frame short "Gone! Molded!".'
+      tools: 'Felt / Clay / Coloured Paper, Dragonframe, Photoshop, Premiere',
+      overview: '"Awakening" (65s / 1080×608 / 30fps) is a stop motion short using a felt-and-clay alpaca puppet and a layered coloured-paper world. A small alpaca on a rooftop is lifted skyward by a bunch of balloons and travels through layered hills, painted-paper waves and palm trees, heading toward a distant home. The film is a light piece about "departing" and "coming home" — and the first complete exercise in my undergraduate study of the three core stop motion skills: frame-level micro-adjustment, rhythm control and camera staging.\n\nThe character uses felt for soft, fluffy texture and clay for sculpted facial expressions; the world is built up from layers of coloured cloth and paper, lit by a mix of natural light and an indoor studio lamp, so that the frame-by-frame puppet posing reads as continuous flight.',
+      responsibility: '1. Independently designed the alpaca puppet (felt + clay) and 12 key storyboard frames;\n2. Built the coloured-cloth-and-paper set, using layered paper to imitate the depth of hills, waves and palm trees;\n3. Shot frame-by-frame in Dragonframe and edited in Premiere with music sync.',
+      outcome: 'Delivered a 65-second felt-and-clay stop motion short, validating the "felt / clay puppet + coloured paper set" low-budget formula for themes like "weightless flight + fairy-tale colour". The exercise also built the frame-level, rhythm and material-language methodology that fed directly into the later original stop motion short "Mei".'
     },
     gallery: [
-      { type:'video', src:'videos/jihuo-xing.mp4', layout:'full', cn:'《唤醒》——羊毛毡 + 黏土 偶动画, 65 秒', en:'"Awakening" — felt-and-clay puppet animation, 65 seconds' },
-      { type:'video', src:'videos/nianyou-xing.mp4', layout:'full', cn:'《年少有违》——剪纸 + 水墨 偶动画, 3 分 11 秒', en:'"Youth in Defiance" — paper-cut + ink-wash puppet animation, 3 min 11 s' }
+      { type:'image', src:'images/jihuo-xing/storyboard.jpg', layout:'full', cn:'《唤醒》12 格关键分镜 —— 羊驼从屋顶起飞, 穿越彩色布片世界, 飞向远方的家', en:'"Awakening" — 12 key storyboard frames: the alpaca takes off from the rooftop, crosses the coloured-paper world, and flies toward home' },
+      { type:'image', src:'images/jihuo-xing/scene-alt.jpg', layout:'full', cn:'角色与场景特写 —— 羊毛毡羊驼 + 彩色布片 + 纸片山丘', en:'Character & set close-up — felt alpaca, coloured cloth and paper-cut hills' },
+      { type:'video', src:'videos/jihuo-xing.mp4', layout:'full', cn:'《唤醒》—— 羊毛毡 + 黏土 偶动画, 65 秒', en:'"Awakening" — felt-and-clay puppet animation, 65 seconds' }
+    ]
+  },
+  'an3': {
+    subtitle: { cn: '剪纸 + 水墨 偶动画——戴眼镜穿衬衫的少年, 与一只小狗, 在纸片剪影里走完一段细碎的成长', en: 'Paper-cut + ink-wash puppet animation — a bespectacled boy in a shirt, a small dog, and a quiet coming-of-age told in paper-cut silhouettes' },
+    cn: {
+      title: '年少有违',
+      role: '定格动画导演 / 角色与场景设计 / 拍摄与后期',
+      timeline: '广美本科阶段',
+      tools: '剪纸 / 卡纸 / 水墨背景纸, Dragonframe, Photoshop, Premiere',
+      overview: '《年少有违》(3 分 11 秒 / 1080×608 / 30fps) 是一部用剪纸 + 卡纸 + 水墨背景纸制作的定格动画短片: 一个戴眼镜穿衬衫的少年, 与一只小狗之间的细碎日常——相遇、陪伴、冲突、和解——通过纸片剪影的硬边轮廓与水墨写意背景的虚实对比, 探索纸片材料在偶动画中表达细腻情感的可能性。\n\n整部短片是更偏实验性质的材料探索: 角色全部用卡纸剪出硬边轮廓, 关节用铜铆钉连接以便摆拍; 背景则全用现成的水墨写意背景纸叠加, 让"硬"的角色与"软"的背景形成强烈的视觉张力, 在定格摆拍里完成一段没有对白、靠动作和节奏推进的成长小品。',
+      responsibility: '1. 独立完成纸片角色设计与 24 格分镜脚本;\n2. 用卡纸 + 铜铆钉制作"会动"的纸片偶, 让所有动作通过关节摆拍完成;\n3. 用现成水墨写意背景纸 + 自然光完成场景, 在 Dragonframe 中逐帧拍摄;\n4. 在 Premiere 中完成无声剪辑 + 配乐, 强化"对白之外的情感推进"。',
+      outcome: '完成一部 3 分 11 秒的剪纸 + 水墨定格动画短片, 验证了"硬边纸片角色 + 软边水墨背景"这套对照在偶动画中表达"内敛 / 写意 / 无对白"情感的可能性, 也为我后续在《霉》中尝试"色彩对比 + 视角切换"等更具实验性的表达手法积累了材料语言经验。'
+    },
+    en: {
+      title: 'Youth in Defiance',
+      role: 'Stop Motion Director / Character & Set Designer / Shoot & Post',
+      timeline: 'GAFA Undergraduate Period',
+      tools: 'Paper-cut / Cardstock / Ink-wash Backdrop Paper, Dragonframe, Photoshop, Premiere',
+      overview: '"Youth in Defiance" (3 min 11 s / 1080×608 / 30fps) is a stop motion short using paper-cut, cardstock and ink-wash backdrop paper. A bespectacled boy in a shirt and a small dog pass through a series of small, quiet moments — meeting, companionship, conflict, reconciliation — rendered in hard-edged paper-cut silhouettes against soft, atmospheric ink-wash backdrops. The film explores the potential of paper-cut material for nuanced, low-dialogue emotional storytelling in puppet animation.\n\nThe piece is deliberately experimental in its material language. All characters are cut from cardstock with hard edges and joined with copper rivets so they can be posed frame by frame. The backdrops use ready-made ink-wash paper, so that the "hard" characters and "soft" backgrounds form a strong visual tension, and the whole short carries its emotional beats through action and rhythm rather than dialogue.',
+      responsibility: '1. Independently designed the paper-cut characters and a 24-frame storyboard;\n2. Built "posable" paper puppets from cardstock and copper rivets, so that all movement was achieved through frame-by-frame joint adjustment;\n3. Composed the set from ready-made ink-wash backdrop paper and natural light, then shot frame-by-frame in Dragonframe;\n4. Edited dialogue-free in Premiere and aligned with a music track, pushing the emotional beats through action and pacing rather than speech.',
+      outcome: 'Delivered a 3:11 paper-cut + ink-wash stop motion short that validated the "hard paper-cut character + soft ink-wash background" contrast for "introverted, painterly, dialogue-free" emotional storytelling. The material-language exploration here also fed directly into the later, more experimental short "Mei" — particularly its use of colour contrast and perspective shifts to carry a quiet emotional arc.'
+    },
+    gallery: [
+      { type:'image', src:'images/nianyou-xing/storyboard.jpg', layout:'full', cn:'《年少有违》24 格关键分镜 —— 少年与小狗的日常, 剪纸 + 水墨 的硬与软', en:'"Youth in Defiance" — 24 key storyboard frames: the everyday between a boy and his dog, the hard-and-soft of paper-cut meets ink-wash' },
+      { type:'image', src:'images/nianyou-xing/scene-alt.jpg', layout:'full', cn:'角色与场景特写 —— 硬边纸片少年 + 软边水墨背景', en:'Character & set close-up — hard-edged paper boy, soft-edged ink-wash backdrop' },
+      { type:'video', src:'videos/nianyou-xing.mp4', layout:'full', cn:'《年少有违》—— 剪纸 + 水墨 偶动画, 3 分 11 秒', en:'"Youth in Defiance" — paper-cut + ink-wash puppet animation, 3 min 11 s' }
     ]
   },
   'an2': {
