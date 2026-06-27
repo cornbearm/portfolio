@@ -171,6 +171,8 @@ a{color:inherit;text-decoration:none}
 .eg-full img{width:100%;height:auto;display:block;border-radius:var(--radius)}
 .eg-video-wrap{cursor:default;margin:0}
 .eg-video-wrap video{width:100%;max-height:none;border-radius:var(--radius)}
+.eg-vimeo-link{display:inline-block;margin-top:10px;font-size:13px;color:var(--c-light);text-decoration:none;letter-spacing:.02em;transition:color .2s}
+.eg-vimeo-link:hover{color:var(--c-text)}
 
 /* Lightbox */
 .lb{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center}
@@ -739,7 +741,7 @@ var DETAIL = {
       { type:'image', src:'images/lightindark/3.jpg', layout:'full', cn:'', en:'' },
       { type:'image', src:'images/lightindark/4.jpg', layout:'full', cn:'', en:'' },
       { type:'image', src:'images/lightindark/5.jpg', layout:'full', cn:'', en:'' },
-      { type:'vimeo', id:'888177658', layout:'full', cn:'', en:'' }
+      { type:'video', src:'videos/lightindark.mp4', layout:'full', cn:'', en:'', vimeoUrl:'https://vimeo.com/888177658' }
     ]
   },
   'cat-game': {
@@ -901,7 +903,7 @@ function openDetail(id) {
           var idx = galImgs.indexOf(item.src);
           galHtml += '<figure class="eg-item eg-' + item.layout + '" onclick="openLb(' + idx + ')"><img src="' + item.src + '" alt="' + p(item) + '" loading="lazy">' + (p(item) ? '<figcaption>' + p(item) + '</figcaption>' : '') + '</figure>';
         } else if (item.type === 'video') {
-          galHtml += '<figure class="eg-item eg-' + item.layout + ' eg-video-wrap"><video src="' + item.src + '" controls playsinline preload="metadata" style="width:100%;display:block;border-radius:var(--radius)"></video></figure>';
+          galHtml += '<figure class="eg-item eg-' + item.layout + ' eg-video-wrap"><video src="' + item.src + '" controls playsinline preload="metadata" style="width:100%;display:block;border-radius:var(--radius)"></video>' + (item.vimeoUrl ? '<a class="eg-vimeo-link" href="' + item.vimeoUrl + '" target="_blank" rel="noopener noreferrer">在 Vimeo 上观看完整版 →</a>' : '') + '</figure>';
         } else if (item.type === 'vimeo') {
           galHtml += '<figure class="eg-item eg-' + item.layout + ' eg-video-wrap"><div class="eg-vimeo-wrap" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--radius)"><iframe src="https://player.vimeo.com/video/' + item.id + '" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div>' + (p(item) ? '<figcaption>' + p(item) + '</figcaption>' : '') + '</figure>';
         }
