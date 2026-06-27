@@ -134,6 +134,25 @@ a{color:inherit;text-decoration:none}
 .modal-section h3{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--c-light);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--c-border)}
 .modal-section p{font-size:15px;line-height:1.85;color:var(--c-text)}
 
+/* WeChat Shop QR Modal */
+.qr-overlay{position:fixed;inset:0;z-index:300;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;opacity:0;transition:opacity .25s}
+.qr-overlay.show{display:flex;opacity:1}
+.qr-box{position:relative;width:min(360px,90vw);background:#fff;border-radius:18px;padding:36px 28px 28px;box-shadow:0 20px 60px rgba(0,0,0,.08);text-align:center;animation:qrPop .35s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes qrPop{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+.qr-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,.05);border:none;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;color:#999}
+.qr-close:hover{background:rgba(0,0,0,.1);transform:rotate(90deg);color:#333}
+.qr-title{font-size:18px;font-weight:600;letter-spacing:-.01em;margin-bottom:6px;color:var(--c-text)}
+.qr-sub{font-size:13px;color:var(--c-sub);margin-bottom:20px}
+.qr-canvas-wrap{display:flex;justify-content:center;padding:14px;background:#fafafa;border-radius:12px;margin-bottom:16px}
+#qr-canvas{display:flex;justify-content:center}
+#qr-canvas canvas,#qr-canvas img{border-radius:6px}
+.qr-tip{font-size:12px;color:var(--c-light);margin-bottom:10px;line-height:1.5}
+.qr-scheme-link{display:block;padding:10px 16px;background:#1a1a1a;color:#fff;border-radius:99px;font-size:13px;font-weight:500;text-decoration:none;margin-bottom:10px;transition:background .2s}
+.qr-scheme-link:hover{background:#333}
+.qr-copy{width:100%;padding:10px 16px;background:#fff;color:var(--c-text);border:1px solid var(--c-border);border-radius:99px;font-size:13px;cursor:pointer;transition:all .2s;font-family:inherit}
+.qr-copy:hover{background:var(--c-text);color:#fff;border-color:var(--c-text)}
+.qr-copy.copied{background:#07c160;border-color:#07c160;color:#fff}
+
 /* Editorial Gallery */
 .editorial-gallery{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin:48px 0;align-items:start}
 .eg-section{grid-column:1/-1;display:flex;align-items:center;gap:14px;margin:20px 0 0}
@@ -284,6 +303,22 @@ a{color:inherit;text-decoration:none}
   <div class="modal-content" id="modal-content"></div>
 </div>
 
+<!-- WeChat Shop QR Modal -->
+<div class="qr-overlay" id="qr-overlay" onclick="closeShopQR(event)">
+  <div class="qr-box" onclick="event.stopPropagation()">
+    <button class="qr-close" onclick="closeShopQR(event)">✕</button>
+    <div class="qr-title" id="qr-title">微信小店</div>
+    <div class="qr-sub" id="qr-sub">用微信扫一扫</div>
+    <div class="qr-canvas-wrap"><div id="qr-canvas"></div></div>
+    <div class="qr-tip" id="qr-tip">在移动设备上可点击下方链接唤起</div>
+  <a class="qr-scheme-link" id="qr-scheme-link" href="#" target="_blank" rel="noopener">打开微信小店</a>
+  <button class="qr-copy" id="qr-copy" onclick="copyShopURL()">复制链接</button>
+</div>
+</div>
+
+<!-- QR Code generator (lightweight) -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+
 <!-- Lightbox -->
 <div class="lb" id="lb" onclick="closeLb(event)">
   <button class="lb-close" onclick="closeLb(event)">✕</button>
@@ -372,7 +407,7 @@ var FEATURED = [
     award: { cn: '2026企鹅小卖部最受欢迎系列', en: 'Most Popular Series · Penguin Snack Shop 2026' },
     subtitle: { cn: '腾讯企鹅红围巾礼盒与幸运鹅毛绒挂件周边产品', en: 'Tencent Penguin Red Scarf Gift Box & Lucky Goose Plush Keychain merchandise products' },
     links: [
-      { name: '微信小店', icon: '🛍', cn: '微信小店', en: 'WeChat Shop', url: '微信小店://企鹅小卖部/1EYZwFgbphvWfGp' }
+      { name: '微信小店', icon: '🛍', cn: '微信小店', en: 'WeChat Shop', url: '微信小店://企鹅小卖部/tdgRd5b9WgAxqDI', scheme: true }
     ]
   },
   {
@@ -531,7 +566,13 @@ function renderFeatured() {
       linksHtml = '<div class="feat-links">' + f.links.map(function(lk) {
         var nm = L === 'cn' ? lk.cn : lk.en;
         var icon = lk.icon ? '<span class="feat-link-icon">' + lk.icon + '</span>' : '';
-        return '<a href="' + lk.url + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">' + icon + nm + '<span class="feat-link-arrow">↗</span></a>';
+        var arrow = '<span class="feat-link-arrow">↗</span>';
+        if (lk.scheme) {
+          // 微信小店等自定义协议链接：点击弹二维码（PC端可用，移动端也能用）
+          var encUrl = encodeURIComponent(lk.url);
+          return '<a href="javascript:void(0)" onclick="event.stopPropagation();openShopQR(\''+encUrl+'\',\''+nm+'\')">' + icon + nm + arrow + '</a>';
+        }
+        return '<a href="' + lk.url + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">' + icon + nm + arrow + '</a>';
       }).join('') + '</div>';
     }
     var metaHtml = (d.cat || d.year) ? '<div class="feat-meta"><span>'+d.cat+'</span><span>'+d.year+'</span></div>' : '';
@@ -857,6 +898,104 @@ function closeModal() {
   document.getElementById('modal-overlay').classList.remove('show');
   document.body.style.overflow = '';
 }
+
+// ═══════════════════════════════════════════════════════════════
+// WECHAT SHOP QR MODAL
+// ═══════════════════════════════════════════════════════════════
+var _qrSchemeUrl = '';
+function openShopQR(encodedUrl, label) {
+  event && event.stopPropagation && event.stopPropagation();
+  _qrSchemeUrl = decodeURIComponent(encodedUrl);
+  var isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+  var isWeixin = /MicroMessenger/i.test(navigator.userAgent);
+  var L = localStorage.getItem('lang') || 'cn';
+  document.getElementById('qr-title').textContent = label;
+  document.getElementById('qr-sub').textContent = L === 'cn' ? '用微信扫一扫 · 或在微信内打开' : 'Scan with WeChat · or open in WeChat';
+  document.getElementById('qr-tip').textContent = L === 'cn'
+    ? '若已在微信中浏览，可直接点击下方链接唤起'
+    : 'If viewing in WeChat, tap the link below to open';
+  // scheme link
+  var schemeA = document.getElementById('qr-scheme-link');
+  schemeA.href = _qrSchemeUrl;
+  schemeA.textContent = L === 'cn' ? '打开微信小店 ↗' : 'Open WeChat Shop ↗';
+  // 移动端且在微信内：直接尝试 scheme，关闭弹窗
+  if (isMobile && isWeixin) {
+    window.location.href = _qrSchemeUrl;
+    return;
+  }
+  // 移动端非微信：尝试 scheme，1.5s 后仍停留则弹二维码
+  if (isMobile) {
+    var t0 = Date.now();
+    window.location.href = _qrSchemeUrl;
+    setTimeout(function() {
+      if (Date.now() - t0 < 2000) {
+        showQrModal();
+      }
+    }, 1500);
+    return;
+  }
+  // PC端：直接弹二维码
+  showQrModal();
+}
+function showQrModal() {
+  var box = document.getElementById('qr-overlay');
+  box.classList.add('show');
+  document.body.style.overflow = 'hidden';
+  // 生成二维码
+  var target = document.getElementById('qr-canvas');
+  target.innerHTML = '';
+  try {
+    var qr = qrcode(0, 'M');
+    qr.addData(_qrSchemeUrl);
+    qr.make();
+    var imgTag = qr.createImgTag(5, 0);
+    target.innerHTML = imgTag;
+    var im = target.querySelector('img');
+    if (im) { im.style.width = '200px'; im.style.height = '200px'; im.style.display = 'block'; }
+  } catch (e) {
+    target.innerHTML = '<div style="padding:20px;font-size:12px;color:#999">二维码生成失败</div>';
+  }
+}
+function closeShopQR(ev) {
+  if (ev && ev.target && ev.target.closest('.qr-box') && !ev.target.classList.contains('qr-close')) return;
+  document.getElementById('qr-overlay').classList.remove('show');
+  document.body.style.overflow = '';
+  var btn = document.getElementById('qr-copy');
+  if (btn) { btn.classList.remove('copied'); btn.textContent = '复制链接'; }
+}
+function copyShopURL() {
+  var btn = document.getElementById('qr-copy');
+  var L = localStorage.getItem('lang') || 'cn';
+  var doneTxt = L === 'cn' ? '✓ 已复制' : '✓ Copied';
+  var copyTxt = L === 'cn' ? '复制链接' : 'Copy Link';
+  var fallback = function() {
+    var ta = document.createElement('textarea');
+    ta.value = _qrSchemeUrl;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(_qrSchemeUrl).catch(fallback);
+  } else {
+    fallback();
+  }
+  btn.classList.add('copied');
+  btn.textContent = doneTxt;
+  setTimeout(function() {
+    btn.classList.remove('copied');
+    btn.textContent = copyTxt;
+  }, 1800);
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var q = document.getElementById('qr-overlay');
+    if (q && q.classList.contains('show')) closeShopQR();
+  }
+});
 
 // ═══════════════════════════════════════════════════════════════
 // LIGHTBOX
