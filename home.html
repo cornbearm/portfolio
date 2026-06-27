@@ -42,33 +42,9 @@ a{color:inherit;text-decoration:none}
 .section-title{font-size:clamp(28px,5vw,44px);font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:24px}
 
 /* Hero Banner */
-.hero-banner{min-height:75vh;display:flex;flex-direction:column;justify-content:center;align-items:stretch;padding:120px 24px 60px;max-width:1200px;margin:0 auto}
-.hero-stage{position:relative;flex:1;min-height:48vh;border-radius:var(--radius);overflow:hidden;background:#f5f5f5;cursor:default}
-.hero-stage-img{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity .55s ease,transform .8s ease;transform:scale(1.02)}
-.hero-stage-img.is-active{opacity:1;transform:scale(1)}
-.hero-stage-img-default{background-image:url('images/作品集封面.png')}
-.hero-stage-img-elai{background-image:url('images/elaiyunzhuan/cover.jpg')}
-.hero-stage-img-cat{background-image:url('images/cat-game/poster.jpg')}
-.hero-stage-img-ji{background-image:url('images/jiyouqu/poster.jpg')}
-.hero-stage-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.45) 100%);pointer-events:none}
-.hero-stage-caption{position:absolute;left:0;right:0;bottom:0;padding:24px 28px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;color:#fff;z-index:2}
-.hero-stage-caption .cap-title{font-size:24px;font-weight:700;letter-spacing:-.01em;line-height:1.2}
-.hero-stage-caption .cap-meta{font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.85;margin-top:6px}
-.hero-labels{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:24px;border-top:1px solid var(--c-border);border-bottom:1px solid var(--c-border)}
-.hero-label{padding:20px 18px;text-align:left;cursor:pointer;transition:background .25s;color:var(--c-sub);font-size:15px;font-weight:500;letter-spacing:-.01em;position:relative;user-select:none}
-.hero-label:not(:last-child){border-right:1px solid var(--c-border)}
-.hero-label:hover{background:#fff;color:var(--c-text)}
-.hero-label .label-index{font-size:10px;letter-spacing:.12em;color:var(--c-light);font-weight:600;display:block;margin-bottom:6px}
-.hero-label .label-cn{font-size:18px;font-weight:600;display:block;line-height:1.2}
-.hero-label .label-en{font-size:11px;letter-spacing:.06em;color:var(--c-light);display:block;margin-top:4px}
-@media (max-width:700px){
-  .hero-banner{padding:90px 16px 40px;min-height:65vh}
-  .hero-stage{min-height:42vh}
-  .hero-labels{grid-template-columns:1fr}
-  .hero-label:not(:last-child){border-right:none;border-bottom:1px solid var(--c-border)}
-  .hero-stage-caption{padding:16px 18px}
-  .hero-stage-caption .cap-title{font-size:18px}
-}
+.hero-banner{min-height:45vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:120px 40px 80px;max-width:1100px;margin:0 auto;text-align:center}
+.hero-banner h1{font-size:clamp(28px,5vw,48px);font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:14px}
+.hero-banner .tagline{font-size:16px;color:var(--c-sub);margin-bottom:10px;font-weight:400}
 
 /* Featured */
 .featured-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
@@ -251,6 +227,7 @@ a{color:inherit;text-decoration:none}
 <nav class="nav" id="nav">
   <div class="nav-logo">Mao Yuhang</div>
   <div class="nav-links" id="nav-links">
+    <a href="home.html#top" class="active" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Home</a>
     <a href="#works" data-nav="works">Works</a>
     <a href="#about" data-nav="about">About</a>
     <a href="#contact" data-nav="contact">Contact</a>
@@ -264,36 +241,9 @@ a{color:inherit;text-decoration:none}
 
 <!-- Hero Banner -->
 <section class="hero-banner fade-up">
-  <div class="hero-stage" id="hero-stage">
-    <div class="hero-stage-img hero-stage-img-default is-active" data-stage="default"></div>
-    <div class="hero-stage-img hero-stage-img-elai" data-stage="elai"></div>
-    <div class="hero-stage-img hero-stage-img-cat" data-stage="cat"></div>
-    <div class="hero-stage-img hero-stage-img-ji" data-stage="ji"></div>
-    <div class="hero-stage-overlay"></div>
-    <div class="hero-stage-caption" id="hero-caption">
-      <div>
-        <div class="cap-title" id="hero-cap-title">Portfolio · 作品集</div>
-        <div class="cap-meta" id="hero-cap-meta">Hover to explore</div>
-      </div>
-    </div>
-  </div>
-  <div class="hero-labels" id="hero-labels">
-    <div class="hero-label" data-target="elai">
-      <span class="label-index">01 · Featured</span>
-      <span class="label-cn">鹅来运转</span>
-      <span class="label-en">E Lai Yun Zhuan · 2026</span>
-    </div>
-    <div class="hero-label" data-target="cat">
-      <span class="label-index">02 · Featured</span>
-      <span class="label-cn">猫猫直聘</span>
-      <span class="label-en">Cat Recruitment · 2025</span>
-    </div>
-    <div class="hero-label" data-target="ji">
-      <span class="label-index">03 · Featured</span>
-      <span class="label-cn">集友趣</span>
-      <span class="label-en">Ji You Qu · 2024</span>
-    </div>
-  </div>
+  <h1 data-i18n="hero.name">毛雨杭</h1>
+  <p class="tagline" data-i18n="hero.tagline">视觉设计 · IP衍生品 · AIGC创作</p>
+  <p style="font-size:15px;color:var(--c-light);line-height:1.7;max-width:480px" data-i18n="hero.intro">探索品牌、内容与技术交汇处的创意表达。</p>
 </section>
 
 <!-- Featured Projects -->
@@ -1139,7 +1089,6 @@ function refreshAll() {
   renderExp();
   renderSkills();
   renderContact();
-  if (typeof window.__heroShow === 'function') window.__heroShow('default');
   document.getElementById('footer-year').textContent = new Date().getFullYear();
 }
 
@@ -1156,52 +1105,6 @@ function downloadResume() {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// HERO: mouse-tracking image gallery
-// ═══════════════════════════════════════════════════════════════
-(function initHeroGallery(){
-  var stage = document.getElementById('hero-stage');
-  var labels = document.querySelectorAll('.hero-label');
-  var imgs = document.querySelectorAll('.hero-stage-img');
-  var capTitle = document.getElementById('hero-cap-title');
-  var capMeta = document.getElementById('hero-cap-meta');
-  if (!stage || !imgs.length) return;
-
-  var captions = {
-    default: { cn: 'Portfolio · 作品集', en: 'Hover to explore', metaCN: '悬停探索', metaEN: 'Hover to explore' },
-    elai:    { cn: '鹅来运转',         en: 'E Lai Yun Zhuan', metaCN: '腾讯企鹅红围巾礼盒与幸运鹅毛绒挂件', metaEN: 'Tencent Penguin Red Scarf & Plush Series' },
-    cat:     { cn: '猫猫直聘',         en: 'Cat Recruitment', metaCN: 'Roguelike DBG + 背包管理休闲策略游戏', metaEN: 'Casual strategy game with Roguelike DBG' },
-    ji:      { cn: '集友趣',           en: 'Ji You Qu',       metaCN: '集市交易与娱乐交友的原创动漫IP品牌', metaEN: 'Original anime IP brand · market & social' }
-  };
-
-  function showStage(key){
-    imgs.forEach(function(im){ im.classList.toggle('is-active', im.getAttribute('data-stage') === key); });
-    var c = captions[key] || captions.default;
-    if (capTitle) capTitle.textContent = (typeof L !== 'undefined' && L === 'en') ? c.en : c.cn;
-    if (capMeta)  capMeta.textContent  = (typeof L !== 'undefined' && L === 'en') ? c.metaEN : c.metaCN;
-  }
-
-  // Expose for refreshAll to re-render on language change
-  window.__heroShow = showStage;
-  showStage('default');
-
-  labels.forEach(function(lb){
-    var target = lb.getAttribute('data-target');
-    lb.addEventListener('mouseenter', function(){ showStage(target); });
-    lb.addEventListener('focus', function(){ showStage(target); });
-    // also bind to stage image click to navigate (optional)
-    lb.addEventListener('click', function(){
-      var map = { elai: 'elaiyunzhuan', cat: 'cat-game', ji: 'jiyouqu' };
-      if (map[target]) openDetail(map[target]);
-    });
-  });
-
-  var banner = stage.parentElement;
-  function resetStage(){ showStage('default'); }
-  if (banner) banner.addEventListener('mouseleave', resetStage);
-  stage.addEventListener('mouseleave', resetStage);
-})();
-
-// ═══════════════════════════════════════════════════════════════
 // NAV scroll spy & init
 // ═══════════════════════════════════════════════════════════════
 var sections = ['works', 'about', 'contact'];
@@ -1209,7 +1112,7 @@ window.addEventListener('scroll', function() {
   var nav = document.getElementById('nav');
   nav.classList.toggle('scrolled', window.scrollY > 50);
 
-  var current = '';
+  var current = 'home';
   sections.forEach(function(s) {
     var el = document.getElementById(s);
     if (el && window.scrollY >= el.offsetTop - 100) current = s;
