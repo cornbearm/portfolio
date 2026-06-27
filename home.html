@@ -431,7 +431,8 @@ var FEATURED = [
     award: { cn: '2024广州美术学院优秀毕业作品', en: 'Outstanding Graduation Work · Guangzhou Academy of Fine Arts 2024' },
     subtitle: { cn: '集市交易与娱乐交友功能合一的原创动漫IP品牌', en: 'An original anime IP brand that integrates market trading with social entertainment' },
     links: [
-      { name: '毕设', icon: '🎓', cn: '毕设', en: 'Graduation Project', url: 'https://www.gafa-vad.com/2023/pc/Work/5106' }
+      { name: '毕设', icon: '🎓', cn: '毕设', en: 'Graduation Project', url: 'https://www.gafa-vad.com/2023/pc/Work/5106' },
+      { name: '设计手册', icon: '📖', cn: '设计手册', en: 'Design Manual', url: 'manual.html' }
     ]
   }
 ];
@@ -564,7 +565,9 @@ function renderFeatured() {
           var encImg = lk.qrImg ? encodeURIComponent(lk.qrImg) : '';
           return '<a href="javascript:void(0)" onclick="event.stopPropagation();openShopQR(\''+encUrl+'\',\''+nm+'\',\''+encImg+'\')">' + nm + arrow + '</a>';
         }
-        return '<a href="' + lk.url + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">' + nm + arrow + '</a>';
+        var isExt = /^https?:\/\//.test(lk.url);
+        var target = isExt ? ' target="_blank" rel="noopener"' : '';
+        return '<a href="' + lk.url + '"' + target + ' onclick="event.stopPropagation()">' + nm + arrow + '</a>';
       }).join('') + '</div>';
     }
     var metaHtml = (d.cat || d.year) ? '<div class="feat-meta"><span>'+d.cat+'</span><span>'+d.year+'</span></div>' : '';

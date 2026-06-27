@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>集友趣 · 设计手册 | Ji You Qu Design Manual</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #1a1a1a;
+    color: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    min-height: 100vh;
+  }
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(26, 26, 26, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid #2a2a2a;
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .topbar h1 {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .topbar h1 small {
+    color: #888;
+    font-weight: 400;
+    margin-left: 10px;
+    font-size: 12px;
+  }
+  .topbar a {
+    color: #e8e8e8;
+    text-decoration: none;
+    font-size: 13px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .topbar a:hover { opacity: 1; }
+  .gallery {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 24px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .gallery .page {
+    background: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    position: relative;
+  }
+  .gallery .page img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .gallery .page .pgnum {
+    position: absolute;
+    bottom: 12px;
+    right: 16px;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    padding: 3px 9px;
+    border-radius: 100px;
+  }
+  @media (max-width: 700px) {
+    .topbar { padding: 12px 18px; }
+    .topbar h1 { font-size: 13px; }
+    .gallery { padding: 18px 12px 60px; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <h1>集友趣 · 设计手册 <small>Ji You Qu · Design Manual</small></h1>
+    <a href="home.html">← 返回作品集</a>
+  </div>
+  <div class="gallery" id="gallery"></div>
+<script>
+  // Page count is fixed; numbered 01..27 in order
+  const TOTAL = 27;
+  const g = document.getElementById('gallery');
+  for (let i = 1; i <= TOTAL; i++) {
+    const f = document.createElement('figure');
+    f.className = 'page';
+    const num = String(i).padStart(2, '0');
+    f.innerHTML = `<img src="images/jiyouqu-manual/${num}.jpg" alt="设计手册 第${i}页" loading="lazy"><span class="pgnum">${num} / ${TOTAL}</span>`;
+    g.appendChild(f);
+  }
+</script>
+</body>
+</html>
