@@ -738,7 +738,8 @@ var DETAIL = {
       { type:'image', src:'images/lightindark/2.jpg', layout:'half', cn:'灵感 · 调研问卷 · 总结', en:'Inspiration · Survey · Insights' },
       { type:'image', src:'images/lightindark/3.jpg', layout:'half', cn:'游戏规则 · 卡牌设计', en:'Game Rules · Card Design' },
       { type:'image', src:'images/lightindark/4.jpg', layout:'full', cn:'实物拍摄', en:'Physical Prototypes' },
-      { type:'image', src:'images/lightindark/5.jpg', layout:'full', cn:'真实游玩 · 规则解读', en:'Live Playtest · Rule Interpretation' }
+      { type:'image', src:'images/lightindark/5.jpg', layout:'full', cn:'真实游玩 · 规则解读', en:'Live Playtest · Rule Interpretation' },
+      { type:'vimeo', id:'888177658', layout:'full', cn:'完整游玩视频 · 5-8人实测', en:'Full Playtest Video · 5-8 Players' }
     ]
   },
   'cat-game': {
@@ -901,6 +902,8 @@ function openDetail(id) {
           galHtml += '<figure class="eg-item eg-' + item.layout + '" onclick="openLb(' + idx + ')"><img src="' + item.src + '" alt="' + p(item) + '" loading="lazy">' + (p(item) ? '<figcaption>' + p(item) + '</figcaption>' : '') + '</figure>';
         } else if (item.type === 'video') {
           galHtml += '<figure class="eg-item eg-' + item.layout + ' eg-video-wrap"><video src="' + item.src + '" controls playsinline preload="metadata" style="width:100%;display:block;border-radius:var(--radius)"></video></figure>';
+        } else if (item.type === 'vimeo') {
+          galHtml += '<figure class="eg-item eg-' + item.layout + ' eg-video-wrap"><div class="eg-vimeo-wrap" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--radius)"><iframe src="https://player.vimeo.com/video/' + item.id + '" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div>' + (p(item) ? '<figcaption>' + p(item) + '</figcaption>' : '') + '</figure>';
         }
       });
       galHtml += '</div>';
