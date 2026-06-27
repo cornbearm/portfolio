@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mao Yuhang · Portfolio</title>
+<meta name="description" content="Mao Yuhang - 视觉设计 · IP衍生品 · AIGC创作">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden}
+body{
+  font-family:'Inter','Noto Sans SC',-apple-system,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+  background:#fff url('images/bg-paper.jpg') fixed;background-size:cover;
+  -webkit-font-smoothing:antialiased;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+}
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;
+  background:rgba(255,255,255,.30);
+}
+.cover-wrap{
+  position:relative;z-index:1;
+  width:100vw;height:100vh;
+}
+.cover-wrap img{
+  width:100%;height:100%;
+  object-fit:contain;
+  display:block;
+  transform:scale(1);
+  transition:transform 1s cubic-bezier(.25,.1,.25,1),filter .6s ease;
+}
+.cover-wrap:hover img{
+  transform:scale(1.04);
+  filter:brightness(1.04);
+}
+.cover-wrap:hover img{filter:brightness(1.04)}
+.hint{
+  position:fixed;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;
+  font-size:13px;color:#999;letter-spacing:.06em;
+  opacity:0;transition:opacity 1s ease 1.5s;
+}
+.hint.show{opacity:1}
+</style>
+</head>
+<body onclick="location.href='home.html'">
+
+<div class="cover-wrap">
+  <img src="images/作品集封面.png" alt="Mao Yuhang · Creative Portfolio">
+</div>
+
+<div class="hint" id="hint">点击进入作品集 · Click to Enter</div>
+
+<script>
+setTimeout(function(){document.getElementById('hint').classList.add('show')},800);
+</script>
+
+</body>
+</html>
