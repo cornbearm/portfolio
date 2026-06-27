@@ -495,7 +495,8 @@ var WORKS = [
       { id: 'survive33', img: 'images/survive33/cover.jpg', cn: { title: 'AI游戏广告 · 生存33天', tags: ['AI','游戏','末日'] }, en: { title: 'AI Game Ad · Survive 33 Days', tags: ['AI','Game','Zombie'] } },
       { id: 'headphone', img: 'images/headphone/cover.jpg', cn: { title: 'AI电商产品广告 · 耳机', tags: ['AI','电商','耳机'] }, en: { title: 'AI E-commerce Ad · Headphone', tags: ['AI','E-commerce','Headphone'] } },
       { id: 'fafa', img: 'images/fafa/cover.jpg', cn: { title: 'IP产品提案 · Fafa小花', tags: ['IP','提案','名创'] }, en: { title: 'IP Pitch · Fafa Xiaohua', tags: ['IP','Proposal','Miniso'] } },
-      { id: 'tencent', img: 'images/tencent-gift/cover.jpg', cn: { title: '司礼提案 · 腾讯高端礼', tags: ['司礼','环保','腾讯'] }, en: { title: 'Tencent Premium Gift · Reborn Coffee', tags: ['Gift','Eco','Tencent'] } }
+      { id: 'tencent', img: 'images/tencent-gift/cover.jpg', cn: { title: '司礼提案 · 腾讯高端礼', tags: ['司礼','环保','腾讯'] }, en: { title: 'Tencent Premium Gift · Reborn Coffee', tags: ['Gift','Eco','Tencent'] } },
+      { id: 'manzujie', img: 'images/manzujie/cover.jpg', cn: { title: 'AI动画短片 · 曼珠劫', tags: ['AI','动画','国风'] }, en: { title: 'AI Animation · Manzujie', tags: ['AI','Animation','Chinese'] } }
     ]
   }
 ];
@@ -946,6 +947,30 @@ var DETAIL = {
       { type:'video', src:'videos/headphone.mp4', layout:'full', cn:'', en:'' }
     ]
   },
+  'manzujie': {
+    subtitle: { cn: 'AI 国风动画短片——《三打白骨精》第一章 · 白骨夫人前世', en: 'AI Chinese-style animated short — Chapter 1: The Past Life of Lady White Bone' },
+    cn: {
+      title: 'AI 动画短片 · 曼珠劫',
+      role: 'AI 动画导演 / 视觉设计师 / Prompt Engineer',
+      timeline: '2025',
+      tools: 'Kling, Runway, Midjourney, 即梦, Sora, DaVinci Resolve',
+      overview: '《曼珠劫》系列 AI 国风动画短片的第一章——《三打白骨精·白骨夫人前世》。作品以 2 分钟（1280×720）国风 3D 角色动画，重新解构《西游记》中白骨精的悲剧前世：3D 半写实角色 + 电影级光影 + 国风服饰纹样，配合古风配乐与字幕，让"白骨夫人"从符号化的妖怪还原为有血有肉、为情所困的女子。整片采用 AI 视频工具链（Kling/Runway/即梦/Sora）按镜头脚本逐段生成，再通过 DaVinci 完成剪辑、调色与声音设计，最终呈现一部可在社交平台独立传播的 AI 动画短片。',
+      responsibility: '1. 主导《曼珠劫》系列的剧本、角色设定与镜头脚本设计；\n2. 负责 AI 视频生成工作流——逐镜头撰写 Prompt、跑不同 AI 视频工具以比对人物一致性与画面风格；\n3. 完成后期剪辑、调色、音效与字幕合成；\n4. 探索"AI 视频 + 古典题材 + 角色一致性"的国风动画短片可落地范式。',
+      outcome: '完成 2 分钟（1280×720）AI 国风动画短片《曼珠劫 · 三打白骨精 1：白骨夫人前世》一部，发布于小红书「后厂村AI放映厅」账号并被多次推荐；验证了"AI 视频生成 + 国风题材"在小红书短视频场景下可被用户完整观看并引发情感共鸣，为系列化国风 AI 短片生产提供可复用模板。'
+    },
+    en: {
+      title: 'AI Animation · Manzujie',
+      role: 'AI Animation Director / Visual Designer / Prompt Engineer',
+      timeline: '2025',
+      tools: 'Kling, Runway, Midjourney, Jimeng, Sora, DaVinci Resolve',
+      overview: 'Chapter 1 of the "Manzujie" (曼珠劫) AI Chinese-style animated short series — "The Past Life of Lady White Bone" (三打白骨精 · 白骨夫人前世). The 2-minute (1280×720) film reimagines the tragic past life of the White Bone Demon from Journey to the West through 3D semi-realistic character animation, cinematic lighting, and traditional Chinese costume patterns. Combined with a guofeng (国风) score and subtitles, it restores the symbolised demon back into a flesh-and-blood woman bound by love. The entire piece uses an AI video toolchain (Kling / Runway / Jimeng / Sora) to generate each shot from a written script, then is edited, color-graded and sound-designed in DaVinci — resulting in a self-contained AI animated short ready for distribution on social platforms.',
+      responsibility: '1. Led the screenplay, character design and shot script of the "Manzujie" series;\n2. Built the AI video generation workflow — wrote per-shot prompts and ran multiple AI video tools to compare character consistency and visual style;\n3. Handled post-production editing, color grading, sound design and subtitling;\n4. Explored a practical paradigm of "AI video + classical Chinese subject + character consistency" for guofeng animated shorts.',
+      outcome: 'Delivered a 2-minute (1280×720) AI guofeng animated short — "Manzujie · Three Strikes on the White Bone Demon 1: The Past Life of Lady White Bone" — published on the Xiaohongshu account "后厂村AI放映厅" and recommended multiple times. Validated that "AI video generation + Chinese classical subject" can be watched through and emotionally resonate with Xiaohongshu short-video audiences, providing a reusable template for serialized guofeng AI animated shorts.'
+    },
+    gallery: [
+      { type:'video', src:'videos/manzujie.mp4', layout:'full', cn:'曼珠劫 · 三打白骨精 1：白骨夫人前世', en:'Manzujie · The Past Life of Lady White Bone', externalUrl: { url: 'https://www.xiaohongshu.com/discovery/item/68ea3645000000000301196e', label: '在小红书查看原帖' } }
+    ]
+  },
   'i1': {
     subtitle: { cn: '一座会呼吸的微型剧场——地衣 × 电子感应的共生循环', en: 'A breathing micro-theater where lichen and electronics form a symbiotic loop' },
     cn: {
@@ -1134,7 +1159,8 @@ function openDetail(id) {
           var idx = galImgs.indexOf(item.src);
           galHtml += '<figure class="eg-item eg-' + item.layout + '" onclick="openLb(' + idx + ')"><img src="' + item.src + '" alt="' + p(item) + '" loading="lazy">' + (p(item) ? '<figcaption>' + p(item) + '</figcaption>' : '') + '</figure>';
         } else if (item.type === 'video') {
-          galHtml += '<figure class="eg-item eg-' + item.layout + ' eg-video-wrap"><video src="' + item.src + '" controls playsinline preload="metadata" style="width:100%;display:block;border-radius:var(--radius)"></video>' + (item.vimeoUrl ? '<a class="eg-vimeo-link" href="' + item.vimeoUrl + '" target="_blank" rel="noopener noreferrer">在 Vimeo 上观看完整版 →</a>' : '') + '</figure>';
+          var extLink = item.externalUrl || (item.vimeoUrl ? { url: item.vimeoUrl, label: '在 Vimeo 上观看完整版' } : null);
+          galHtml += '<figure class="eg-item eg-' + item.layout + ' eg-video-wrap"><video src="' + item.src + '" controls playsinline preload="metadata" style="width:100%;display:block;border-radius:var(--radius)"></video>' + (extLink ? '<a class="eg-vimeo-link" href="' + extLink.url + '" target="_blank" rel="noopener noreferrer">' + (extLink.label || '查看原帖') + ' →</a>' : '') + '</figure>';
         } else if (item.type === 'vimeo') {
           galHtml += '<figure class="eg-item eg-' + item.layout + ' eg-video-wrap"><div class="eg-vimeo-wrap" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--radius)"><iframe src="https://player.vimeo.com/video/' + item.id + '" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div>' + (p(item) ? '<figcaption>' + p(item) + '</figcaption>' : '') + '</figure>';
         }
