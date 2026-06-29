@@ -832,6 +832,7 @@ var DETAIL = {
   },
   'd3': {
     introTitle: { cn: '产品简介', en: 'Product Intro' },
+    relatedProject: { id: 'elaiyunzhuan', label: { cn: '查看「鹅来运转」：腾讯企鹅 IP 主题新春衍生品 →', en: 'View "E Lai Yun Zhuan": Tencent Penguin IP Spring Merchandise →' } },
     cn: {
       title: '衍生品设计',
       role: 'IP衍生品设计师',
@@ -1461,6 +1462,7 @@ function openDetail(id) {
       (dd.responsibility ? '<div class="modal-section"><h3>' + t('detail.responsibility') + '</h3><p>' + dd.responsibility.replace(/\n/g, '<br>') + '</p></div>' : '') +
       (dd.process ? '<div class="modal-section"><h3>' + t('detail.process') + '</h3><p>' + dd.process + '</p></div>' : '') +
       (dd.outcome ? '<div class="modal-section"><h3>' + t('detail.outcome') + '</h3><p>' + dd.outcome + '</p></div>' : '') +
+      (d.relatedProject ? '<div class="modal-section modal-related" style="margin-top:8px;margin-bottom:24px"><a href="#" onclick="event.preventDefault();closeModal();setTimeout(function(){openDetail(\''+d.relatedProject.id+'\')},200);return false;" class="modal-related-link" style="display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:var(--c-card);color:var(--c-text);border-radius:100px;font-size:14px;font-weight:500;text-decoration:none;border:1px solid var(--c-border);transition:background .2s,transform .2s"><span style="font-size:16px">🔗</span><span>' + (L === 'cn' ? d.relatedProject.label.cn : d.relatedProject.label.en) + '</span></a></div>' : '') +
       (d.link ? '<div class="modal-section"><a href="' + d.link.url + '" target="_blank" rel="noopener" class="modal-link-btn">' + (d.link[L] || d.link.cn) + '</a></div>' : '') +
       (d.links && d.links.length ? '<div class="modal-links" style="display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 48px"><strong style="font-size:13px;color:var(--c-light);font-weight:500;width:100%;margin-bottom:4px">🔗 External Links</strong>' + d.links.map(function(lk) { return '<a href="' + lk.url + '" target="_blank" rel="noopener" class="modal-link-btn" style="margin:0">' + (L === 'cn' ? lk.cn : lk.en) + ' ↗</a>'; }).join('') + '</div>' : '') +
       galHtml +
