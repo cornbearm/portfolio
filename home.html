@@ -626,7 +626,7 @@ function renderFeatured() {
     var metaHtml = (d.cat || d.year) ? '<div class="feat-meta"><span>'+d.cat+'</span><span>'+d.year+'</span></div>' : '';
     return '<div class="feat-card fade-up" style="animation-delay:'+(i*.08)+'s" onclick="openDetail(\''+f.id+'\')">' +
       (f.img ? '<div class="feat-img"><img src="'+f.img+'" alt="'+d.title+'" loading="eager" decoding="async"></div>' : '<div class="feat-img" style="background:linear-gradient(135deg,'+gradColors(i)+')"></div>') +
-      '<div class="feat-info">' + awardHtml + '<div class="feat-title">'+d.title+'</div>' + metaHtml + subtitleHtml + taglineHtml + linksHtml + '</div></div>';
+      '<div class="feat-info">' + awardHtml + (d.title ? '<div class="feat-title">'+d.title+'</div>' : '') + metaHtml + subtitleHtml + taglineHtml + linksHtml + '</div></div>';
   }).join('');
 }
 
@@ -1208,9 +1208,9 @@ var DETAIL = {
     ]
   },
   'an4': {
-    subtitle: { cn: '特效作品 · 火焰 / 闪电 / 烟雾 / 魔法阵 / 能量爆炸——实拍 + AE 合成共 12 个镜头的课程作业合集', en: 'VFX Works · Fire / Lightning / Smoke / Magic Circles / Energy Blasts — a 12-shot VFX reel combining live-action footage with After Effects compositing' },
+    subtitle: { cn: '', en: '' },
     cn: {
-      title: '特效作品 · 火焰/闪电/烟雾/魔法阵',
+      title: '',
       role: '实拍 / 后期合成 / 特效设计 / 调色',
       timeline: '2020',
       tools: 'After Effects, Premiere Pro',
@@ -1219,7 +1219,7 @@ var DETAIL = {
       outcome: ''
     },
     en: {
-      title: 'VFX Works · Fire / Lightning / Smoke / Magic Circles',
+      title: '',
       role: 'Live-action Shoot / Compositing / VFX Design / Color Grading',
       timeline: '2020',
       tools: 'After Effects, Premiere Pro',
@@ -1446,7 +1446,7 @@ function openDetail(id) {
   ct.innerHTML =
     '<div class="modal-hero">' +
       (d.award ? '<div class="feat-award" style="margin-bottom:20px">' + (L === 'cn' ? d.award.cn : d.award.en) + '</div>' : '') +
-      '<h1>' + dd.title + '</h1>' +
+      (dd.title ? '<h1>' + dd.title + '</h1>' : '') +
       (d.subtitle ? '<div class="modal-subtitle" style="font-size:18px;color:var(--c-sub);margin-top:-20px;margin-bottom:32px;font-weight:400">' + (L === 'cn' ? d.subtitle.cn : d.subtitle.en) + '</div>' : '') +
       '<div class="modal-meta">' +
         '<span><strong>' + t('detail.role') + '</strong>' + dd.role + '</span>' +
