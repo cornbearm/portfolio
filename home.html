@@ -83,14 +83,15 @@ a{color:inherit;text-decoration:none}
 .work-tag{font-size:11px;color:var(--c-tag-text);background:var(--c-tag-bg);padding:3px 10px;border-radius:100px}
 
 /* About */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px 60px;margin-top:40px}
-.about-block h3{font-size:14px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:16px}
-.photo-block{display:grid;grid-template-columns:280px 1fr;gap:36px;align-items:center;margin-top:36px;padding:24px;background:#fafafa;border:1px solid var(--c-border);border-radius:14px}
-.photo-img{width:100%;height:300px;object-fit:cover;border-radius:10px;display:block}
-.photo-info h3{font-size:14px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:12px}
-.photo-info p{font-size:15px;color:var(--c-sub);line-height:1.7;margin-bottom:8px}
-.photo-info .photo-meta{font-size:12px;color:var(--c-light);letter-spacing:.02em}
-.edu-item,.exp-item{margin-bottom:20px}
+.about-layout{display:grid;grid-template-columns:260px 1fr;gap:32px 44px;margin-top:32px;align-items:start}
+.about-photo{padding:18px;background:#fafafa;border:1px solid var(--c-border);border-radius:14px}
+.about-photo .photo-img{width:100%;height:300px;object-fit:cover;border-radius:10px;display:block}
+.about-photo .photo-info h3{font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin:14px 0 6px}
+.about-photo .photo-info p{font-size:13px;color:var(--c-sub);line-height:1.6;margin-bottom:6px}
+.about-photo .photo-meta{font-size:11px;color:var(--c-light);letter-spacing:.02em}
+.about-info{display:flex;flex-direction:column;gap:24px}
+.about-block h3{font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:12px;color:var(--c-text)}
+.edu-item,.exp-item{margin-bottom:14px}
 .edu-item:last-child,.exp-item:last-child{margin-bottom:0}
 .edu-school{font-weight:600;font-size:15px;margin-bottom:2px}
 .edu-degree{font-size:14px;color:var(--c-sub);margin-bottom:2px}
@@ -99,11 +100,13 @@ a{color:inherit;text-decoration:none}
 .exp-role{font-size:14px;color:var(--c-sub);margin-bottom:2px}
 .exp-date{font-size:12px;color:var(--c-light)}
 /* Skills */
-.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px 40px}
-.skill-group{margin-bottom:20px}
-.skill-group h4{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--c-light);margin-bottom:10px}
-.skill-tags{display:flex;gap:8px;flex-wrap:wrap}
-.skill-tag{font-size:13px;background:var(--c-tag-bg);color:var(--c-tag-text);padding:6px 14px;border-radius:100px;font-weight:400}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 24px}
+.skill-group{margin-bottom:6px}
+.skill-group h4{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--c-light);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.skill-group h4::before{content:'';display:inline-block;width:6px;height:6px;border-radius:2px;background:var(--c-text)}
+.skill-tags{display:flex;gap:6px;flex-wrap:wrap}
+.skill-tag{font-size:12px;background:var(--c-tag-bg);color:var(--c-tag-text);padding:5px 10px 5px 7px;border-radius:100px;font-weight:400;display:inline-flex;align-items:center;gap:6px;line-height:1.2}
+.skill-tag .ico{flex-shrink:0;width:18px;height:18px;border-radius:5px;background:var(--c-text);color:#fff;font-size:10px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;letter-spacing:-.02em}
 
 /* Contact */
 .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:32px}
@@ -207,10 +210,10 @@ a{color:inherit;text-decoration:none}
   .hero-banner{padding:100px 20px 60px}
   .featured-grid{grid-template-columns:1fr;gap:12px}
   .works-grid{grid-template-columns:repeat(2,1fr)}
-  .about-grid{grid-template-columns:1fr;gap:40px}
-  .photo-block{grid-template-columns:1fr;gap:20px;padding:18px}
-  .photo-img{height:340px}
-  .skills-grid{grid-template-columns:1fr}
+  .about-layout{grid-template-columns:1fr;gap:24px}
+  .about-photo .photo-img{height:340px}
+  .about-info{gap:24px}
+  .skills-grid{grid-template-columns:1fr 1fr;gap:12px 18px}
   .contact-wrap{grid-template-columns:1fr}
   .modal-content{padding:80px 20px 60px}
   .modal-meta{grid-template-columns:1fr;padding:0;gap:14px}
@@ -270,24 +273,26 @@ a{color:inherit;text-decoration:none}
 <section id="about" class="section fade-up" style="padding-top:100px">
   <div class="section-label" data-i18n="about.label">About</div>
   <div class="section-title" data-i18n="about.title">关于我</div>
-  <p style="font-size:16px;color:var(--c-sub);line-height:1.7;max-width:680px;margin-bottom:0" data-i18n="about.intro">
+  <p style="font-size:15px;color:var(--c-sub);line-height:1.7;max-width:680px;margin-bottom:0" data-i18n="about.intro">
     拥有动画、视觉设计、品牌传播、IP衍生品设计与AIGC内容创作背景，关注品牌表达、用户体验与创意技术的融合。
   </p>
-  <div class="photo-block">
-    <img class="photo-img" src="images/about/portrait.jpg" alt="Mao Yuhang at Tencent Open Day 2026" />
-    <div class="photo-info">
-      <h3 data-i18n="about.photoTitle">工作瞬间</h3>
-      <p data-i18n="about.photoDesc">在腾讯开放日（Tencent Open Day 2026）担任 POKO 与企鹅毛绒玩偶展区的工作人员，向到访观众介绍企鹅 IP 衍生品的设计思路与生产工艺。</p>
-      <div class="photo-meta" data-i18n="about.photoMeta">Tencent Open Day · 2026 · Staff</div>
+  <div class="about-layout">
+    <div class="about-photo">
+      <img class="photo-img" src="images/about/portrait.jpg" alt="Mao Yuhang at Tencent Open Day 2026" />
+      <div class="photo-info">
+        <h3 data-i18n="about.photoTitle">工作瞬间</h3>
+        <p data-i18n="about.photoDesc">在腾讯开放日（Tencent Open Day 2026）担任 POKO 与企鹅毛绒玩偶展区的工作人员，向到访观众介绍企鹅 IP 衍生品的设计思路与生产工艺。</p>
+        <div class="photo-meta" data-i18n="about.photoMeta">Tencent Open Day · 2026 · Staff</div>
+      </div>
     </div>
-  </div>
-  <div class="about-grid">
-    <div class="about-block" id="about-edu-block"></div>
-    <div class="about-block" id="about-exp-block"></div>
-  </div>
-  <div style="margin-top:48px">
-    <h3 data-i18n="skills.title" style="font-size:14px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:24px">Skills</h3>
-    <div class="skills-grid" id="skills-grid"></div>
+    <div class="about-info">
+      <div class="about-block" id="about-edu-block"></div>
+      <div class="about-block" id="about-exp-block"></div>
+      <div class="about-block">
+        <h3 data-i18n="skills.title">专业技能</h3>
+        <div class="skills-grid" id="skills-grid"></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -540,19 +545,38 @@ var EXP = [
 var SKILLS = [
   {
     cn: '设计', en: 'Design',
-    tags: ['Photoshop','Illustrator','Figma','Procreate']
+    tags: [
+      { cn: 'Photoshop', ico: 'Ps' },
+      { cn: 'Illustrator', ico: 'Ai' },
+      { cn: 'Figma', ico: 'F' },
+      { cn: 'Procreate', ico: 'Pc' }
+    ]
   },
   {
     cn: '动效', en: 'Motion',
-    tags: ['After Effects','Premiere Pro']
+    tags: [
+      { cn: 'After Effects', ico: 'Ae' },
+      { cn: 'Premiere Pro', ico: 'Pr' }
+    ]
   },
   {
     cn: '3D', en: '3D',
-    tags: ['Blender','Maya','ZBrush','Substance Painter','KeyShot']
+    tags: [
+      { cn: 'Blender', ico: 'Bl' },
+      { cn: 'Maya', ico: 'Ma' },
+      { cn: 'ZBrush', ico: 'Zb' },
+      { cn: 'KeyShot', ico: 'Ks' }
+    ]
   },
   {
     cn: 'AIGC', en: 'AIGC',
-    tags: ['Midjourney','ComfyUI','Stable Diffusion','Flux','Runway','Kling','ChatGPT']
+    tags: [
+      { cn: 'Midjourney', ico: 'Mj' },
+      { cn: 'ComfyUI', ico: 'Co' },
+      { cn: 'Runway', ico: 'Rw' },
+      { cn: 'Kling', ico: 'Kl' },
+      { cn: 'ChatGPT', ico: 'Gp' }
+    ]
   }
 ];
 
@@ -647,7 +671,10 @@ function renderSkills() {
   var g = document.getElementById('skills-grid');
   g.innerHTML = SKILLS.map(function(s){
     var d = p(s);
-    return '<div class="skill-group"><h4>'+d+'</h4><div class="skill-tags">'+s.tags.map(function(t){return'<span class="skill-tag">'+t+'</span>'}).join('')+'</div></div>';
+    return '<div class="skill-group"><h4>'+d+'</h4><div class="skill-tags">'+s.tags.map(function(t){
+      var nm = (L==='cn') ? t.cn : (t.en || t.cn);
+      return '<span class="skill-tag"><span class="ico">'+t.ico+'</span>'+nm+'</span>';
+    }).join('')+'</div></div>';
   }).join('');
 }
 
@@ -656,11 +683,9 @@ function renderContact() {
   var w = document.getElementById('contact-wrap');
   var email = L==='cn' ? '电子邮箱' : 'Email';
   var phone = L==='cn' ? '电话' : 'Phone';
-  var bhc = L==='cn' ? 'Behance' : 'Behance';
   w.innerHTML =
     '<div class="contact-item"><div class="contact-icon">✉</div><div><div class="contact-label">'+email+'</div><div class="contact-value"><a href="mailto:qinyu349@gmail.com">qinyu349@gmail.com</a></div></div></div>' +
-    '<div class="contact-item"><div class="contact-icon">📞</div><div><div class="contact-label">'+phone+'</div><div class="contact-value"><a href="tel:+8619124300097">+86 19124300097</a></div></div></div>' +
-    '<div class="contact-item"><div class="contact-icon">🔗</div><div><div class="contact-label">'+bhc+'</div><div class="contact-value"><a href="https://www.behance.net" target="_blank" rel="noopener">behance.net</a></div></div></div>';
+    '<div class="contact-item"><div class="contact-icon">📞</div><div><div class="contact-label">'+phone+'</div><div class="contact-value"><a href="tel:+8619124300097">+86 19124300097</a></div></div></div>';
 }
 
 // ═══════════════════════════════════════════════════════════════
