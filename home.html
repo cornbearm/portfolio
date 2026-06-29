@@ -831,17 +831,20 @@ var DETAIL = {
     ]
   },
   'd3': {
+    introTitle: { cn: '产品简介', en: 'Product Intro' },
     cn: {
       title: '衍生品设计',
       role: 'IP衍生品设计师',
       timeline: '2026',
-      tools: 'Photoshop, Illustrator, Procreate'
+      tools: 'Photoshop, Illustrator, Procreate',
+      overview: '以下包含毛绒产品、PVC产品、盲盒包装、明信片包装、背卡设计等等。'
     },
     en: {
       title: 'Merchandise Design',
       role: 'IP Merchandise Designer',
       timeline: '2026',
-      tools: 'Photoshop, Illustrator, Procreate'
+      tools: 'Photoshop, Illustrator, Procreate',
+      overview: 'Covers plush products, PVC products, blind box packaging, postcard packaging, backing card design, and more.'
     },
     gallery: [
       { type:'image', src:'images/merchandise/1.jpg', layout:'full', cn:'', en:'' },
@@ -1452,7 +1455,7 @@ function openDetail(id) {
     '</div>' +
     '<div class="modal-body">' +
       (d.tagline ? '<div class="modal-tagline" style="font-size:16px;color:var(--c-text);line-height:1.7;margin-bottom:32px;padding:20px 24px;background:var(--c-card);border-radius:var(--radius);border-left:3px solid var(--c-text)">' + (L === 'cn' ? d.tagline.cn : d.tagline.en) + '</div>' : '') +
-      '<div class="modal-section"><h3>' + t('detail.overview') + '</h3><p>' + dd.overview + '</p></div>' +
+      (dd.overview ? '<div class="modal-section"><h3>' + (d.introTitle ? (L === 'cn' ? d.introTitle.cn : d.introTitle.en) : t('detail.overview')) + '</h3><p>' + dd.overview + '</p></div>' : '') +
       (dd.responsibility ? '<div class="modal-section"><h3>' + t('detail.responsibility') + '</h3><p>' + dd.responsibility.replace(/\n/g, '<br>') + '</p></div>' : '') +
       (dd.process ? '<div class="modal-section"><h3>' + t('detail.process') + '</h3><p>' + dd.process + '</p></div>' : '') +
       (dd.outcome ? '<div class="modal-section"><h3>' + t('detail.outcome') + '</h3><p>' + dd.outcome + '</p></div>' : '') +
