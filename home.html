@@ -83,30 +83,31 @@ a{color:inherit;text-decoration:none}
 .work-tag{font-size:11px;color:var(--c-tag-text);background:var(--c-tag-bg);padding:3px 10px;border-radius:100px}
 
 /* About */
-.about-layout{display:grid;grid-template-columns:260px 1fr;gap:32px 44px;margin-top:32px;align-items:start}
-.about-photo{padding:18px;background:#fafafa;border:1px solid var(--c-border);border-radius:14px}
-.about-photo .photo-img{width:100%;height:300px;object-fit:cover;border-radius:10px;display:block}
+.about-layout{display:grid;grid-template-columns:300px 1fr;gap:24px 40px;margin-top:32px;align-items:stretch}
+.about-photo{padding:16px;background:#fafafa;border:1px solid var(--c-border);border-radius:14px;display:flex}
+.about-photo .photo-img{width:100%;height:100%;min-height:380px;object-fit:cover;border-radius:10px;display:block}
 .about-photo .photo-info h3{font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin:14px 0 6px}
 .about-photo .photo-info p{font-size:13px;color:var(--c-sub);line-height:1.6;margin-bottom:6px}
 .about-photo .photo-meta{font-size:11px;color:var(--c-light);letter-spacing:.02em}
-.about-info{display:flex;flex-direction:column;gap:24px}
-.about-block h3{font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:12px;color:var(--c-text)}
-.edu-item,.exp-item{margin-bottom:14px}
+.about-info{display:flex;flex-direction:column;gap:20px}
+.about-row{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.about-block h3{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:12px;color:var(--c-text)}
+.edu-item,.exp-item{margin-bottom:12px}
 .edu-item:last-child,.exp-item:last-child{margin-bottom:0}
-.edu-school{font-weight:600;font-size:15px;margin-bottom:2px}
-.edu-degree{font-size:14px;color:var(--c-sub);margin-bottom:2px}
-.edu-date{font-size:12px;color:var(--c-light)}
-.exp-company{font-weight:600;font-size:15px}
-.exp-role{font-size:14px;color:var(--c-sub);margin-bottom:2px}
-.exp-date{font-size:12px;color:var(--c-light)}
+.edu-school{font-weight:600;font-size:14px;margin-bottom:1px}
+.edu-degree{font-size:13px;color:var(--c-sub);margin-bottom:1px}
+.edu-date{font-size:11px;color:var(--c-light)}
+.exp-company{font-weight:600;font-size:14px}
+.exp-role{font-size:13px;color:var(--c-sub);margin-bottom:1px}
+.exp-date{font-size:11px;color:var(--c-light)}
 /* Skills */
-.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 24px}
-.skill-group{margin-bottom:6px}
-.skill-group h4{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--c-light);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 20px}
+.skill-group{margin-bottom:0}
+.skill-group h4{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--c-light);margin-bottom:8px;display:flex;align-items:center;gap:8px}
 .skill-group h4::before{content:'';display:inline-block;width:6px;height:6px;border-radius:2px;background:var(--c-text)}
 .skill-tags{display:flex;gap:6px;flex-wrap:wrap}
-.skill-tag{font-size:12px;background:var(--c-tag-bg);color:var(--c-tag-text);padding:5px 10px 5px 7px;border-radius:100px;font-weight:400;display:inline-flex;align-items:center;gap:6px;line-height:1.2}
-.skill-tag .ico{flex-shrink:0;width:18px;height:18px;border-radius:5px;background:var(--c-text);color:#fff;font-size:10px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;letter-spacing:-.02em}
+.skill-tag{font-size:11px;background:var(--c-tag-bg);color:var(--c-tag-text);padding:4px 8px 4px 6px;border-radius:100px;font-weight:400;display:inline-flex;align-items:center;gap:6px;line-height:1.2}
+.skill-tag .ico{flex-shrink:0;width:16px;height:16px;border-radius:5px;background:var(--c-text);color:#fff;font-size:9px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;letter-spacing:-.02em}
 
 /* Contact */
 .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:32px}
@@ -211,7 +212,8 @@ a{color:inherit;text-decoration:none}
   .featured-grid{grid-template-columns:1fr;gap:12px}
   .works-grid{grid-template-columns:repeat(2,1fr)}
   .about-layout{grid-template-columns:1fr;gap:24px}
-  .about-photo .photo-img{height:340px}
+  .about-photo .photo-img{height:340px;min-height:auto}
+  .about-row{grid-template-columns:1fr;gap:24px}
   .about-info{gap:24px}
   .skills-grid{grid-template-columns:1fr 1fr;gap:12px 18px}
   .contact-wrap{grid-template-columns:1fr}
@@ -281,8 +283,10 @@ a{color:inherit;text-decoration:none}
       <img class="photo-img" src="images/about/portrait.jpg" alt="Mao Yuhang at Tencent Open Day 2026" />
     </div>
     <div class="about-info">
-      <div class="about-block" id="about-edu-block"></div>
-      <div class="about-block" id="about-exp-block"></div>
+      <div class="about-row">
+        <div class="about-block" id="about-edu-block"></div>
+        <div class="about-block" id="about-exp-block"></div>
+      </div>
       <div class="about-block">
         <h3 data-i18n="skills.title">专业技能</h3>
         <div class="skills-grid" id="skills-grid"></div>
