@@ -78,10 +78,10 @@ a{color:inherit;text-decoration:none}
 .work-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .work-card:hover .work-thumb img{transform:scale(1.04)}
 .work-info{padding:14px 16px 16px}
-.work-name{font-size:14px;font-weight:600;margin-bottom:4px}
-.work-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.work-name{font-size:14px;font-weight:600;margin-bottom:6px}
+.work-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
 .work-tag{font-size:11px;color:var(--c-tag-text);background:var(--c-tag-bg);padding:3px 10px;border-radius:100px}
-.work-link{margin-top:8px;margin-bottom:-2px}
+.work-link{margin-top:6px;margin-bottom:-2px}
 .work-link a{font-size:13px;color:#888;text-decoration:none;display:inline-flex;align-items:center;gap:4px;transition:color .2s,border-color .2s;font-weight:500;border-bottom:1px solid transparent;padding-bottom:1px}
 .work-link a:hover{color:#222;border-bottom-color:#222}
 .work-link-arrow{font-size:10px;line-height:1;opacity:.5;transition:transform .2s,opacity .2s}
@@ -472,7 +472,7 @@ var WORKS = [
       { id: 'd3', img: 'images/merchandise/1.jpg', cn: { title: '衍生品设计', tags: ['衍生品','IP'] }, en: { title: 'Merchandise Design', tags: ['Merchandise','IP'] } },
       { id: 'd4', img: '', cn: { title: '平面视觉设计', tags: ['平面','品牌'] }, en: { title: 'Graphic Visual Design', tags: ['Print','Branding'] } },
       { id: 'tencent-openday', img: 'images/tencent-openday/01-poster.jpg', cn: { title: '腾讯企鹅开放日 · 活动视觉系统', tags: ['活动视觉','腾讯','IP','导视'] }, en: { title: 'Tencent Penguin Open Day · Event Visual System', tags: ['Event','Tencent','IP','Signage'] } },
-      { id: 'pdp-woodcraft', img: 'images/pdp-woodcraft/cover.jpg', cn: { title: '商品详情页 · 木工主题', tags: ['电商','详情页','淘宝'] }, en: { title: 'Product Detail Page · Woodcraft', tags: ['E-commerce','PDP','Taobao'] }, link: { cn: '淘宝', en: 'Taobao', url: 'https://e.tb.cn/h.RBkyU1xZgYJbqtX?tk=PliAgnhuBFk HU071' } },
+      { id: 'pdp-woodcraft', img: 'images/pdp-woodcraft/cover.jpg', cn: { title: '商品详情页 · 木工主题', tags: ['电商','详情页'] }, en: { title: 'Product Detail Page · Woodcraft', tags: ['E-commerce','PDP'] }, link: { cn: '淘宝', en: 'Taobao', url: 'https://e.tb.cn/h.RBkyU1xZgYJbqtX?tk=PliAgnhuBFk HU071' } },
       { id: 'h5-longimg', img: 'images/h5-longimg/cover.jpg', cn: { title: '长图H5设计 · 风暴起少年狂', tags: ['H5','游戏','长图'] }, en: { title: 'Long-Image H5 · Storm Rising', tags: ['H5','Game','Long-form'] } },
       { id: 'illustrations', img: 'images/illustrations/02-char-pink.jpg', cn: { title: '个人插画集', tags: ['角色','场景','图标','Banner'] }, en: { title: 'Personal Illustration Collection', tags: ['Characters','Scenes','Icons','Banner'] } }
     ]
@@ -639,8 +639,8 @@ function renderWorks() {
         var linkHtml = w.link ? '<div class="work-link"><a href="' + w.link.url + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">' + (L === 'cn' ? w.link.cn : w.link.en) + ' <span class="work-link-arrow">↗</span></a></div>' : '';
         return '<div class="work-card" onclick="openDetail(\''+w.id+'\')">' +
           (w.img ? '<div class="work-thumb"><img src="'+w.img+'" alt="'+wd.title+'" loading="lazy"></div>' : '<div class="work-thumb" style="background:linear-gradient(135deg,'+gradColors(ci+cat.items.indexOf(w))+')"></div>') +
-          '<div class="work-info"><div class="work-name">'+wd.title+'</div>' + linkHtml +
-          '<div class="work-tags">'+wd.tags.map(function(t){return'<span class="work-tag">'+t+'</span>'}).join('')+'</div></div></div>';
+          '<div class="work-info"><div class="work-name">'+wd.title+'</div>' +
+          '<div class="work-tags">'+wd.tags.map(function(t){return'<span class="work-tag">'+t+'</span>'}).join('')+'</div>' + linkHtml + '</div></div>';
       }).join('') + '</div></div>';
   }).join('');
 }
