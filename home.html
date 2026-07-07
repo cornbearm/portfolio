@@ -1199,6 +1199,7 @@ var DETAIL = {
       responsibility: '',
       outcome: ''
     },
+    link: { cn: '淘宝', en: 'Taobao', url: 'https://e.tb.cn/h.RBkyU1xZgYJbqtX?tk=PliAgnhuBFk HU071' },
     gallery: [
       { type:'image', src:'images/pdp-woodcraft/cover.jpg', layout:'full', cn:'', en:'' }
     ]
@@ -1346,6 +1347,7 @@ function openDetail(id) {
         '<span><strong>' + t('detail.timeline') + '</strong>' + dd.timeline + '</span>' +
         '<span><strong>' + t('detail.tools') + '</strong>' + dd.tools + '</span>' +
       '</div>' +
+      (d.link ? '<div class="modal-hero-link" style="margin-top:24px"><a href="' + d.link.url + '" target="_blank" rel="noopener" class="modal-link-btn">' + (d.link[L] || d.link.cn) + ' ↗</a></div>' : '') +
     '</div>' +
     '<div class="modal-body">' +
       (d.tagline ? '<div class="modal-tagline" style="font-size:16px;color:var(--c-text);line-height:1.7;margin-bottom:32px;padding:20px 24px;background:var(--c-card);border-radius:var(--radius);border-left:3px solid var(--c-text)">' + (L === 'cn' ? d.tagline.cn : d.tagline.en) + '</div>' : '') +
@@ -1354,7 +1356,6 @@ function openDetail(id) {
       (dd.process ? '<div class="modal-section"><h3>' + t('detail.process') + '</h3><p>' + dd.process + '</p></div>' : '') +
       (dd.outcome ? '<div class="modal-section"><h3>' + t('detail.outcome') + '</h3><p>' + dd.outcome + '</p></div>' : '') +
       (d.relatedProject ? '<div class="modal-section modal-related" style="margin-top:8px;margin-bottom:24px"><a href="#" onclick="event.preventDefault();closeModal();setTimeout(function(){openDetail(\''+d.relatedProject.id+'\')},200);return false;" class="modal-related-link" style="display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:var(--c-card);color:var(--c-text);border-radius:100px;font-size:14px;font-weight:500;text-decoration:none;border:1px solid var(--c-border);transition:background .2s,transform .2s"><span style="font-size:16px">🔗</span><span>' + (L === 'cn' ? d.relatedProject.label.cn : d.relatedProject.label.en) + '</span></a></div>' : '') +
-      (d.link ? '<div class="modal-section"><a href="' + d.link.url + '" target="_blank" rel="noopener" class="modal-link-btn">' + (d.link[L] || d.link.cn) + '</a></div>' : '') +
       (d.links && d.links.length ? '<div class="modal-links" style="display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 48px"><strong style="font-size:13px;color:var(--c-light);font-weight:500;width:100%;margin-bottom:4px">🔗 External Links</strong>' + d.links.map(function(lk) { return '<a href="' + lk.url + '" target="_blank" rel="noopener" class="modal-link-btn" style="margin:0">' + (L === 'cn' ? lk.cn : lk.en) + ' ↗</a>'; }).join('') + '</div>' : '') +
       galHtml +
     '</div>';
